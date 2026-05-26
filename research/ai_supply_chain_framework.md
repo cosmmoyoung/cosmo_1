@@ -209,6 +209,18 @@ The investor wants **high-elasticity × chokepoint × small-base × workable val
 5. **Watch-but-not-yet:** ABF substrate & Advantest (true chokepoints, modest elasticity/base); AVGO/MRVL (great businesses, bad entry); CPO (read as a *risk input* to #2, not a standalone long).
 6. **Avoid as primaries:** liquid-cooling modules (commoditizing), copper (bridge), generic PCB/CCL (chokepoint is upstream).
 
+### 5.4 BOM-walk discoveries (tests Hypothesis #5 — see `bom_walk_chokepoints.md`)
+
+We walked the GB200/GB300/Rubin rack BOM line-by-line for *under-the-radar* Nittobo-template chokepoints, adding a decisive 5th screen the headline sectors pass too easily: **investability as a clean pure-play.** The key finding is an **"investability gap"**: the *truest* monopolies (Ajinomoto ABF film ~95%, AGC/Hoya EUV mask blanks ~93%, Resonac MR-MUF) are **buried <5% inside giant diversified parents — their scarcity rent doesn't move the stock.** Only a handful are *both* structurally tight *and* cleanly listed:
+
+| New name surfaced | Chokepoint | Why it clears the filter | Status |
+|---|---|---|---|
+| **FormFactor (FORM) / Technoprobe (TPRO.MI)** | Probe cards (HBM/2nm wafer test) | Only candidate clearing all 5 screens incl. investability; ~$4–5bn TAM, top-3 ~60%, consumable + rising test-intensity; **market mis-models it as cyclical capex vs. consumable content** | ★ promote to deep-dive |
+| **BESI (BESI.AS)** | D2W hybrid bonding | Forward gate (TCB→hybrid bonding for HBM4E/logic); <10nm placement lead, ~⅓ of co by '26; own the *next-node share-gainer* not the eroding incumbent | ★ fold into HBM/packaging dive |
+| **Resonac (4004.T)** | Back-end materials basket (MR-MUF + EMC + films) | Only name where AI back-end materials are the *actual earnings engine* (>30% sales, +74% seg. profit Q1'26); solves the investability gap | watch / optional note |
+
+**Two transferable lessons for every name:** (1) the *buried-monopoly* trap — right insight, wrong instrument (ABF film, mask blanks, pellicle); (2) **"monopoly decay"** — Hanmi's HBM TC-bonder share is collapsing 71%→20–30% (2026) as ASMPT/BESI take share, so *every* chokepoint long must be underwritten against "who takes share by 2027." This becomes a standing question for the critical-thinker pass.
+
 ---
 
 ## 6. Hypothesis bank — where consensus may be wrong *(to be tested in deep dives)*
