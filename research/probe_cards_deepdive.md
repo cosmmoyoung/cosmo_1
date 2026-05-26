@@ -1,195 +1,239 @@
-# Probe Cards — Deep-Dive Investment Memo
-### FormFactor (FORM, Nasdaq) & Technoprobe (TPRO.MI, Milan)
-*Author: senior buy-side analyst*
-*As of 26 May 2026. Companion to `ai_supply_chain_framework.md` (§5.4) and `bom_walk_chokepoints.md` (top BOM-walk find). Follows the house template: business → demand bridge → TAM endpoints → reverse "priced-in" test → per-company ceiling → bear case → variant perception.*
+# 探针卡(Probe Card)深度投资备忘录
+### FormFactor(美股代码 FORM)与 Technoprobe(米兰上市,代码 TPRO.MI)
+*作者:资深买方分析师*
+*日期:2026 年 5 月 26 日。配套文件:`ai_supply_chain_framework.md`(总框架)与 `bom_walk_chokepoints.md`(BOM 逐行排查,本标的是排查出的头号"隐藏卡脖子")。*
+
+> **写作约定:** 本备忘录写给没有半导体背景的投资委员会(IC)读者。每个专业名词第一次出现时,都会先用大白话和类比讲清楚"它到底是什么、为什么重要",再展开。文末附一个术语速查表。
 
 ---
 
-## A note on data quality before we start
+## 一句话先讲清楚这门生意是什么
 
-I built this from Q1-CY2026 prints (FORM reported 29 Apr 2026; Technoprobe 14 May 2026), the companies' IR, and reputable aggregators. The sandbox blocked direct retrieval of **Technoprobe's IR PDFs (403)** and some FORM GlobeNewswire/StockTitan pages, so a few figures are multiply-sourced via press rather than primary filings.
+> **造芯片好比印钞票:在一张大圆盘(晶圆)上一次性印出几百上千颗芯片。但印出来不能直接卖——必须先逐颗通电"体检",把坏的挑出来。探针卡,就是体检时扎在每一颗芯片身上、几百到几千根极细金属针组成的那块"针床"。没有它,芯片测不了,测不了就不能出厂。**
 
-**Numbers I am confident on** (multiply-sourced, consistent): FORM Q1-CY26 revenue $226.1m (+32%) and the segment split (DRAM probe cards +70% YoY is the key live datapoint), FORM Q2 guide ($240m), Technoprobe FY25 (€628.4m rev, 32.1% EBITDA margin) and the **raised guidance** (FY26 €950m–1,050m rev, 44–46% EBITDA margin — a major positive event, stock +36% on the print), the ~$3.3bn (2025) probe-card TAM and ~9–10% base-case CAGR, and the consolidated top-5 ~73% share.
-
-**Numbers I explicitly distrust / flag** (the memo does NOT lean on these as point estimates):
-1. **FORM's aggregator multiples are internally inconsistent** — a "forward P/E ~26×" cannot be reconciled with "FY26 EPS ~$1.93" at a ~$128 share price (that implies ~66×), and a quoted "EV/EBITDA ~27×" implies a ~45% EBITDA margin that is *above* FORM's gross margin — impossible. I therefore run the priced-in test on **EV/Sales and a scenario-based EV/EBITDA range with stated margin assumptions**, not on a single quoted multiple. *Verify all FORM/TPRO multiples on a terminal before acting.*
-2. **The "Technoprobe ≈30% of TSMC 2nm qualifications" claim is UNVERIFIED** and partly *contradicted* by TSMC qualifying **MJC (Micronics Japan) as a primary 2nm supplier (Aug 2025)**. I do not print the 30% figure as fact; I treat it as an un-underwritten bull claim.
-3. **There is no clean published "test-seconds-per-die" index.** The entire "test intensity rises super-linearly" thesis (the variant perception, §8) rests on qualitative + proxy evidence, not a hard number. This is the #1 thing to harden.
-4. Technoprobe market-cap sources conflict (€11.8bn vs €16.7bn — I use ~€11.8bn, which ties to ~€26 × ~454m shares); **Teradyne's reported 10% stake needs primary confirmation**; customer-concentration % for TPRO is undisclosed.
-
-A complete picture needs FORM's FY2025 10-K customer-concentration note, Technoprobe's FY25 PR + Q1-26 deck pulled directly, and a TechInsights/Yole primary test-intensity index. Flagging so the reader can close these.
+这门生意的魅力在于三点(后面会逐一展开):① 每款新芯片都要配一块**量身定做**的探针卡,芯片推陈出新就得不断买新卡;② 针会**用坏**,像剃须刀片一样要反复换;③ AI 芯片(尤其是那种把内存叠成"三明治"的结构)让需要做的体检**成倍增加**。
 
 ---
 
-## 1. Business description — what a probe card is, and why it's a chokepoint
+## 〇、动笔前的数据质量说明(很重要,先读)
 
-A **probe card** is the electro-mechanical interface between the test machine (ATE — Teradyne/Advantest) and the **bare wafer**. Hundreds-to-thousands of micro-probes land on each die's pads/bumps at **wafer sort** to test electrical function *before* the wafer is diced and packaged. Three features make it a chokepoint, not a commodity:
+本备忘录基于 2026 年第一季度财报(FormFactor 于 4 月 29 日公布、Technoprobe 于 5 月 14 日公布)、公司官方资料和可信的财经数据源。受沙箱环境限制,**Technoprobe 的官方 PDF(投资者关系文件)无法直接下载**,部分数字是通过多家媒体交叉印证、而非一手文件得来的。
 
-1. **Bespoke per device.** A probe card is custom-designed to one chip's pad map, pin count and frequency. A new device design = a new probe card. It is not reusable across designs. This makes the business a **recurring redesign annuity**: every new GPU/ASIC/HBM die, every shrink, every chiplet variant pulls a fresh card.
-2. **Consumable, not just capex.** The probe tips/heads **wear with touchdowns** and need replacement. So demand tracks **wafer volume**, not only equipment capex — a more resilient, razor-blade-like demand stream than WFE tools (this matters enormously for the multiple — see §8).
-3. **MEMS/vertical-probe IP moat + qualification lock-in.** The advanced standard is MEMS / vertical probe (vs. legacy cantilever). Cards are co-designed and **qualified per device with the foundry/IDM over months** — once designed-in, switching is costly and slow. FORM paid ~$120m (Oct 2025) to acquire a California MEMS firm — a tell that the IP is scarce.
+**我有把握的数字(多方印证、彼此一致):** FormFactor 一季度收入 2.261 亿美元(同比 +32%)以及分部拆分(其中"内存探针卡收入同比 +70%"是最关键的一个活体数据);FormFactor 二季度指引 2.4 亿美元;Technoprobe 2025 全年收入 6.284 亿欧元、EBITDA 利润率 32.1%,以及它**上调了业绩目标**(把原定 2027 年的目标提前到 2026 年——这是一个重大利好,公布当天股价 +36%);探针卡市场 2025 年约 33 亿美元、基准情形年增速约 9–10%;前五大厂商合计约占 73% 份额。
 
-### Why AI raises "test intensity" (the demand thesis)
-The AI build raises probe-card content per unit of compute through several stacked effects:
+**我明确不信任、特意标出来的数字(下文不把它们当作精确依据):**
+1. **FormFactor 的估值倍数,几个数据源彼此矛盾。** 比如有来源说它"前瞻市盈率约 26 倍",但按它的每股盈利和约 128 美元的股价算根本对不上(应该是约 66 倍);还有来源说它"EV/EBITDA 约 27 倍",但反推出的利润率比它的毛利率还高,这在数学上不可能。因此,下文的"估值已经反映了多少预期"这一节,我**不用任何单一倍数,而是用最不含糊的 EV/Sales(企业价值÷年收入)配合明确写出假设的情景区间**来推。所有倍数请在彭博等终端上自行复核。
+2. **"Technoprobe 拿下台积电 2nm 制程约 30% 的认证"这个说法,未经证实**,而且与另一个事实相矛盾:台积电在 2025 年 8 月把日本厂商 MJC(Micronics)认证为 2nm 的**主力**供应商。所以我不把"30%"当事实,只当作一个尚未被证实的看多说法。
+3. **没有任何公开的"每颗芯片测试时长"硬指标。** 整个"AI 让测试量成倍上升"的逻辑(也就是本备忘录看多的核心论点,见第八节)目前靠的是定性证据和旁证,而不是一个硬数字。**这是最需要补上的缺口。**
 
-- **HBM Known-Good-Die (KGD):** every DRAM die in a stack must be probed/tested **before** stacking (you cannot afford a bad die inside a 16-high stack), then the assembled stack is re-tested at multiple points → **multiplicative touchdowns** vs. a monolithic die. *(Source: FormFactor, "KGD test enables advanced packaging for HBM," 2024 [SRC].)*
-- **HBM stack height 8-high (HBM3) → 16-high (HBM4):** FORM states directly that "the increase in layer count to 16-high increases the number of probe-cards required for good chip out." [SRC]
-- **Advanced logic (2nm GAA, chiplets/2.5D):** higher frequency + lower-insertion-loss cards (FORM's K40: −3 dB at 7 GHz, supports HBM4/LPDDR6/GDDR7), and **chiplet disaggregation multiplies the number of *unique die types*** → more bespoke cards per "system."
-- **ATE parallelism proxy:** Teradyne's Magnum 7H HBM tester carries up to 9,216 digital + 2,560 power pins and 1.6× throughput vs. prior gen — a proxy for the rising pin-count/parallelism the card must mate to. [SRC]
-
-> **The live proof:** FORM's **DRAM probe-card revenue grew +70% YoY in Q1-CY2026** — that is the HBM/KGD content step-up showing up in the P&L *right now*, not a 2030 promise. [SRC]
+要补全这张图,需要直接拿到:FormFactor 的 2025 年报(里面列出占收入 >10% 的大客户)、Technoprobe 的一手财报、以及一份来自 TechInsights / Yole 这类专业机构的"测试强度"指标。先标出来,方便读者去补。
 
 ---
 
-## 2. The demand bridge — first principles (per framework §1)
+## 一、先用大白话补齐背景:芯片是怎么造、怎么测的
 
-```
-AI compute demand
-  → advanced-die wafer starts (2nm logic + HBM DRAM)        [units]
-  → × KGD test requirement (test before stack)              [content ×]
-  → × stack height 8→16-high (more cards/good-die-out)      [content ×]
-  → × chiplet design proliferation (more unique die types)  [content ×]
-  → × higher-spec MEMS card ASP (frequency/pin count)       [ASP ×]
-  → × consumable replacement (tips wear w/ touchdowns)      [recurring]
-  = probe-card demand
-```
+要理解这门生意,先得搞懂芯片从生产到出厂中间那道"体检"工序。下面这几个词,后面会反复用到:
 
-This stacks **three content multipliers + an ASP multiplier on top of unit growth** — i.e., it is *multiplicative*, exactly the "elasticity layer" the framework targets (§1.2). The catch (vs. InP or glass cloth): the absolute TAM is small **and** the unit base (wafer starts) is itself only mid-single-digit growth, so the elasticity comes from *content per wafer*, not from runaway unit growth. That makes the **content-step-up magnitude (1.3× vs 2× per HBM generation) the single most thesis-load-bearing number** — and it is the one nobody has cleanly published (§A, gap #3).
+- **晶圆(wafer):** 一整块圆形的硅片,直径约一个比萨饼大小。芯片不是一颗颗单独造的,而是在这一整块圆盘上**一次性同时印出几百到上千颗**。
+- **裸晶 / 裸芯片(die):** 晶圆上还没被切开的、单独的每一颗芯片。切开之前它们还连在同一张圆盘上。
+- **晶圆测试 / 晶圆分选(wafer sort):** 在把晶圆切成一颗颗芯片**之前**,先给每一颗通上电,跑一遍测试,把不合格的标记出来。这一步至关重要——因为坏芯片越早挑出来越省钱,等封装好了再发现坏的,前面的工序就全白费了。
+- **探针卡(probe card):** 做晶圆测试时,需要一个东西去精准地"碰"到每颗芯片上比头发丝还细的金属焊点,把电信号送进去、读出来。这个东西就是探针卡——一块布满了几百到几千根微型金属探针的"针床"。它一头接测试机,一头扎芯片。
+- **测试机(ATE,Automated Test Equipment,自动测试设备):** 真正跑测试程序的大机器(主要由泰瑞达 Teradyne、爱德万 Advantest 两家做)。探针卡是测试机和晶圆之间的"转接头",自己不产生测试,但没有它测试机碰不到芯片。
+
+为什么探针卡是一门好生意,而不是个普通零件?三个原因:
+
+1. **量身定做,换芯片就得换卡。** 每款芯片的焊点位置、数量、工作频率都不一样,探针的排布必须为它单独设计。**出一款新芯片,就要配一块新的探针卡**。芯片行业每年推陈出新,这就意味着源源不断的新订单——有点像"每出一款新车型就得重开一套专用模具"。
+2. **针会磨损,是消耗品。** 探针反复扎芯片(行话叫"触压 touchdown"),针尖会磨损,用一阵子就得换。所以这门生意的需求,不只跟客户"买不买新机器"挂钩,更跟客户**实际生产了多少晶圆**挂钩——像打印机的墨盒、剃须刀的刀片,是反复消耗、反复补货的。这一点对它**该值多少钱**影响极大,第八节会重点讲。
+3. **技术有门槛,而且客户认证一旦通过就很难换。** 现在主流的高端探针卡用一种叫 **MEMS(微机电系统)** 的工艺做——简单说,就是用造芯片的精密办法去造这些微型探针,精度极高,不是谁都做得出来。更关键的是,探针卡要和客户(台积电、三星这些)**一起花好几个月联合调试、认证**,一旦定下来用谁的,客户轻易不会换——换了要重新认证,费时费钱。这就形成了**粘性**。FormFactor 在 2025 年 10 月花了约 1.2 亿美元收购一家加州的 MEMS 公司,正说明这种技术稀缺、值得花钱买。
 
 ---
 
-## 3. TAM endpoints & bridge
+## 二、为什么 AI 让这门生意变好(需求的故事)
 
-| | Old TAM (pre-AI ~2022) | 2025 | 2030E base | 2030E bull |
+核心一句话:**AI 芯片让"要做的体检"成倍增加,所以探针卡卖得更多。** 具体通过几个叠加的效应:
+
+**第一,AI 需要一种叫 HBM 的特殊内存,而它的结构让测试量暴涨。**
+- **HBM(High Bandwidth Memory,高带宽内存)是什么?** AI 芯片(GPU)算得飞快,但需要海量数据持续"喂"给它,普通内存喂不过来。解决办法是把很多层内存芯片**像三明治一样垂直叠起来**,紧贴在 GPU 旁边,带宽极高——这就是 HBM。
+- **关键难点叫 KGD(Known-Good-Die,已确认是好的裸片):** 既然要把很多层叠成一个三明治,那就**必须保证叠进去的每一层都是好的**——因为只要中间有一层是坏的,整个昂贵的三明治就报废了。所以每一层在叠之前都要先单独测一遍,叠好之后还要在多个环节再测。**这就让测试次数比普通单层芯片成倍增加。**
+- **而且层数还在变多:** 上一代 HBM3 一个三明治叠 8 层,新一代 HBM4 要叠到 16 层。FormFactor 官方明确说:"层数增加到 16 层,意味着要用更多的探针卡才能挑出足够的好芯片。"层数翻倍,测试和用卡量跟着上。
+
+**第二,最先进的逻辑芯片(就是 GPU/CPU 这类做运算的芯片)也在推高测试需求。**
+- 这里有两个词:**"2nm(2 纳米)制程"**指的是目前最先进的芯片制造工艺——数字越小、工艺越精密、芯片性能越强,但也越难测,需要更高频、更精密的探针卡。**"chiplet(小芯片/芯粒)"**指的是不再把一颗大芯片做成一整块,而是拆成好几小块、再拼装到一起——这样种类更多,**每一种小块都要配自己专属的探针卡**,卡的种类和数量都上去了。
+
+**第三,有活体证据,不是空谈:** FormFactor 2026 年一季度,**内存(主要是 HBM)探针卡收入同比 +70%**。这就是上面说的"测试量成倍增加"已经实实在在体现在它的财报里了,不是 2030 年的画饼。
+
+---
+
+## 三、这个市场有多大?(行话叫 TAM,Total Addressable Market,可触达市场总规模)
+
+先把结论说在前面:**这是我们整个 AI 产业链排查里最小的一个市场。** 它能入选,靠的是"弹性大 + 卡脖子 + 基数小 + 买得到",而**不是靠市场大**。
+
+| | AI 之前(约 2022) | 2025 | 2030 基准情形 | 2030 乐观情形 |
 |---|---:|---:|---:|---:|
-| Total probe-card TAM | ~$2.4bn [EST] | **~$3.3bn** [SRC] | **~$5.0bn** (@~9–10% CAGR) | **~$7–8bn** (content super-linearity) |
-| of which MEMS/advanced (AI-levered) | ~$1.0bn [EST] | ~$1.74bn [SRC] | ~$3.0bn | ~$4.5–5bn |
-| of which DRAM/HBM | ~$0.7bn [EST] | ~$1.3bn [EST] | ~$2.2bn | ~$3.5bn |
+| 探针卡市场总规模 | 约 24 亿美元(估) | **约 33 亿美元** | **约 50 亿美元**(年增约 9–10%) | **约 70–80 亿美元** |
+| 其中:高端 MEMS 部分(最受益 AI) | 约 10 亿(估) | 约 17.4 亿 | 约 30 亿 | 约 45–50 亿 |
+| 其中:内存 / HBM 部分 | 约 7 亿(估) | 约 13 亿(估) | 约 22 亿 | 约 35 亿 |
 
-**Bridge decomposition (2025 → 2030 base, ~+$1.7bn):** ~⅓ unit/wafer-start growth, ~½ content (KGD + 16-high + chiplet design count), ~⅙ ASP/mix (higher-spec MEMS). The **bull case ($7–8bn) requires the content multiplier to run ~2× per HBM generation rather than ~1.3×** and is where the variant perception lives.
+**这个增长是怎么来的(从 33 亿到 50 亿,多出来约 17 亿)?** 大致:约 ⅓ 来自晶圆产量本身的增长,约 ½ 来自"单位含量"上升(也就是上面讲的 KGD + 叠 16 层 + chiplet 种类变多,导致每片晶圆要用更多卡),约 ⅙ 来自卡的单价提升(更高端的 MEMS 卡更贵)。
 
-> **Key framing for "how big to how big":** this is the most modest TAM in the whole AI-supply-chain screen — ~$3.3bn going to ~$5bn base. It clears the investor's filter on *elasticity-per-content × chokepoint × small-base × ownable*, **not** on absolute market size. The thesis is "a small market with pricing power and two clean listed leaders," not "a huge market."
+> **乐观情形(70–80 亿)成立的前提**,是"每代 HBM 带来的测试量增加是约 2 倍,而不是约 1.3 倍"。这个倍数到底是多少,**目前没人公开发布过**(就是第〇节说的那个缺口)——它直接决定了是基准还是乐观,是本备忘录最要命的一个未知数。
 
 ---
 
-## 4. Market structure & moat
+## 四、谁在做这门生意,以及别人为什么抢不走(竞争格局与护城河)
 
-| Player | Share (2025, total probe card) | Position | Trend |
+| 厂商 | 2025 年份额(全部探针卡口径) | 强在哪 | 趋势 |
 |---|---|---|---|
-| **FormFactor (US)** | **~30%** (No. 1) | Leads **DRAM/HBM** + strong foundry-logic | Stable leader; HBM-levered |
-| **Technoprobe (IT)** | top-2; leads/co-leads **MEMS advanced-logic** | Logic/TSMC-levered, highest margin | Gaining in AI/logic |
-| Micronics Japan (MJC) | ~14% (No. 3) | **Qualified as TSMC *primary* 2nm supplier (Aug 2025)** | **Gaining at the leading node** |
-| JEM / MPI / others | balance | — | — |
-| **Top-5 combined** | **~73%** | Consolidated oligopoly | Consolidating |
+| **FormFactor(美国)** | **约 30%,行业第一** | 内存 / HBM 探针卡领先,逻辑芯片也强 | 稳居第一,深度绑定 HBM |
+| **Technoprobe(意大利)** | 前二;在高端逻辑芯片 MEMS 卡上数一数二 | 绑定逻辑芯片 / 台积电,利润率最高 | 在 AI / 逻辑芯片上抢份额 |
+| Micronics / MJC(日本) | 约 14%,第三 | **2025 年 8 月被台积电认证为 2nm 主力供应商** | **在最先进制程上抢份额(重要风险)** |
+| 其余(JEM、MPI 等) | 剩余 | — | — |
+| **前五大合计** | **约 73%** | 寡头格局 | 在向头部集中 |
 
-*Share denominators differ by source (total vs. MEMS-only vs. by end-segment) — treat as directional; FORM clearly leads DRAM/HBM while Technoprobe leads/co-leads advanced-logic MEMS.* The **moat = MEMS IP + multi-month per-device qualification lock-in**, evidenced by structurally high and *rising* margins (FORM probe-card GM 50.5% in Q1-CY26; Technoprobe EBITDA margin 32%→44–46% guided). **The MJC 2nm qualification is the live "monopoly-decay" risk** (framework §5.4 lesson) — share at the leading node is contestable.
+*提醒:不同来源对"份额"的统计口径不一样(有的算全部探针卡、有的只算 MEMS 高端、有的按下游分类),所以这些数字只看大致方向。可以确定的是:FormFactor 在内存/HBM 卡上领先,Technoprobe 在高端逻辑芯片卡上领先或并列第一。*
+
+**护城河(也就是"为什么这门生意能持续赚钱、别人短期抢不进来")** 主要是两条:① 上面说的 **MEMS 技术门槛**;② **长达数月的客户联合认证**,一旦客户用了你的卡就不轻易换。这条护城河的最好证据,是它们的**利润率又高又在涨**:FormFactor 一季度探针卡毛利率 50.5%,Technoprobe 的 EBITDA 利润率从 32% 提到指引的 44–46%——能持续维持这么高的利润率而对手抢不走,本身就说明有定价权。
+
+**但护城河有一道正在出现的裂缝(重要):** 台积电 2025 年 8 月把 MJC 认证为 2nm 的**主力**供应商。这说明在最先进制程上,份额是**可以被抢的**。这正是我们框架里反复强调的"垄断衰变(monopoly decay)"风险——别想当然以为卡脖子的地位永远不变。
 
 ---
 
-## 5. The reverse "priced-in" test (framework §2.1)
+## 五、现在的股价,已经提前反映了多少好预期?(核心:priced-in 逆推)
 
-Because the aggregator P/E and EV/EBITDA point-estimates are inconsistent (§A), I anchor on **EV/Sales** (least ambiguous) and a **scenario EV/EBITDA with explicit margin assumptions**, then back out the implied terminal TAM/share and compare to §3.
+这一节回答你最关心的问题:**"我知道这是长期趋势,但现在这个价格,到底贵不贵?是不是好东西已经被买贵了?"**
+
+方法说明(大白话):我不去预测未来、再算个目标价(那样太容易自欺欺人)。我反过来做——**先看现在的价格,然后倒推:要撑得起这个价格,这门生意未来必须做到多大?再看这个'必须做到'的规模,跟行业能给的天花板比,合不合理。** 如果"必须做到"的规模已经超过了行业天花板,那不管趋势多对,这股票都贵了。
+
+会用到一个尺子:**EV/Sales(企业价值 ÷ 年收入)**。先解释:
+- **EV(Enterprise Value,企业价值)** ≈ 公司市值 + 净负债,大致就是"把整个公司连债一起买下来要花的钱"。
+- **EV/Sales** 就是"这个收购价相当于公司一年收入的几倍"。倍数越高,说明市场对它未来增长的预期越高、定价越贵。一个稳定的高质量半导体耗材公司,跨周期合理大概在 4–6 倍;**超过这个,就说明价格里已经塞进了很高的增长预期。**
 
 ### 5.1 FormFactor
-- **Current EV ≈ $9.5–10.0bn** (mkt cap ~$10.05bn, ~debt-light); **fwd revenue ~$0.96–1.0bn** → **EV/Sales ≈ 10×.**
-- 10× sales for a ~30%-share test company whose *underlying TAM* compounds ~10% is a **full multiple** — a steady-state quality semicap consumable would fairly sit ~4–6× through-cycle. **10× embeds either sustained ~20%+ revenue growth or a consumable re-rating.**
-- **Reverse-engineering the implied terminal** (range, EBITDA margin assumed 22–26% normalized):
+- **现在:企业价值约 95–100 亿美元;未来一年收入约 9.6–10 亿美元 → EV/Sales 约 10 倍。**
+- 10 倍,对一个市场本身只以约 10% 速度增长的公司来说,是一个**很满的价格**——它已经隐含了"要么收入持续每年 +20% 以上、要么估值要被重估到更高的'耗材股'水平"。
+- **倒推它现在的价格要求未来做到多大**(假设跨周期 EBITDA 利润率 22–26%,即每 100 元收入能赚 22–26 元的经营性现金利润):
 
-| Fair terminal EV/EBITDA | Implied terminal EBITDA | → Implied revenue @24% margin | → Implied TAM @30% share | vs $5bn base 2030 |
+| 假设终局合理倍数(EV/EBITDA) | 倒推出的终局 EBITDA | → 按 24% 利润率折算的收入 | → 按 30% 份额折算的市场总规模 | 对比 50 亿基准 |
 |---:|---:|---:|---:|---|
-| 15× | $650m | $2.7bn | **$9.0bn** | 1.8× over base |
-| 18× | $542m | $2.3bn | **$7.5bn** | 1.5× over base |
-| 22× | $443m | $1.85bn | **$6.2bn** | 1.2× over base |
+| 15 倍 | 6.5 亿美元 | 27 亿美元 | **90 亿美元** | 是基准的 1.8 倍 |
+| 18 倍 | 5.4 亿美元 | 23 亿美元 | **75 亿美元** | 1.5 倍 |
+| 22 倍 | 4.4 亿美元 | 18.5 亿美元 | **62 亿美元** | 1.2 倍 |
 
-> **Verdict (FORM):** under *every* reasonable terminal multiple, today's EV implies a probe-card TAM **above the ~$5bn base case** (or share gains beyond 30%, or margins above 24%). The base-case TAM does **not** support forward upside at 10× sales — **FORM is priced for the variant perception (content super-linearity / re-rating) to be RIGHT.** This is "right chokepoint, full price," not a fat pitch.
+> **结论(FormFactor):** 不管用哪个合理倍数倒推,现在的价格都隐含"探针卡市场要长到 50 亿基准之上"(或者它的份额要超过 30%、或利润率要高于 24%)。**也就是说,按行业基准增速,现在的价格撑不起进一步上涨——它已经把乐观情形当成基准在定价了。** 一句话:**"对的卡脖子,满的价格",不是便宜的好球。**
 
 ### 5.2 Technoprobe
-- **Current EV ≈ €11.1bn**; **fwd revenue ~€1.0bn** (guided) → **EV/Sales ≈ 11×**, but at a **44–46% EBITDA margin** vs FORM's mid-20s%. Margin-adjusted, TPRO's 11× sales is *"cheaper"* than FORM's 10× — each euro of revenue drops ~2× more to EBITDA. On **fwd EV/EBITDA both sit ~24×.**
-- **Reverse:** at €11.1bn EV / 22× fair EBITDA → implied terminal EBITDA ~€505m → at 45% margin → revenue ~€1.12bn → at ~25% advanced-logic share → implied advanced-logic probe TAM ~€4.5bn. **More achievable relative to its served market than FORM's**, *because the just-raised guidance already pulls FY27 targets into FY26* (positive estimate-revision momentum).
+- **现在:企业价值约 111 亿欧元;未来一年收入约 10 亿欧元(公司指引)→ EV/Sales 约 11 倍**,但它的 EBITDA 利润率高达 44–46%(FormFactor 才 20% 出头)。把利润率考虑进去后,**Technoprobe 的 11 倍其实比 FormFactor 的 10 倍"更便宜"**——因为它每一块钱收入,落到利润上的比 FormFactor 多约一倍。按 EV/EBITDA 算,两家前瞻都约 24 倍。
+- 倒推:它现在的价格隐含的"必须做到的规模",相对它所服务的市场,**比 FormFactor 更够得着**——而且它刚刚把原定 2027 年的目标提前到 2026 年(说明业绩在加速、分析师还在上调预期)。
 
-> **Verdict (TPRO):** higher-quality margin profile + positive guidance revisions make the "priced-in" hurdle *less* stretched than FORM's — but you pay with **governance/liquidity risk (Crippa family 63%, free float ~16.5%)** and **customer/2nm-share concentration** (the unverified TSMC claim + MJC threat). Quality at a full-but-not-absurd price.
+> **结论(Technoprobe):** 利润率更高、业绩在加速,所以它"被提前透支的程度"比 FormFactor 轻——但代价是**治理和流动性风险**:创始的 Crippa 家族持股 63%、市面上能自由交易的股票只有约 16.5%(盘子薄、话语权集中),再加上客户集中、2nm 份额的说法还没被证实。**算是"高质量、价格偏满但没到离谱"。**
 
-### 5.3 Relative read
-Same chokepoint, two expressions: **FORM = the more liquid, HBM-content-step-up beta** (SK Hynix 29.5% of revenue; DRAM +70% YoY) priced for the bull case; **TPRO = the higher-margin, logic-levered quality compounder** with a governance/float discount and a contestable 2nm narrative. Neither is cheap; TPRO is the better margin-adjusted value, FORM the better pure-play on the HBM4 content step-up.
+### 5.3 两家怎么选
+同一个卡脖子,两种买法:**FormFactor = 流动性更好、更纯粹押注"HBM 测试量暴涨"的高弹性标的**(它 29.5% 的收入来自 SK 海力士、内存卡 +70%),但价格把乐观情形当基准了;**Technoprobe = 利润率更高、绑定逻辑芯片的高质量复利型公司**,估值偏满但没到离谱,缺点是治理/流动性折价、2nm 故事待证实。**论性价比 Technoprobe 略胜,论纯押 HBM 弹性选 FormFactor。**
 
 ---
 
-## 6. Per-company ceiling — "how big can it get vs. how big it is now" (framework §3)
+## 六、这家公司最大能长到多大,跟现在比是什么量级?(单公司天花板)
+
+这是你特别要的那张表:**"如果它在这个市场占 X%,它最大能变成多大的公司?跟现在比是几倍?"** 表里"折现回今天"是指:未来的价值要打个折才能跟今天的价格比(钱有时间成本,这里按每年 14% 折)。
 
 ### 6.1 FormFactor
 
-| | Today (FY26E) | 2030 base | 2030 bull (content 2× + share 33%) |
+| | 现在(2026 预期) | 2030 基准 | 2030 乐观(测试量翻倍 + 份额到 33%) |
 |---|---:|---:|---:|
-| Probe-card TAM | $3.3bn (25) | $5.0bn | $7.5bn |
-| FORM share | ~30% | 30% | 33% |
-| FORM probe-card rev | ~$0.83bn | $1.5bn | $2.5bn |
-| + Systems | ~$0.13bn | $0.16bn | $0.20bn |
-| **Total revenue** | **~$0.96bn** | **~$1.66bn** | **~$2.7bn** |
-| Net margin (normalized) | ~18–20% | 21% | 24% |
-| Net income | ~$185m | ~$350m | ~$650m |
-| Fair P/E | — | 24× | 28× |
-| Implied market cap | $10.05bn (now) | **~$8.4bn** | **~$18.2bn** |
-| PV @14% (4 yr) | — | **~$5.0bn (−50%)** | **~$10.8bn (≈ today)** |
+| 探针卡市场总规模 | 33 亿(2025) | 50 亿 | 75 亿 |
+| FormFactor 份额 | 约 30% | 30% | 33% |
+| 探针卡收入 | 约 8.3 亿 | 15 亿 | 25 亿 |
+| + 系统设备业务 | 约 1.3 亿 | 1.6 亿 | 2.0 亿 |
+| **总收入** | **约 9.6 亿** | **约 16.6 亿** | **约 27 亿** |
+| 净利率(正常化) | 约 18–20% | 21% | 24% |
+| 净利润 | 约 1.85 亿 | 约 3.5 亿 | 约 6.5 亿 |
+| 合理市盈率 | — | 24 倍 | 28 倍 |
+| 推出的市值 | 100.5 亿(现值) | **约 84 亿** | **约 182 亿** |
+| 折现回今天(14%、4 年) | — | **约 50 亿(比现价低约 50%)** | **约 108 亿(≈ 今天)** |
 
-> **The uncomfortable read:** discounted back, FORM's **base case is ~50% below today's price**, and even the **bull case only ≈ matches today's price.** You are paying for the bull case as your *base*. For this to work you need a *super-bull* (TAM > $8bn / share > 33% / re-rating to a consumable multiple).
+> **这张表说了一件让人不太舒服的事:** 把未来折回今天,FormFactor 的**基准情形比现在的股价还低约 50%**,连**乐观情形也只是大致等于今天的股价**。换句话说,你现在是把"乐观情形当成你的基准"在买。要赚钱,需要"超级乐观"(市场长到 80 亿以上 / 份额超过 33% / 估值被重估成耗材股)。
 
 ### 6.2 Technoprobe
 
-| | Today (FY26E guided) | 2030 base | 2030 bull |
+| | 现在(2026 指引) | 2030 基准 | 2030 乐观 |
 |---|---:|---:|---:|
-| Revenue | ~€1.0bn | €1.6bn | €2.4bn |
-| EBITDA margin | 44–46% | 45% | 47% |
-| EBITDA | ~€460m | €720m | €1,130m |
-| Fair EV/EBITDA | — | 18× | 22× |
-| Implied EV | ~€11.1bn (now) | **~€13.0bn** | **~€24.9bn** |
-| PV @14% (4 yr) | — | **~€7.7bn (−30%)** | **~€14.7bn (+33%)** |
+| 收入 | 约 10 亿欧元 | 16 亿 | 24 亿 |
+| EBITDA 利润率 | 44–46% | 45% | 47% |
+| EBITDA | 约 4.6 亿 | 7.2 亿 | 11.3 亿 |
+| 合理 EV/EBITDA | — | 18 倍 | 22 倍 |
+| 推出的企业价值 | 约 111 亿(现值) | **约 130 亿** | **约 249 亿** |
+| 折现回今天(14%、4 年) | — | **约 77 亿(比现价低约 30%)** | **约 147 亿(高约 33%)** |
 
-> **Read:** TPRO's higher margin means the **base case is "only" ~30% below today** (vs FORM −50%) and the **bull case offers ~+33% PV upside** — a *better-shaped* risk/reward than FORM, consistent with §5.2. But the upside still requires revenue to ~2.4× by 2030 *and* the governance/concentration risks not to bite.
+> **读法:** Technoprobe 利润率高,所以**基准情形"只"比今天低约 30%(好于 FormFactor 的 −50%),乐观情形有约 +33% 的空间**——风险收益的形状比 FormFactor 好,跟第 5.2 节一致。但乐观情形仍要求收入到 2030 年涨到约 2.4 倍,且治理/集中度的风险不爆雷。
 
-*(Ceiling tables use my normalized-margin and fair-multiple assumptions; the FORM EPS-consensus inputs are unreliable per §A, so treat these as scenario scaffolding, not precision forecasts.)*
-
----
-
-## 7. Bear case
-
-1. **Memory cyclicality.** DRAM/HBM is the most volatile demand vector; FORM's DRAM +70% can reverse hard in an HBM digestion air-pocket (e.g., if HBM4 qual slips or hyperscaler capex pauses). FORM's 2022→2023 revenue fell −11% in the last downcycle. SK Hynix at 29.5% of revenue concentrates this.
-2. **Monopoly decay at the leading node.** MJC qualified as a TSMC *primary* 2nm supplier (Aug 2025) — directly threatens the advanced-logic share both leaders rely on for the re-rating. The "chokepoint" is more contestable than the multiple assumes (the framework §5.4 standing risk, live here).
-3. **The TAM is just small.** Even the bull case is a ~$7–8bn market. There is a ceiling on how big a 30%-share player can get — FORM's *bull-case* market cap (~$18bn) is only ~1.8× today, and only ≈ today on a PV basis.
-4. **Content step-up may be ~1.3×, not ~2×.** The whole elasticity case rests on an unpublished number (§A). If KGD/16-high adds ~30% content rather than ~100% per generation, the bull TAM collapses toward the base.
-5. **Valuation already embeds the bull** (§5–6). The base case is downside in both names.
-6. **TPRO-specific:** 16.5% float + 63% family control = liquidity/governance discount and event risk; the load-bearing 2nm-share claim is unverified.
+*(以上天花板表用的是我自己的正常化利润率和合理倍数假设;FormFactor 的市场盈利预测数据不可靠,见第〇节,所以这些表是"情景推演的脚手架",不是精确预测。)*
 
 ---
 
-## 8. Variant perception — where consensus may be wrong (the edge)
+## 七、看空理由(把反方说透,bear case)
 
-The bull edge is a **multiple-regime** argument, not a "bigger market" argument:
-
-> **The Street models probe cards as cyclical WFE/test *capex*. They are increasingly a rising-content *consumable* — a per-die, per-design, per-touchdown razor-blade annuity whose content compounds with HBM stack height, KGD and chiplet proliferation every node.** If demand is (a) more recurring/volume-linked than capex-cyclical *and* (b) growing content super-linearly (~2× per HBM gen, not ~1.3×), then both the **growth rate** *and* the **fair multiple** are too low in consensus — and the two compound.
-
-What would confirm it (the things to underwrite — these are the deep-dive's open questions):
-- A **hard test-intensity index** (test-seconds or touchdowns per die, or probe-cards per wafer-out) across HBM3→HBM4→HBM4E. This single number (§A gap #3) decides base-vs-bull. **Get TechInsights/Yole primary.**
-- **Aftermarket/consumable revenue mix** — how much of FORM/TPRO revenue is recurring tip/head replacement vs. new-card capex? A high recurring mix justifies the consumable re-rating.
-- **Whether DRAM probe-card growth (+70%) is HBM4 content or a one-off restock** — a second quarter of it would be strong confirmation.
-
-**Honest synthesis:** probe cards is a *genuine* chokepoint and the cleanest *investable* find of the BOM walk — but the re-rating has already happened. At today's prices you are **not** buying a mispriced chokepoint cheaply; you are **buying the variant perception (consumable-content super-linearity) at roughly fair-to-full value**, with FORM pricing it more aggressively than Technoprobe. The alpha is in *confirming the test-intensity number before the Street puts it in models* — if it's ~2×, both re-rate; if it's ~1.3×, both are expensive.
+1. **内存周期性。** 内存(DRAM/HBM)是需求波动最大的一块。FormFactor 现在内存卡 +70%,但一旦 HBM 出现"消化期"(比如 HBM4 量产推迟、或大客户资本开支暂停),也能反过来掉得很快——上一轮 2022→2023 它收入就跌了 11%。而 SK 海力士占它收入 29.5%,把这个风险放大了。
+2. **最先进制程上的份额会被抢("垄断衰变")。** MJC 已被台积电认证为 2nm 主力供应商,直接威胁两家龙头赖以重估的高端逻辑芯片份额。卡脖子的地位,没有市场以为的那么牢固。
+3. **市场本身就小。** 哪怕是乐观情形,也就是个 70–80 亿美元的市场。一个 30% 份额的公司能长多大有天花板——FormFactor 的**乐观情形市值(约 182 亿)也只有今天的约 1.8 倍**,折回今天甚至只是打平。
+4. **测试量增加可能是 1.3 倍而不是 2 倍。** 整个弹性故事押在一个没公开过的数字上(第〇节)。如果每代 HBM 只带来约 30% 的测试量增加、而不是约翻倍,乐观情形就会塌回基准。
+5. **估值已经包含了乐观情形**(第五、六节)——两家公司的基准情形都是下跌空间。
+6. **Technoprobe 特有:** 自由流通股仅 16.5% + 家族控股 63% = 流动性/治理折价和事件风险;那个最关键的 2nm 份额说法还没被证实。
 
 ---
 
-## 9. Verdict & what to watch
+## 八、跟市场共识不一样的地方在哪(variant perception,也就是潜在的超额收益来源)
 
-- **Rank vs. the investor's filter:** clears elasticity/criticality/bottleneck/small-base/ownability — **fails (for now) on valuation headroom.** "Right chokepoint, full price."
-- **Preferred expression if forced:** **Technoprobe** on margin-adjusted value + estimate-revision momentum, sized small for governance/liquidity risk; **FormFactor** as the higher-beta pure-play on the HBM4 content step-up — but only with conviction on the ~2× content thesis, and ideally bought into a memory-cycle air-pocket (the bear case #1 is also the entry opportunity).
-- **The three things to watch:** (1) a primary **test-intensity index** HBM3→HBM4; (2) **FORM DRAM probe-card growth durability** (a second +YoY quarter); (3) **MJC/Chinese share at TSMC 2nm** (monopoly-decay check).
-- **Next in queue:** InP/EML lasers (highest framework conviction), then optical transceivers (Eoptolink), then HBM (with BESI/TCB→hybrid-bonding folded in).
+看多的真正逻辑,**不是"市场会更大",而是"市场给它的估值方式错了"**:
+
+> **市场现在把探针卡当成"周期性设备"来定价**(意思是:跟客户买不买大机器一样大起大落,所以只配一个周期股的低估值)。**但它其实越来越像"会随技术不断增值的耗材"**——每出一款新芯片要买新卡、每片晶圆生产要换磨损的针、每代 HBM 叠得更高要用更多卡,是一种"按颗、按款、按次"反复收钱的"年金"。如果它的需求(a)比设备更稳定、更跟产量挂钩,而且(b)单位含量还在**超线性**增长(每代约 2 倍而非 1.3 倍),那么它的**增速和它该有的估值倍数,在市场共识里就都被低估了——而且这两者会叠加放大。**
+
+**要验证这个逻辑(也就是接下来要去搞清楚的几个问题):**
+- 拿到一个**硬的"测试强度"指标**:HBM 从 3 代到 4 代到 4E 代,每颗芯片的测试时长 / 触压次数 / 每片晶圆出货要用几块卡,到底涨了多少倍。**这一个数字决定了是基准还是乐观**(第〇节缺口),要去找 TechInsights / Yole 的一手数据。
+- **耗材收入占比:** 两家公司的收入里,有多少是反复消耗的换针/换头(像刀片),有多少是一次性的新卡(像设备)?耗材占比越高,越支撑"重估成耗材股"。
+- **FormFactor 内存卡 +70% 是真实的 HBM 含量提升,还是一次性补库存?** 如果下个季度还能再来一次同比大涨,就是强力佐证。
+
+**诚实的总结:** 探针卡是一个**真正的卡脖子**,也是我们 BOM 逐行排查里**最干净、最买得到**的发现——但重估**已经发生了**。今天的价格不是"便宜地买到一个被错杀的卡脖子",而是"**以公允偏满的价格,买那个'测试量超线性增长'的判断"**,其中 FormFactor 定价比 Technoprobe 更激进。真正的超额收益,在于**赶在市场把'测试强度'这个数字放进模型之前先把它搞清楚**——如果是约 2 倍,两家都会被重估;如果是约 1.3 倍,两家都贵。
 
 ---
 
-## Sources
-- FormFactor Q1-CY2026 results/slides/transcript (Investing.com; Motley Fool transcript, 29 Apr 2026); FY2025 Q4 (GlobeNewswire, 4 Feb 2026); revenue history (Macrotrends); statistics (StockAnalysis).
-- FormFactor "Known-Good-Die test enables advanced packaging for HBM" (2024); K40 card specs; ~$120m MEMS acquisition (Oct 2025).
-- Teradyne Magnum 7H HBM tester press release.
-- Technoprobe Q1-2026 call highlights & "shares +36% on raised targets" (Investing.com, 14 May 2026); FY2025 PR (18 Mar 2026); Q1 EBITDA €69.2m (MarketScreener); valuation (StockAnalysis BIT:TPRO). *Primary IR PDFs blocked in sandbox — verify directly.*
-- Probe-card market: Mordor Intelligence (~$2.71bn narrow def., 47.59% Foundry&Logic, +11.02% NAND CAGR, $4.23bn 2031); Business Research Insights ($3.31bn 2025, 9.85% CAGR to $7.02bn 2033); MEMS Probe Card market (~$1.74bn 2025).
-- Share/structure: aggregated 2025 (FORM ~30%, MJC ~14%, top-5 ~73%); MJC qualified TSMC primary 2nm supplier (Aug 2025).
-- **Flagged unverified:** Technoprobe "~30% of TSMC 2nm quals"; Teradyne 10% TPRO stake; no clean published test-seconds/die index.
+## 九、结论与要盯的指标
+
+- **对照投资标准:** 弹性大、不可或缺、卡脖子、基数小、买得到——这几条都过;**但"估值还有没有空间"这条,目前不过。** 一句话:**"对的卡脖子,满的价格。"**
+- **如果一定要选一个表达方式:** **Technoprobe** 在(考虑利润率后的)性价比和业绩上调动能上更优,但仓位要小、对冲治理/流动性风险;**FormFactor** 是更纯、弹性更高的"押注 HBM 测试量暴涨"的标的——但**只有在你对'每代约 2 倍'这个判断有把握时才值得买,而且最好趁内存周期出现回调时买**(看空理由第 1 条,既是风险也是入场机会)。
+- **要盯的三件事:** ① 一份一手的"测试强度"指标(HBM3→HBM4);② FormFactor 内存探针卡增长能不能持续(再来一个同比大涨的季度);③ MJC / 中国厂商在台积电 2nm 上的份额变化(检验"垄断衰变")。
+- **下一个深挖标的:** InP / EML 激光器(框架里 conviction 最高的卡脖子),然后是光模组(新易盛),再是 HBM(把 BESI、TC bonder→混合键合的演进一起纳入)。
+
+---
+
+## 附:术语速查表
+
+| 名词 | 大白话解释 |
+|---|---|
+| 晶圆 wafer | 一整块圆形硅片,上面一次印出几百上千颗芯片 |
+| 裸晶 die | 切开前,晶圆上单独的一颗芯片 |
+| 晶圆测试 / 分选 wafer sort | 切开前,逐颗通电体检,挑出坏的 |
+| 探针卡 probe card | 体检时扎在每颗芯片焊点上的"针床",几百到几千根微型探针 |
+| 触压 touchdown | 探针扎一次芯片;反复扎会磨损,要换针(消耗品来源) |
+| 测试机 ATE | 跑测试程序的大机器(泰瑞达、爱德万);探针卡是它和晶圆之间的转接头 |
+| MEMS | 用造芯片的精密工艺做的微型探针,精度高、门槛高 |
+| HBM | 高带宽内存:把多层内存芯片叠成"三明治"贴在 GPU 旁,高速喂数据 |
+| KGD(已知好的裸片) | 叠三明治前,每一层都要先单独测好,否则整个三明治报废 → 测试量成倍增加 |
+| 堆高 8→16 层 | 新一代 HBM 叠更多层,要测的更多、用的卡更多 |
+| 2nm 制程 | 目前最先进的芯片制造工艺,越精密越难测 |
+| chiplet 芯粒 | 把一颗大芯片拆成几小块再拼装,种类多 → 每种都要专属探针卡 |
+| TAM | 市场总规模(可触达市场) |
+| EV(企业价值) | ≈ 市值 + 净负债,"连债买下整个公司要花多少钱" |
+| EV/Sales | 收购价相当于公司一年收入的几倍,衡量贵不贵 |
+| EBITDA | 大致是"公司主营业务产生的经营性现金利润"(税息折旧摊销前) |
+| 折现回今天 | 未来的钱要打折才能跟今天比(钱有时间成本) |
+
+---
+
+## 资料来源
+- FormFactor 2026 年一季度财报 / 演示材料 / 电话会纪要(Investing.com;Motley Fool 纪要,4 月 29 日);2025 全年(GlobeNewswire,2 月 4 日);收入历史(Macrotrends);估值(StockAnalysis)。
+- FormFactor 官方博客《KGD 测试如何支撑 HBM 先进封装》(2024);K40 探针卡规格;约 1.2 亿美元收购 MEMS 公司(2025 年 10 月)。
+- 泰瑞达 Magnum 7H HBM 测试机新闻稿。
+- Technoprobe 一季度电话会要点 +"股价 +36%、上调目标"(Investing.com,5 月 14 日);2025 全年新闻稿(3 月 18 日);一季度 EBITDA 6920 万欧元(MarketScreener);估值(StockAnalysis,BIT:TPRO)。*官方 PDF 在沙箱中被屏蔽,需自行核对。*
+- 探针卡市场:Mordor Intelligence、Business Research Insights、MEMS 探针卡市场报告。
+- 份额/格局:2025 年综合(FormFactor 约 30%,MJC 约 14%,前五约 73%);MJC 被台积电认证为 2nm 主力供应商(2025 年 8 月)。
+- **已标注的未证实信息:** Technoprobe"约占台积电 2nm 认证 30%";泰瑞达持有 Technoprobe 10% 股权;无公开的"每颗芯片测试时长"指标。

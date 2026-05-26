@@ -236,6 +236,18 @@ Falsifiable "variant perception" claims, now sharpened with the data packs. Rank
 
 ---
 
+## 6b. 写作标准 — 所有 memo 必须遵守(WRITING STANDARD — applies to every memo)
+
+**这是一条强制标准,所有深挖 memo 都要 fully reflect。** 读者是**没有任何行业背景的投资委员会(IC)成员**,不是行业专家。要求:
+
+1. **中文为主**,专业名词第一次出现时附英文原词,并立刻用**大白话 + 类比**解释清楚"它是什么、为什么重要"。例:不能直接写"先进 die 的 wafer starts",要写成"晶圆(wafer,一整块圆形硅片,上面一次印出几百上千颗芯片)的产量"。
+2. **像讲故事一样讲逻辑**:这东西到底做什么 → 难在哪 → 为什么是卡脖子 → 护城河为什么持久。不能靠堆砌术语显得专业。
+3. **每篇开头一句话**用最朴实的比喻把这门生意讲清楚;**文末附术语速查表**。
+4. 句子要通顺,杜绝中英夹杂导致语义不清。宁可啰嗦讲明白,不要简洁但看不懂。
+5. 严谨性(TAM、priced-in 逆推、ceiling 表、bear case、变量假设)一个都不能少——只是把它们**讲人话**。
+
+*探针卡 memo(`probe_cards_deepdive.md`)是符合本标准的范本。*
+
 ## 7. Deep-dive sequencing & deliverables
 
 Per investor priority (optical first, then memory, then CPO/InP, then adjacent chokepoints), the deep-dive memos will be produced in this order, each following the house template (business description → demand bridge → TAM endpoints → reverse "priced-in" test → per-company ceiling table → bear case → variant perception → data-quality caveats), mirroring the existing Nittobo memos:
