@@ -156,38 +156,71 @@ Every candidate segment is scored 1–5 on six axes. We are explicitly **willing
 
 ---
 
-## 5. Candidate landscape map *(scores + numbers populated from live research — see §5 table; deep dives refine)*
+## 5. Candidate landscape map *(populated from live research, 26-May-2026 data packs; deep dives will refine each)*
 
-> *The two research agents are pulling the latest (post Q1-CY2026) TAM, supplier-share, and valuation data. The scored table and the per-segment bridges below are populated as that data lands. Placeholders marked ⟨DATA⟩ until then.*
+### 5.1 Segment scorecard
 
-### 5.1 Segment scorecard (to be filled)
+Scores 1–5 per §4 rubric (E=elasticity, C=criticality, B=bottleneck, V=visibility, S=small-base/headroom-to-grow, H=valuation-headroom-after-rerating). **Total /30.** The investor's target zone is the top-left of "high E·B·S still with workable H" — *not* simply the highest total (a 27-total name with H=2 is a great business at a bad price).
 
-| Segment | E | C | B | V | S | H | Old TAM → Terminal TAM | Key names | Priced-in verdict |
-|---|---|---|---|---|---|---|---|---|---|
-| HBM / advanced DRAM | | | | | | | ⟨DATA⟩ | SK Hynix, Micron, Samsung | ⟨DATA⟩ |
-| Optical transceivers (800G/1.6T) | | | | | | | ⟨DATA⟩ | Innolight, Eoptolink, Coherent, Lumentum, 天孚 | ⟨DATA⟩ |
-| InP / EML laser chips | | | | | | | ⟨DATA⟩ | Coherent, Lumentum, 源杰, POET | ⟨DATA⟩ |
-| CPO (co-packaged optics) | | | | | | | ⟨DATA⟩ | Broadcom, Nvidia, optics ODMs | ⟨DATA⟩ |
-| Custom ASIC / connectivity | | | | | | | ⟨DATA⟩ | Broadcom, Marvell, Astera | ⟨DATA⟩ |
-| High-speed PCB / CCL / glass cloth | | | | | | | ⟨DATA⟩ | 沪电, 生益, Nittobo | ⟨DATA⟩ |
-| ABF / IC substrate | | | | | | | ⟨DATA⟩ | Ibiden, Shinko, AT&S | ⟨DATA⟩ |
-| Power (rack power / power semis) | | | | | | | ⟨DATA⟩ | Vertiv, MPS, Navitas, Eaton | ⟨DATA⟩ |
-| Thermal / liquid cooling | | | | | | | ⟨DATA⟩ | Vertiv, 英维克, AVC, BOYD | ⟨DATA⟩ |
-| Copper connectivity (NVLink) | | | | | | | ⟨DATA⟩ | Amphenol, 沃尔核材 | ⟨DATA⟩ |
-| HBM/SoC test | | | | | | | ⟨DATA⟩ | Advantest, Teradyne | ⟨DATA⟩ |
+| Segment | E | C | B | V | S | H | **Tot** | Terminal-TAM trajectory | Key names | One-line priced-in verdict |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---|---|---|
+| **InP / EML laser chips** | 5 | 5 | 5 | 5 | 4 | 3 | **27** | ~$1–2bn → multi-$bn; gates the entire 1.6T ramp | COHR, LITE (owned InP); 源杰, POET (pure-play) | *Truest chokepoint; market can't size it cleanly because it's buried in larger optics names. Best risk/reward in the chain.* |
+| **Low-Dk glass cloth** (Nittobo template) | 5 | 5 | 5 | 4 | 4 | 3 | **26** | tiny → ¥30bn+ specialty sub-line; cap tripling but lags demand | Nittobo (3110.T) | *Already re-rated hard; the question is whether sold-out duration + ASP holds into 2027. See existing Nittobo memos.* |
+| **HBM / advanced DRAM** | 4 | 5 | 5 | 4 | 2 | 4 | **24** | $38bn(25)→$58bn(26E)→~$80bn+ | SK Hynix, Micron, Samsung | *Priced as a CYCLE (NTM P/E ~6–12x), not as content/logic-like. If HBM4 custom base-die de-commoditizes margin, multiple too low. Big base caps the x, but cheap entry.* |
+| **ABF / IC substrate** | 3 | 5 | 5 | 4 | 3 | 3 | **23** | $4.9bn(24)→$9.6bn(32) — only ~2x | Ibiden, Shinko, AT&S, Unimicron | *True oligopoly (5 players=74%), long capex lead — but modest TAM elasticity (~2x/8yr). Chokepoint without the explosive growth.* |
+| **Optical transceivers (800G/1.6T)** | 5 | 5 | 3 | 3 | 3 | 3 | **22** | $16.5bn(25)→$26bn(26E,+60%) | Innolight, Eoptolink, COHR, LITE, 天孚 | *Elasticity real (units×speed×$); but competitive + CPO-2028 overhang + crowded (Eoptolink lost $10bn cap in a day on CPO fear). Eoptolink cheapest (~22x).* |
+| **High-end ATE / test** | 4 | 4 | 5 | 4 | 2 | 3 | **22** | rising test-time/die | Advantest (6857.T), Teradyne | *Advantest/Teradyne duopoly, structural pricing power — but already re-rated, large base. Solid not explosive.* |
+| **Custom ASIC / connectivity** | 4 | 5 | 5 | 4 | 1 | 2 | **21** | hyperscaler XPU TAM rising fast | AVGO, MRVL, ALAB | *True duopoly (AVGO/MRVL) + IP/packaging lock-in — but $2T/$172bn/$53bn base + 37x/51x/105x multiples = great business, expensive entry. Fails the small-base/headroom filter.* |
+| **CPO (co-packaged optics)** | 4 | 3 | 4 | 2 | 5 | 2 | **20** | $46mn(24)→>$5bn(27E)→$8.1bn(30E, Yole) | NVDA, AVGO (embedded); optics ODMs | *Optionality/RISK lens, not a clean long — can't isolate it as a pure play, and timing is 2027 (LC) vs 2028–30 (Yole). Matters most as a threat to read for transceivers.* |
+| **Power (800VDC / 1MW rack)** | 4 | 4 | 3 | 4 | 2 | 3 | **20** | rack power 100kW→1MW+; new vector | Vertiv, MPWR, ETN, Navitas | *Genuine new secular vector (800VDC H2-2026). VRT system-advantaged; power semis more competitive. Large base limits x.* |
+| **High-speed PCB / CCL** | 4 | 4 | 3 | 3 | 3 | 3 | **20** | rising layer-count/area + spec | 沪电(002463), 生益(600183) | *Competitive at board level; the real chokepoint sits UPSTREAM in glass cloth. 沪电 advantaged in AI high-layer-count but contestable.* |
+| **Thermal / liquid cooling** | 4 | 4 | 2 | 3 | 3 | 3 | **19** | ~¥800bn server liquid-cooling by 26 | VRT, 英维克, AVC, BOYD | *COMMODITIZING at module level — 英维克 NI −82% YoY despite +26% rev is the tell. Only CDU/system-integration (VRT) defensible. Avoid cold-plate module makers.* |
+| **Copper connectivity (NVLink)** | 3 | 4 | 3 | 2 | 2 | 3 | **17** | NVL72 all-copper intra-rack | APH, 沃尔核材 | *Real but a BRIDGE chokepoint — physics reach-limit pushes to optics at scale-up over time. APH advantaged but large base.* |
+
+### 5.2 Valuation anchors (indicative, May-2026; refresh on a terminal before modeling)
+
+| Name | Ticker | Mkt cap | Latest growth print | NTM/fwd P/E | Note |
+|---|---|---:|---|---:|---|
+| SK Hynix | 000660.KS | ~$940bn [EST FX] | record Q1'26 profit; sold out to 2027 | **~6×** | Overtook Samsung mkt cap ~14 May |
+| Micron | MU | ~$850bn | Q2 FY26 rev $23.9bn (+196% YoY) | **~11–12×** | HBM sold out thru 2026 |
+| Innolight 中际旭创 | 300308.SZ | ~CNY 860bn | Q1'26 rev ¥19.5bn (+192%), NI +262% | ~43x (26E) | Scale leader, premium |
+| Eoptolink 新易盛 | 300502.SZ | ~CNY 388bn | Q1'26 rev ¥8.34bn (+106%), GM ~49% | **~22–23x (26E)** | Cheapest high-grower; crowded |
+| 天孚通信 | 300394.SZ | large-cap | Q1'26 NI +45.8% | ~56x (26E) | Picks-and-shovels, CPO-agnostic |
+| Coherent | COHR | ~$56bn | FQ3'26 rev $1.81bn (+21%); booked to 2028 | ~mid-20s | **Owns 6" InP** — the moat |
+| Lumentum | LITE | ~$70bn+ | FQ3'26 +85% guide | ~high-30s | **Only volume 200G EML shipper today** |
+| 源杰科技 Yuanjie | 688498.SH | ~CNY 300–350bn | CW 70mW in volume; 200G EML in qual | rich | China laser-chip substitution play; A+H pursuit |
+| Broadcom | AVGO | ~$1.96T | Q1 FY26 AI rev $8.4bn (+106%) | ~37x | Custom XPU duopoly |
+| Marvell | MRVL | ~$172bn | AI XPU/custom ASIC | ~51x | — |
+| Astera Labs | ALAB | ~$53bn | PCIe/CXL connectivity | ~105x | Richest = most thesis risk |
+| Advantest | 6857.T | mega-cap | FY26 guide +26% rev | — | HBM/SoC test duopoly |
+| Vertiv | VRT | ~$113bn | 800VDC portfolio H2-2026 | — | NVIDIA reference-design partner |
+| Amphenol | APH | large-cap | Q1'26 rev $7.6bn | ~34x | NVLink copper |
+
+*China NTM P/E figures are sell-side targets from Feb–Mar 2026 and predate Q1 prints; COHR/LITE/VRT/MPWR caps were not tick-accurate in-sandbox. Verify on a terminal.*
+
+### 5.3 Where the deep dives should focus (ranked by fit to the investor's filter)
+
+The investor wants **high-elasticity × chokepoint × small-base × workable valuation** — explicitly tolerant of a small absolute TAM. Ranking the screen on that *specific* fit (not raw total):
+
+1. **InP / EML laser chips — HIGHEST CONVICTION.** Stacks the most demand derivatives (GPU units × optics/GPU × lasers/module × $/laser), truest sold-out chokepoint (lead times past 2027), and — critically — *the market cannot price it cleanly* because it's embedded inside COHR/LITE or sits in early pure-plays (源杰, POET). This is the closest thing to "a chokepoint the consensus literally cannot size." **Deep dive first.**
+2. **Optical transceivers (esp. Eoptolink) — HIGH-BETA EXPRESSION.** The cleanest, most liquid way to play optics elasticity; the debate is entirely *CPO-displacement timing* and *crowding*, both of which we can frame. Eoptolink at ~22x is the asymmetry candidate.
+3. **HBM, contrarian-multiple angle.** Not small-base, but the *variant perception* is sharp: the Street prices it as a memory cycle (~6–12x) while the demand is increasingly inference-underwritten and HBM4 is going custom/logic-like. If the multiple re-rates from "cycle" to "content," that's the upside — different shape from the others (re-rating, not 10x-base-growth).
+4. **Low-Dk glass cloth (Nittobo)** — already have base/bear memos; refresh the sold-out-duration and Nan-Ya-dilution questions.
+5. **Watch-but-not-yet:** ABF substrate & Advantest (true chokepoints, modest elasticity/base); AVGO/MRVL (great businesses, bad entry); CPO (read as a *risk input* to #2, not a standalone long).
+6. **Avoid as primaries:** liquid-cooling modules (commoditizing), copper (bridge), generic PCB/CCL (chokepoint is upstream).
 
 ---
 
 ## 6. Hypothesis bank — where consensus may be wrong *(to be tested in deep dives)*
 
-These are the *a priori* "variant perception" candidates we will try to confirm or kill with data. Each is framed as a falsifiable claim:
+Falsifiable "variant perception" claims, now sharpened with the data packs. Ranked by conviction:
 
-1. **Optics elasticity is under-modeled.** The Street models transceiver *units* off port counts but under-weights the *triple-derivative* (modules/GPU × $/module × lasers/module). If 1.6T attach + scale-out radix rise together, transceiver TAM compounds faster than port-count models imply. *Test: build the per-GPU optics-$ ladder across GB200→GB300→Rubin.*
-2. **CPO is a tail-risk, not a near-term displacement** — and even if it ramps, it *shifts* value toward InP/laser-engines, not away from the supply chain. Consensus may be over-discounting transceiver names on CPO fear while under-pricing the laser/InP chokepoint that CPO *needs more of*. *Test: CPO volume timeline vs. pluggable installed base; InP content in CPO vs pluggable.*
-3. **InP / EML is the real chokepoint** — smallest base, hardest physics, longest lead time, fewest suppliers; demand stacks the most derivatives; yet it's buried inside larger optics names so the market can't size it. *Test: 200G/lane EML supply vs. 1.6T ramp; pure-play sizing.*
-4. **HBM is being modeled as a memory cycle, not a logic-like content story.** If HBM4 customization (base-die on logic process) makes it more foundry-like / less commoditized, terminal margins and multiple are too low in consensus. *Test: HBM4 architecture, custom base-die, ASP premium durability.*
-5. **Glass cloth / low-Dk specialty (Nittobo template) repeats in adjacent materials** — there may be other "tiny BOM line that gates a $40k server" inputs that haven't been found yet (specialty resins, copper foil, mask/quartz, specific test sockets). *Test: walk the AI-server BOM for sub-$X-bn TAM lines with oligopoly supply.*
-6. **Power & cooling are re-rating off a "facilities" multiple toward a "semiconductor-content" multiple** as 1MW racks / 800V DC / liquid cooling become gating. The base is large (less S-score), but the *content-per-rack* step-change may be under-modeled. *Test: $/rack power+cooling content GB200 vs Rubin.*
+1. **InP / EML is THE chokepoint the market can't size — and that's the edge.** Smallest base, hardest physics (low-yield InP wafers, long cycle), longest lead time (NVDA pre-buying EML, lead times past 2027), fewest suppliers (LITE = *only* volume 200G EML shipper today; COHR ramping 6" InP). Demand stacks the most derivatives (units × optics/GPU × lasers/module × $/laser). Yet it's buried inside COHR/LITE or in qual-stage pure-plays (源杰), so there's no clean comp and the Street under-prices the scarcity rent. *Test: 200G/lane EML supply curve vs. 1.6T ramp; isolate InP-attributable earnings inside COHR/LITE; size 源杰/POET ceiling.*
+2. **"CPO kills transceivers" is the wrong frame for 2026–27 — and it actually *increases* demand for the InP chokepoint.** CPO first attacks switch-to-switch scale-up (where pluggables are weakest), not the ~1-port/GPU scale-out NIC links; pluggables stay the majority "throughout the decade" and 800G+ still triples 2025→2030 *even with* CPO. And CPO still needs external CW/EML lasers + SiPh engines → it *shifts* value toward InP/laser-engines, not away from the chain. Consensus over-discounts transceiver names on CPO fear (Eoptolink −$10bn cap in a day) while under-pricing the laser input CPO needs *more* of. *Test: Spectrum-X Photonics 2026 ship rate (the leading indicator); InP content per CPO port vs per pluggable.*
+3. **HBM is priced as a memory CYCLE (~6–12x P/E), not as a logic-like CONTENT story.** Demand is increasingly inference-underwritten (durable) not just training-lumpy; HBM4 base-die moves to a logic process / customization → more foundry-like, stickier margins; 1 HBM4 wafer eats ~3 DRAM wafers and AI takes ~20% of DRAM capacity in 2026, structurally tightening *commodity* DRAM too. If the multiple re-rates from "cycle" to "content," that's the upside — and the second-order DDR5/NAND squeeze (+58–75% QoQ 2Q26) is a cleaner, less-crowded way to play it. *Test: HBM4 custom base-die economics; ASP-premium durability; DRAM-as-AI-derivative price elasticity.*
+4. **Optics elasticity is under-modeled because it's multiplicative, not additive.** The Street models transceiver *units* off port counts (~1/GPU, stable) but under-weights the *speed×price* ladder (400G→800G→1.6T raises $/port even at flat attach) AND the latent **scale-up optics** unlock (today copper/NVLink; optics may migrate in at Rubin-era). The bigger TAM lever is scale-up migration, not scale-out attach creep. *Test: build the per-GPU optics-$ ladder GB200→GB300→Rubin incl. a scale-up-optics scenario.*
+5. **The Nittobo glass-cloth template likely repeats in other "tiny BOM line that gates a $40k server" inputs.** Candidates to walk the BOM for: specialty low-loss resins, ultra-low-profile copper foil, photomask/quartz, specific high-speed test sockets/probe cards. *Test: AI-server BOM walk for sub-$2bn-TAM lines with 1–3 suppliers and sold-out status.*
+6. **Power/cooling are NOT uniform.** Power (800VDC/1MW rack) is a genuine new content vector with a system-integration chokepoint (VRT), but liquid-cooling *modules* are already commoditizing (英维克 NI −82% YoY on +26% rev). The market may be lumping them together; the spread (long VRT/power-content vs. fade cold-plate module makers) is the trade. *Test: $/rack power+cooling content GB200→Rubin, split by defensible vs. commoditizing layers.*
 
 ---
 
@@ -203,4 +236,4 @@ Per investor priority (optical first, then memory, then CPO/InP, then adjacent c
 
 ---
 
-*Status: methodology complete. Numbers populating from live research; §5 and §6 will be filled and this file re-committed once the data packs land.*
+*Status: framework complete and populated with 26-May-2026 data packs (§5 scorecard, §5.2 valuation anchors, §6 hypothesis bank). Awaiting investor sign-off on the §5.3 focus ranking before launching the four deep-dive memos. All figures carry the data-quality caveats noted inline and in §5.2.*
