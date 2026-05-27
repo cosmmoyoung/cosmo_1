@@ -1,7 +1,7 @@
 # Nittobo (3110.T) — Bear Case Stress Test
 
 **Date:** 2026-05-05
-**Stock:** ¥28,160 (May 1, 2026 close); market cap ~¥1.03T; trailing PE 73.7x; up 635% LTM
+**Stock:** ¥28,160 (May 1, 2026 close); market cap 约¥1.03T; trailing PE 73.7x; up 635% LTM
 **Author:** Contrarian buy-side analyst — independent of the long agent
 **Posture:** Skeptical; steelman the bull case, then stress-test it
 
@@ -11,10 +11,10 @@
 
 The bull case as I read it:
 
-- Nittobo dominates low-Dk specialty glass cloth (T-glass, NE-glass, NER-glass) — the woven reinforcement inside CCL → ABF substrates → AI accelerator packages. Reported share is ~80% of NE-glass at M6/M7 spec, ~100% of T-glass for low-CTE applications, and *only* producer of NER at M8 ([globaltechresearch substack][1], [TrendForce][2]).
+- Nittobo dominates low-Dk specialty glass cloth (T-glass, NE-glass, NER-glass) — the woven reinforcement inside CCL → ABF substrates → AI accelerator packages. Reported share is 约80% of NE-glass at M6/M7 spec, 约100% of T-glass for low-CTE applications, and *only* producer of NER at M8 ([globaltechresearch substack][1], [TrendForce][2]).
 - AI accelerator unit growth (Nvidia GB-series, AMD MI-series, custom ASICs) is dragging exponential demand for ABF substrates and therefore for low-Dk glass cloth. Lead times for glass cloth are reported as multi-quarter and Nittobo's order book is "full through end of 2026" ([Tom's Hardware][3]).
 - Supply is structurally tight: Japan/Taiwan duopoly (effectively a monopoly at the very top spec), high qualification barriers, multi-year capacity build cycles. Nittobo announced ¥15B Fukushima capacity tripling (production start 4Q FY2026, fully ramped in FY2027) ([Nittobo press release][4]).
-- Pricing power has begun to materialize: reported ~+20% T-glass price hike in August 2025; T-glass at $100/kg ([Tom's Hardware][3]).
+- Pricing power has begun to materialize: reported 约+20% T-glass price hike in August 2025; T-glass at $100/kg ([Tom's Hardware][3]).
 - Consensus is *still* underestimating the multi-year ramp because Nittobo's own May-2024 medium-term plan targets only ¥20.0B OP and ¥32.0B EBITDA by FY3/27 — numbers that look conservative if AI demand sustains ([Nittobo MTP][5]).
 
 This is a clean, defensible bull case. I'm not going to argue against a strawman.
@@ -29,7 +29,7 @@ Listed in rough order of how much of the bull case rides on each:
 - A1. Nittobo's near-monopoly in T-glass and NE-glass is *durable* on a 3–5 year horizon (not 12–18 months).
 - A2. Capacity additions through FY2027 (tripling Fukushima, additional Taiwan melting furnace) translate cleanly into volume the market absorbs at current or higher prices.
 - A3. Pricing power is sustainable through the next downcycle — i.e., the +20% T-glass increase sticks and is followed by more.
-- A4. The recent margin step-up in Electronic Materials (1H FY2025 OPM ~38.4% per third-party reads) is structural, not a peak driven by spot scarcity + yen tailwind.
+- A4. The recent margin step-up in Electronic Materials (1H FY2025 OPM 约38.4% per third-party reads) is structural, not a peak driven by spot scarcity + yen tailwind.
 - A5. The consolidated FY26 guidance beat (op profit ¥20B vs original ¥17B) is volume-driven and recurring, not driven by a one-off ¥20+B gain on sale of non-current assets that already appears in the 9M number ([longbridge][6]).
 
 **Industry**
@@ -44,7 +44,7 @@ Listed in rough order of how much of the bull case rides on each:
 
 **Behavioral**
 - A12. Customers (Mitsubishi Gas Chemical, Resonac, Doosan, Nan Ya, EMC) keep paying. They do not vertically integrate, fund alternative suppliers, or push aggressive cost-down clauses.
-- A13. Nan Ya Plastics — now the *weaving* partner for ~20% of Nittobo's specialty fiber output by 2027 — remains a partner not a competitor. (This is now an explicit deal: Nittobo supplies NER yarn, Nan Ya weaves and sells own CCL — [TrendForce][2], [Digitimes][8]).
+- A13. Nan Ya Plastics — now the *weaving* partner for 约20% of Nittobo's specialty fiber output by 2027 — remains a partner not a competitor. (This is now an explicit deal: Nittobo supplies NER yarn, Nan Ya weaves and sells own CCL — [TrendForce][2], [Digitimes][8]).
 
 ---
 
@@ -63,7 +63,7 @@ Listed in rough order of how much of the bull case rides on each:
 - Asahi Kasei's Q-glass uses a fundamentally different chemistry (quartz, 99.9% silica) and entered AI fiberglass market officially in early 2026, targeting Nittobo's 90% T-glass position. Mass production targeted 2H 2026, with M9-grade CCL using "NEZ Glass *or* Q Glass" ([Cloud News][11], [globaltechresearch substack][12]).
 - China Jushi opened a 100,000-ton electronics-grade fiberglass plant; Sinoma already a top-five global player; Jushi globally 23% of electronic glass fiber heading to 28% post Huai'an ramp ([CompositesWorld][13]).
 
-**Sensitivity:** If qualification cycles turn out to be 18–24 months (not 36+), and even one of {Q-glass, Taiwan Glass low-Dk, Grace Fabric} gets qualified at *one* tier-1 substrate maker by mid-2027, Nittobo's effective price ceiling is set by those alternatives. A 10–15% price reset on T-glass would compress segment OPM from ~38% toward something like 25–28%.
+**Sensitivity:** If qualification cycles turn out to be 18–24 months (not 36+), and even one of {Q-glass, Taiwan Glass low-Dk, Grace Fabric} gets qualified at *one* tier-1 substrate maker by mid-2027, Nittobo's effective price ceiling is set by those alternatives. A 10–15% price reset on T-glass would compress segment OPM from 约38% toward something like 25–28%.
 
 **Verdict:** Most load-bearing assumption in the entire thesis. Multiple credible erosion paths, all moving simultaneously. Bull case treats this as a 5-year fortress; evidence suggests it's a 2–3 year window.
 
@@ -85,9 +85,9 @@ Listed in rough order of how much of the bull case rides on each:
 
 **Disconfirming evidence:** Management's own Q3 FY26 language is hedged: "The company is continuing negotiations with customers on current price revisions. As for future revisions, *if* boosting demand for T-glass persists *and* the company needs further capacity expansion investment, it will strive to gain customer understanding" ([MarketScreener Q3 Q&A][7]). This is not the language of a company that has unilateral price-setting power — it's the language of a company that has to justify each round of price increases by pointing to incremental capex commitments. That is asymmetric: prices ratchet up only when paired with capex; capex stays even when prices come down.
 
-The 1H FY2025 38.4% OPM for Electronic Materials is ~25 percentage points above the corporate average. This is a supercycle margin. Specialty materials with peak OPMs in the 35–40% range almost always mean-revert: the 5-year base rate for sustaining an industrial OPM above 35% in a single segment is in the low single-digit percent of cases (and almost zero outside truly proprietary monopolies like ASML).
+The 1H FY2025 38.4% OPM for Electronic Materials is 约25 percentage points above the corporate average. This is a supercycle margin. Specialty materials with peak OPMs in the 35–40% range almost always mean-revert: the 5-year base rate for sustaining an industrial OPM above 35% in a single segment is in the low single-digit percent of cases (and almost zero outside truly proprietary monopolies like ASML).
 
-**Sensitivity:** If Electronic Materials OPM normalizes from ~38% to a still-excellent 25% in FY2028–29 (which would be world-class for specialty fiberglass), and revenue stays at ramp levels, segment OP would be ~35% lower than the linear extrapolation the multiple seems to embed.
+**Sensitivity:** If Electronic Materials OPM normalizes from 约38% to a still-excellent 25% in FY2028–29 (which would be world-class for specialty fiberglass), and revenue stays at ramp levels, segment OP would be 约35% lower than the linear extrapolation the multiple seems to embed.
 
 **Verdict:** Pricing power is real but sequential and capex-conditional, not unilateral. Margin level is at a likely peak. Thesis underweights mean-reversion.
 
@@ -138,10 +138,10 @@ Customer concentration is severe by CCL-maker (MGC + Resonac + Doosan + Nan Ya l
 - 1H FY2025 reported OPM 38.4% in Electronic Materials is at or near peak-of-cycle. The same segment in FY2020–2022 (pre-AI) ran low-to-mid teens OPM. The "right" through-cycle OPM for the consolidated group is probably 12–17%, not the >25% the current run-rate implies.
 
 **Reflexivity:**
-- Nittobo's stock is up ~635% in 12 months. The company has used surging optical earnings to (a) raise pricing on customers, who pay because the alternative is worse; (b) attract Nan Ya as a partner; (c) signal aggressive capex with confidence. If the stock rerates down 30–40% on a single soft print, it doesn't change the operations, but it does change the *narrative* customers (and competitors) use when negotiating. Reflexivity right now favors Nittobo; in a downcycle it works the other way.
+- Nittobo's stock is up 约635% in 12 months. The company has used surging optical earnings to (a) raise pricing on customers, who pay because the alternative is worse; (b) attract Nan Ya as a partner; (c) signal aggressive capex with confidence. If the stock rerates down 30–40% on a single soft print, it doesn't change the operations, but it does change the *narrative* customers (and competitors) use when negotiating. Reflexivity right now favors Nittobo; in a downcycle it works the other way.
 
 **Capital allocation:**
-- ¥80B 4-year capex (FY2024–2027) per the May 2024 MTP. Most of that is Electronic Materials — meaning Nittobo is spending ~5–6 years of historical D&A in 4 years on one segment with a single end-market thesis. If that end-market thesis is wrong by even 30%, the depreciation step-up alone in FY2028+ becomes a margin headwind.
+- ¥80B 4-year capex (FY2024–2027) per the May 2024 MTP. Most of that is Electronic Materials — meaning Nittobo is spending 约5–6 years of historical D&A in 4 years on one segment with a single end-market thesis. If that end-market thesis is wrong by even 30%, the depreciation step-up alone in FY2028+ becomes a margin headwind.
 
 **Geopolitical / supply:**
 - Taiwan exposure increasing (new melting furnace there per 2024 announcement). Geopolitical/operational risk to Taiwan production sits at low probability but non-trivial severity.
@@ -153,7 +153,7 @@ Customer concentration is severe by CCL-maker (MGC + Resonac + Doosan + Nan Ya l
 
 **Mechanism:** Nittobo is a single-segment-driven specialty materials story trading at a multi-segment industrial conglomerate's body, with a peak-margin, peak-cycle, peak-narrative profit base. The pricing power is real but sequential and conditional. The customer base is *actively* funding alternative supply right now, and the four most credible alternatives (Nan Ya weaving + future yarn, Asahi Kasei Q-glass at M9, Taiwan Glass low-Dk, China Grace Fabric/Jushi) are all moving toward qualification on overlapping 18–30 month timelines. Concurrently, Nittobo itself is tripling Fukushima capacity into 4Q FY2026 / FY2027.
 
-By FY2028, the most likely picture is: 2x Nittobo capacity + 0.5x Nan Ya weaving capacity + Q-glass commercialization at M9 + Taiwan Glass at the lower end of low-Dk + Grace Fabric qualifying at MGC. Combined supply growth ≥80% over two years against AI accelerator unit growth that is decelerating from "+50% YoY" to "+15% YoY" as Blackwell-class node matures and CoWoS capacity catches up. Result: glass-cloth ASPs round-trip the 2024–2025 +30–40% they took, OPM compresses from ~38% to 22–25%, and the multi-segment business reverts to ¥18–22B normalized OP.
+By FY2028, the most likely picture is: 2x Nittobo capacity + 0.5x Nan Ya weaving capacity + Q-glass commercialization at M9 + Taiwan Glass at the lower end of low-Dk + Grace Fabric qualifying at MGC. Combined supply growth ≥80% over two years against AI accelerator unit growth that is decelerating from "+50% YoY" to "+15% YoY" as Blackwell-class node matures and CoWoS capacity catches up. Result: glass-cloth ASPs round-trip the 2024–2025 +30–40% they took, OPM compresses from 约38% to 22–25%, and the multi-segment business reverts to ¥18–22B normalized OP.
 
 **Trigger / timing window:** The unwind starts when one of the following prints:
 1. Q1 FY2027 results (Aug 2026): Q-glass mass-production progress, first shipment commentary from Asahi Kasei.
@@ -163,9 +163,9 @@ By FY2028, the most likely picture is: 2x Nittobo capacity + 0.5x Nan Ya weaving
 5. CoPoS pilot data and Intel glass-core HVM ramp updates (mid-late 2026).
 
 **Magnitude:** From ¥28,160:
-- *Base bear (probability ~40%):* Multiple compresses to 25x forward EPS on still-elevated but moderating earnings (FY28E EPS ~¥850–950 once one-off gain rolls off and FX normalizes). Implied price ¥21,000–24,000. **~15–25% downside**.
-- *Hard bear (probability ~25%):* Q-glass or Taiwan Glass qualifies at a tier-1 in 2H 2026; Nittobo guides flat OP for FY2028 against street consensus growth. Multiple to 18–20x on FY28E EPS ¥700–800. Implied price ¥13,000–16,000. **~45–55% downside**.
-- *Tail bear (probability ~10%):* Glass-core / panel-level packaging timing surprises positively for 2027 *plus* Q-glass ramps; consensus shifts to declining-EPS through FY2030. 12–14x PE on ¥600 EPS. **65–75% downside**.
+- *Base bear (probability 约40%):* Multiple compresses to 25x forward EPS on still-elevated but moderating earnings (FY28E EPS 约¥850–950 once one-off gain rolls off and FX normalizes). Implied price ¥21,000–24,000. **约15–25% downside**.
+- *Hard bear (probability 约25%):* Q-glass or Taiwan Glass qualifies at a tier-1 in 2H 2026; Nittobo guides flat OP for FY2028 against street consensus growth. Multiple to 18–20x on FY28E EPS ¥700–800. Implied price ¥13,000–16,000. **约45–55% downside**.
+- *Tail bear (probability 约10%):* Glass-core / panel-level packaging timing surprises positively for 2027 *plus* Q-glass ramps; consensus shifts to declining-EPS through FY2030. 12–14x PE on ¥600 EPS. **65–75% downside**.
 
 **Leading indicators to monitor (in priority order):**
 1. Quarterly *segment* OPM in Electronic Materials (decomp: did margin go up or down YoY ex-FX?).
@@ -220,12 +220,12 @@ I owe you a ranked list, not a laundry list. Probability × severity, my convict
 
 | # | Risk | Prob (24mo) | Severity if it hits | Combined |
 |---|------|-------------|---------------------|----------|
-| **1** | **Hyperscaler-funded second-source qualification** (Apple/MGC/Grace Fabric, Nvidia/Taiwan Glass, similar) breaks the pricing-power narrative even if it doesn't take 50% share | **~55%** | High (10–20% cut to ASP, segment OPM to mid-20s) | **High** |
-| **2** | **Self-induced capacity wave** — Nittobo's own 2x by FY2027 + Nan Ya + competitors all hit simultaneously into a normalizing AI demand curve | **~45%** | High (volume holds but ASP/margin reverts) | **High** |
-| **3** | **Earnings-quality unwind** — non-recurring gains and FX tailwind roll off; consensus already flags ~26% EPS decline through FY29 — but the multiple hasn't repriced | **~70%** | Medium (~15–25% multiple compression) | **High** |
-| 4 | Asahi Kasei Q-glass takes the M9-grade socket | ~35% | Medium-High at the bleeding edge, but small near-term volume | Medium |
-| 5 | Glass core / CoPoS architecture pulls forward | ~20% in 24mo | Medium (cumulative, not immediate) | Medium |
-| 6 | Cyclical mean-reversion in non-Electronic-Materials segments (Composites, Insulation) | ~50% | Low-Medium (these are smaller pieces of OP now but were ~half pre-2024) | Medium |
+| **1** | **Hyperscaler-funded second-source qualification** (Apple/MGC/Grace Fabric, Nvidia/Taiwan Glass, similar) breaks the pricing-power narrative even if it doesn't take 50% share | **约55%** | High (10–20% cut to ASP, segment OPM to mid-20s) | **High** |
+| **2** | **Self-induced capacity wave** — Nittobo's own 2x by FY2027 + Nan Ya + competitors all hit simultaneously into a normalizing AI demand curve | **约45%** | High (volume holds but ASP/margin reverts) | **High** |
+| **3** | **Earnings-quality unwind** — non-recurring gains and FX tailwind roll off; consensus already flags 约26% EPS decline through FY29 — but the multiple hasn't repriced | **约70%** | Medium (约15–25% multiple compression) | **High** |
+| 4 | Asahi Kasei Q-glass takes the M9-grade socket | 约35% | Medium-High at the bleeding edge, but small near-term volume | Medium |
+| 5 | Glass core / CoPoS architecture pulls forward | 约20% in 24mo | Medium (cumulative, not immediate) | Medium |
+| 6 | Cyclical mean-reversion in non-Electronic-Materials segments (Composites, Insulation) | 约50% | Low-Medium (these are smaller pieces of OP now but were 约half pre-2024) | Medium |
 | 7 | Geopolitical supply disruption (Taiwan furnace) | <10% | Very high | Low-Medium |
 | 8 | Governance/related-party items | low | low | Low |
 
@@ -249,7 +249,7 @@ I owe you a ranked list, not a laundry list. Probability × severity, my convict
 
 Nittobo is a real, durable specialty materials franchise — it is not a fraud, and the 5-year operating story might still print decent absolute numbers. But the *stock* embeds an extreme version of that story. At ¥28,160, the price assumes (i) durable monopoly, (ii) sustained peak margins, (iii) capacity absorbed at flat-to-higher pricing, (iv) no architecture transition, (v) high-quality earnings. The evidence I find says (i)–(iii) are all eroding *now*, not in five years; (iv) is real-but-slow; (v) is already breaking on a one-quarter view as the gain-on-sale rolls off.
 
-The risk-reward is asymmetrically negative from here. The base bear case is ~20% downside, hard bear ~50%, tail ~70%. The bull case from these levels is incremental rerating — maybe +20% to ¥33,000 if everything keeps going right.
+The risk-reward is asymmetrically negative from here. The base bear case is 约20% downside, hard bear 约50%, tail 约70%. The bull case from these levels is incremental rerating — maybe +20% to ¥33,000 if everything keeps going right.
 
 I would not be short here without explicit catalyst proximity, but I would not be long either, and a long holder should be sizing this as a momentum trade with hard stops, not a buy-and-hold compounder.
 
@@ -257,7 +257,7 @@ I would not be short here without explicit catalyst proximity, but I would not b
 
 ## Sources
 
-[1]: https://globaltechresearch.substack.com/p/nittobo-3110-jp-the-king-of-electronic — *globaltechresearch substack: "Nittobo (3110 JP) — The King of Electronic Fiber Glass"* (market share data: ~80% NE-glass, T-glass dominance)
+[1]: https://globaltechresearch.substack.com/p/nittobo-3110-jp-the-king-of-electronic — *globaltechresearch substack: "Nittobo (3110 JP) — The King of Electronic Fiber Glass"* (market share data: 约80% NE-glass, T-glass dominance)
 [2]: https://www.trendforce.com/news/2025/11/28/news-nittobo-expands-glass-fiber-output-with-nan-ya-nan-ya-to-handle-20-by-2027-amid-ai-surge/ — *TrendForce: "Nittobo Expands Glass-Fiber Output with Nan Ya; Nan Ya to Handle 20% by 2027 Amid AI Surge"* (Nov 2025)
 [3]: https://www.tomshardware.com/tech-industry/artificial-intelligence/glass-cloth-could-be-the-next-great-ai-shortage-as-major-manufacturers-scramble-to-secure-critical-material-japanese-manufacturer-courted-by-apple-nvidia-google-and-amazon — *Tom's Hardware: glass cloth shortage / Apple/Nvidia/Google/Amazon* (T-glass at $100/kg, +20% Aug 2025 price hike)
 [4]: https://www.marketscreener.com/news/nitto-boseki-notice-regarding-expansion-of-glass-cloth-production-capacity-ce7c50dcd18ff226 — *Nittobo: Notice Regarding Expansion of Glass Cloth Production Capacity* (¥15B Fukushima, ¥2.4B subsidy, FY2026 4Q production start)

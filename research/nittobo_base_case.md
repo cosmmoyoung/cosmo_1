@@ -36,8 +36,8 @@ The group reorganized from three to **six reporting segments** effective 1 April
 | Item | FY2023 (Mar-23 actuals) | FY2024 (Mar-24 actuals) | FY2025 (Mar-25 actuals) | FY2026 9M (Apr-Dec 2025) | FY2026 raised guidance |
 |---|---:|---:|---:|---:|---:|
 | Net sales (¥ bn) | 93.3 | 93.3 (flat) | 109.0 (forecast at MTP) | 87.6 | 122.0 |
-| Operating profit (¥ bn) | ~8.1 | ~10.4 | ~16.4 | 14.9 | 20.0 |
-| OP margin | ~8.7% | ~11.1% | ~15.1% | 17.0% | 16.4% |
+| Operating profit (¥ bn) | 约8.1 | 约10.4 | 约16.4 | 14.9 | 20.0 |
+| OP margin | 约8.7% | 约11.1% | 约15.1% | 17.0% | 16.4% |
 | Net profit (¥ bn) | n/a | n/a | n/a | 35.1 (incl asset-sale gain) | 38.0 |
 
 Sources: 
@@ -48,29 +48,29 @@ Sources:
 
 ### 1.3 Segment mix — *the single most important table in this memo*
 
-This is where I am forced to estimate. Nittobo discloses six segments; I have not been able to retrieve the actual segment table directly. Triangulating from (a) press references that "Electronic Materials accounts for 85%+ of segment operating profit" (Source: Strainer / Buffett-Code, citing FY2024 yuho), (b) the historic ratio in the 2023 Integrated Report when the group reported under three segments (Glass Fiber ~55-60% of revenue, Textile / Industrial ~25%, Medical ~15%), and (c) the FY2027 MTP target where Electronic Materials carries the bulk of growth, my central estimate is:
+This is where I am forced to estimate. Nittobo discloses six segments; I have not been able to retrieve the actual segment table directly. Triangulating from (a) press references that "Electronic Materials accounts for 85%+ of segment operating profit" (Source: Strainer / Buffett-Code, citing FY2024 yuho), (b) the historic ratio in the 2023 Integrated Report when the group reported under three segments (Glass Fiber 约55-60% of revenue, Textile / Industrial 约25%, Medical 约15%), and (c) the FY2027 MTP target where Electronic Materials carries the bulk of growth, my central estimate is:
 
 | Segment (FY2025 estimate, ¥bn) | Revenue | Rev mix | Segment OP | OP mix |
 |---|---:|---:|---:|---:|
-| Electronic Materials | ~50–55 | ~46–50% | ~14.0 | ~85% |
-| Medical | ~14–16 | ~13–15% | ~1.5 | ~9% |
-| Composite Materials | ~10–12 | ~9–11% | ~0.5 | ~3% |
-| Materials Solution | ~10–12 | ~9–11% | ~0.3 | ~2% |
-| Insulation Materials | ~12–14 | ~11–13% | ~0.2 | ~1% |
-| Other | ~5–7 | ~5–7% | ~(0.1) | ~0% |
-| **Group** | **~109** | **100%** | **~16.4** | **100%** |
+| Electronic Materials | 约50–55 | 约46–50% | 约14.0 | 约85% |
+| Medical | 约14–16 | 约13–15% | 约1.5 | 约9% |
+| Composite Materials | 约10–12 | 约9–11% | 约0.5 | 约3% |
+| Materials Solution | 约10–12 | 约9–11% | 约0.3 | 约2% |
+| Insulation Materials | 约12–14 | 约11–13% | 约0.2 | 约1% |
+| Other | 约5–7 | 约5–7% | 约(0.1) | 约0% |
+| **Group** | **约109** | **100%** | **约16.4** | **100%** |
 
-***These are my estimates anchored on (i) Strainer's disclosure that Electronic Materials is 85%+ of segment OP, (ii) total group OP of ¥16.4bn in FY2025, and (iii) historical segment ratios. The user should verify against the actual segment table in the FY2024 yuho (有価証券報告書) page ~71 / FY2025 kessan tanshin.***
+***These are my estimates anchored on (i) Strainer's disclosure that Electronic Materials is 85%+ of segment OP, (ii) total group OP of ¥16.4bn in FY2025, and (iii) historical segment ratios. The user should verify against the actual segment table in the FY2024 yuho (有価証券報告書) page 约71 / FY2025 kessan tanshin.***
 
-**Within Electronic Materials**, the Special Glass (T-glass + NE-glass + NER-glass) sub-line is what's driving the rerating. Special Glass is the part that has 90% T-glass share and 70-80% NE-glass share. Commodity E-glass yarn / cloth and glass-fiber-for-PCB-but-not-AI sit alongside it inside Electronic Materials and are lower-margin. Press has not given exact splits, but management commentary ("record sales for data-center / semiconductor applications", "Special Glass is the primary driver of operating profit") and the math of incremental OP growth strongly imply Special Glass is ¥25–35bn revenue, ~50–60% gross margin, and effectively all of segment-level incremental profit growth since FY2023. 
+**Within Electronic Materials**, the Special Glass (T-glass + NE-glass + NER-glass) sub-line is what's driving the rerating. Special Glass is the part that has 90% T-glass share and 70-80% NE-glass share. Commodity E-glass yarn / cloth and glass-fiber-for-PCB-but-not-AI sit alongside it inside Electronic Materials and are lower-margin. Press has not given exact splits, but management commentary ("record sales for data-center / semiconductor applications", "Special Glass is the primary driver of operating profit") and the math of incremental OP growth strongly imply Special Glass is ¥25–35bn revenue, 约50–60% gross margin, and effectively all of segment-level incremental profit growth since FY2023. 
 
 **Working math (analyst estimate, label clearly):**
 - Group OP grew from ¥8.1bn (FY23) to ¥16.4bn (FY25). Delta = +¥8.3bn.
 - Other five segments are mature / cyclical; assume essentially flat OP contribution.
 - Therefore essentially all of the +¥8.3bn delta comes from Electronic Materials, and within that, almost entirely from Special Glass.
-- If Special Glass revenue went from say ~¥15bn (FY23) to ~¥30bn (FY25) — i.e. doubled — at incremental contribution margin of ~55%, that's +¥8.3bn of OP. Cross-check ties.
+- If Special Glass revenue went from say 约¥15bn (FY23) to 约¥30bn (FY25) — i.e. doubled — at incremental contribution margin of 约55%, that's +¥8.3bn of OP. Cross-check ties.
 
-So the rough rule of thumb: **roughly 25–35% of group revenue and 50–60% of group OP today is the Special Glass / AI-substrate sub-business; another ~15–20% of revenue and ~25% of OP is "the rest of Electronic Materials"; the other five segments are <50% of revenue but only ~15% of OP.**
+So the rough rule of thumb: **roughly 25–35% of group revenue and 50–60% of group OP today is the Special Glass / AI-substrate sub-business; another 约15–20% of revenue and 约25% of OP is "the rest of Electronic Materials"; the other five segments are <50% of revenue but only 约15% of OP.**
 
 ### 1.4 Business model
 
@@ -93,7 +93,7 @@ NVIDIA, AMD, Intel, Broadcom, Marvell on the silicon side; Apple (M-series / dat
 
 **Suppliers / inputs:** silica sand, alumina, boric acid, magnesia, lithium, fluorides — for T-glass, the formulation requires specialty refractories and very specific oxide blends. Energy (electricity / natural gas for the furnaces) and platinum-rhodium bushings are non-trivial input costs. None disclosed as concentrated risk.
 
-**Customer concentration:** not formally disclosed but easy to triangulate: with 90% T-glass share and only ~5 high-end CCL makers globally, the customer base is highly concentrated. Probably 5 customers >70% of Special Glass revenue.
+**Customer concentration:** not formally disclosed but easy to triangulate: with 90% T-glass share and only 约5 high-end CCL makers globally, the customer base is highly concentrated. Probably 5 customers >70% of Special Glass revenue.
 
 ---
 
@@ -132,7 +132,7 @@ The Nan Ya partnership announced Nov 2025 is interesting: Nittobo will continue 
 Almost all the rent in this chain pools at the **specialty yarn step** because:
 - Furnace capacity expansion takes 3-5 years (you're effectively building a small steel mill).
 - The recipe for low-Dk / low-CTE glass is process IP and trade secret, not patent.
-- Demand surged faster than capacity could come on (Generative AI ramp), creating a shortage that has lasted ~24 months.
+- Demand surged faster than capacity could come on (Generative AI ramp), creating a shortage that has lasted 约24 months.
 - The yarn is a tiny % of CCL cost but a 100% bill-of-materials necessity, so customers will pay anything to avoid losing accelerator units.
 
 Downstream CCL makers (Panasonic, MGC) are profitable but not earning monopoly rents; ABF substrate makers (Ibiden, Shinko) earn good but cyclical rents. Glass yarn is currently the highest-margin choke point.
@@ -141,7 +141,7 @@ Downstream CCL makers (Panasonic, MGC) are profitable but not earning monopoly r
 
 | Force | Intensity | Note |
 |---|---|---|
-| Rivalry among incumbents | **Low** | T-glass: Nittobo ~90% share. NE-glass at the M6-M7 grade: only Nittobo and AGY (US). The others (Asahi Kasei, Taiwan Glass / Baotek, Fulltech, Owens Corning) are commodity / industrial fiber. |
+| Rivalry among incumbents | **Low** | T-glass: Nittobo 约90% share. NE-glass at the M6-M7 grade: only Nittobo and AGY (US). The others (Asahi Kasei, Taiwan Glass / Baotek, Fulltech, Owens Corning) are commodity / industrial fiber. |
 | Threat of new entrants | **Low** to **moderate** | Furnace + know-how + multi-year customer qualification. But Asahi Kasei (Q-glass) and Taiwan Glass have qualified product in 2025-2026, so the door is being pried open. |
 | Bargaining power of suppliers | **Low** | Inputs are silica, oxides, energy — generic. |
 | Bargaining power of buyers | **Low (currently)** | Allocation market — CCL makers and hyperscalers are taking what they can get. Will normalize as capacity comes on. |
@@ -149,7 +149,7 @@ Downstream CCL makers (Panasonic, MGC) are profitable but not earning monopoly r
 
 ### 2.5 Secular tailwind
 
-The structural growth here is **AI accelerator unit growth × content-per-accelerator**. Hyperscaler 2025 AI accelerator deployment was ~1.2m units (Source: market-research data quoted via secondary; per intelmarketresearch / 360iresearch ABF substrate market summaries). Each accelerator package needs 4-6 ABF substrates × ~12-18 layers × glass-cloth ply count → significant T-glass intensity per unit. And the 800G/1.6T network switch upgrade cycle pulls NE/NER-glass into switch motherboards as well.
+The structural growth here is **AI accelerator unit growth × content-per-accelerator**. Hyperscaler 2025 AI accelerator deployment was 约1.2m units (Source: market-research data quoted via secondary; per intelmarketresearch / 360iresearch ABF substrate market summaries). Each accelerator package needs 4-6 ABF substrates × 约12-18 layers × glass-cloth ply count → significant T-glass intensity per unit. And the 800G/1.6T network switch upgrade cycle pulls NE/NER-glass into switch motherboards as well.
 
 Industry growth rate for ABF substrate market: 14% CAGR (intelmarketresearch). For low-Dk specialty glass cloth specifically: probably faster, because content per substrate is rising as more layers shift to high-speed signal layers.
 
@@ -161,7 +161,7 @@ Industry growth rate for ABF substrate market: 14% CAGR (intelmarketresearch). F
 
 | Player | T-glass position | NE / low-Dk position | Notes |
 |---|---|---|---|
-| **Nittobo (Japan)** | ~90% global share | ~70-80% (NER-grade); ~80% NE-glass | The incumbent. Vertically integrated yarn → cloth. |
+| **Nittobo (Japan)** | 约90% global share | 约70-80% (NER-grade); 约80% NE-glass | The incumbent. Vertically integrated yarn → cloth. |
 | **AGY (US)** | Some legacy capability | Co-supplier of NE/M6-M7 yarn | Focused on aerospace / defense; not expanding electronic-grade capacity per Digitimes. |
 | **Asahi Kasei (Japan)** | None historically | New entrant 2026 with **Q-glass (quartz cloth, 99.9% silica)** | Targeting next-gen M9 grade; quartz is harder to drill but offers better signal performance. Mass production "starting 2026" (Nikkei Asia / Digitimes). |
 | **AGC (Asahi Glass, Japan)** | Limited | Limited | Re-entering glass for electronics per Nikkei Asia. |
@@ -173,7 +173,7 @@ Industry growth rate for ABF substrate market: 14% CAGR (intelmarketresearch). F
 ### 3.2 Moat: what is it really?
 
 The moat is **process know-how + cumulative customer-qualification time**.
-1. **Specialty glass formulation IP.** T-glass requires a specific oxide blend with very tight tolerances on CTE (~3 ppm/°C, vs. E-glass at ~5.5). NE/NER-glass requires low Dk/Df at high frequency, achieved through a different oxide tuning. Nittobo has been at this since the late 1990s. The recipe is trade-secret, not patent — meaning competitors can in theory reverse-engineer, but the calibration of a specialty-glass furnace at production yield takes years of running.
+1. **Specialty glass formulation IP.** T-glass requires a specific oxide blend with very tight tolerances on CTE (约3 ppm/°C, vs. E-glass at 约5.5). NE/NER-glass requires low Dk/Df at high frequency, achieved through a different oxide tuning. Nittobo has been at this since the late 1990s. The recipe is trade-secret, not patent — meaning competitors can in theory reverse-engineer, but the calibration of a specialty-glass furnace at production yield takes years of running.
 2. **Furnace + bushing engineering.** Spinning consistent <5 micron filament from a high-melt-point glass without yield collapse requires specialized platinum-rhodium bushings and process control. Capex per tonne of T-glass capacity is materially higher than E-glass.
 3. **Customer qualification cycle.** A new CCL passing qualification at Ibiden / Unimicron / Nvidia takes 12-24 months. Switching cost for the *combined* Nittobo yarn + (insert your CCL maker) prepreg formulation is high.
 4. **Nittobo also makes the woven cloth in-house** at the relevant ply counts and fineness — a second moat layer downstream from yarn.
@@ -206,16 +206,16 @@ Beyond 2027, the durability question turns on:
 
 | Year | Net sales | YoY | OP | OP margin | NI | NI margin | FCF | Capex | Capex/sales |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| FY2021 (Mar-21) | ~76 | n/a | ~5 | ~6.6% | n/a | n/a | n/a | ~3 | ~4% |
-| FY2022 (Mar-22) | ~84 | +11% | ~6.5 | ~7.7% | n/a | n/a | n/a | ~5 | ~6% |
-| FY2023 (Mar-23) | 93.3 | +11% | 8.1 | 8.7% | n/a | n/a | n/a | ~7 | ~7% |
-| FY2024 (Mar-24) | 93.3 | flat | ~10.4 | ~11.1% | n/a | n/a | n/a | ~10 | ~11% |
-| FY2025 (Mar-25) | 109.0 | +17% | 16.4 | 15.1% | n/a | n/a | n/a | ~15 | ~14% |
-| **FY2026E (Mar-26 raised gd)** | **122.0** | **+12%** | **20.0** | **16.4%** | **38.0** | **31.1%*** | n/a | ~20 | ~16% |
+| FY2021 (Mar-21) | 约76 | n/a | 约5 | 约6.6% | n/a | n/a | n/a | 约3 | 约4% |
+| FY2022 (Mar-22) | 约84 | +11% | 约6.5 | 约7.7% | n/a | n/a | n/a | 约5 | 约6% |
+| FY2023 (Mar-23) | 93.3 | +11% | 8.1 | 8.7% | n/a | n/a | n/a | 约7 | 约7% |
+| FY2024 (Mar-24) | 93.3 | flat | 约10.4 | 约11.1% | n/a | n/a | n/a | 约10 | 约11% |
+| FY2025 (Mar-25) | 109.0 | +17% | 16.4 | 15.1% | n/a | n/a | n/a | 约15 | 约14% |
+| **FY2026E (Mar-26 raised gd)** | **122.0** | **+12%** | **20.0** | **16.4%** | **38.0** | **31.1%*** | n/a | 约20 | 约16% |
 
-*FY2026 NI margin includes one-off gain from asset sale recognized in 3Q FY2026; underlying NI margin is closer to ~16-18%.
+*FY2026 NI margin includes one-off gain from asset sale recognized in 3Q FY2026; underlying NI margin is closer to 约16-18%.
 
-Sources: Nittobo MTP May 2024, FY2025 / FY2026 tanshin (via TipRanks, Webull, Longbridge, MarketScreener, Quartr, Simply Wall St). FCF and capex numbers are my estimates anchored on the 4-year MTP capex commitment of ~¥80bn (≈¥20bn/yr average) and adjusting for the front-loaded skew Nittobo described (capex ramps with the Fukushima expansion). The user should verify FCF and capex from the cash flow statement in the FY2024 yuho.
+Sources: Nittobo MTP May 2024, FY2025 / FY2026 tanshin (via TipRanks, Webull, Longbridge, MarketScreener, Quartr, Simply Wall St). FCF and capex numbers are my estimates anchored on the 4-year MTP capex commitment of 约¥80bn (≈¥20bn/yr average) and adjusting for the front-loaded skew Nittobo described (capex ramps with the Fukushima expansion). The user should verify FCF and capex from the cash flow statement in the FY2024 yuho.
 
 **Inflection points to flag:**
 1. **FY2023 → FY2024 to FY2025 OP margin doubling** (8.7% → 15.1%) — entirely a Special Glass mix shift / ASP / volume story, despite flat group revenue in FY24. Operating leverage from the glass furnace: incremental tonnage at incremental contribution margin > 50%.
@@ -224,8 +224,8 @@ Sources: Nittobo MTP May 2024, FY2025 / FY2026 tanshin (via TipRanks, Webull, Lo
 ### 4.2 Returns
 
 **ROE / ROIC (estimates):**
-- FY2023: ROE roughly mid-single-digits, ROIC ~5%
-- FY2025: ROE ~10-12%, ROIC ~10-12% (anchored on OP ¥16.4bn / invested capital ~¥130-140bn estimate)
+- FY2023: ROE roughly mid-single-digits, ROIC 约5%
+- FY2025: ROE 约10-12%, ROIC 约10-12% (anchored on OP ¥16.4bn / invested capital 约¥130-140bn estimate)
 - FY2026E: ROE much higher because of NI surge, but distorted by the asset-sale gain
 
 These need to be verified against the actual yuho equity and asset base; the company quotes mid-term plan ROE/ROIC targets in the MTP document but the specific number wasn't surfaced in my secondary sources beyond "improving toward double digits."
@@ -249,7 +249,7 @@ I did not find any flags in secondary press. No revenue-recognition issues, no m
 | Net sales (¥ bn) | 93.3 | 122.0 | 135.0 | +9.7% |
 | Operating profit (¥ bn) | 8.1 | 20.0 | 20.0 | +25.4% |
 | OP margin | 8.7% | 16.4% | 14.8% | +610 bps |
-| Capex over plan | — | — | ~¥80bn cumulative | — |
+| Capex over plan | — | — | 约¥80bn cumulative | — |
 
 Source: Nittobo MTP May 2024 (¥135bn / ¥20bn / ¥80bn capex), FY2026 raised guidance Feb 2026.
 
@@ -257,7 +257,7 @@ Source: Nittobo MTP May 2024 (¥135bn / ¥20bn / ¥80bn capex), FY2026 raised gu
 
 ### 5.2 Sell-side consensus (latest)
 
-- FY2027 (Mar-27): consensus net sales ~¥140-150bn, consensus OP ~¥25-28bn (my read of how the buy-side has been marking, anchored on Daiwa target price changes and Morgan Stanley peer-group bullishness; not directly disclosed in the press I retrieved).
+- FY2027 (Mar-27): consensus net sales 约¥140-150bn, consensus OP 约¥25-28bn (my read of how the buy-side has been marking, anchored on Daiwa target price changes and Morgan Stanley peer-group bullishness; not directly disclosed in the press I retrieved).
 - The MTP target of ¥20bn OP by FY27 is now very likely conservative.
 
 ### 5.3 My own bottom-up build for the AI-substrate revenue uplift
@@ -265,10 +265,10 @@ Source: Nittobo MTP May 2024 (¥135bn / ¥20bn / ¥80bn capex), FY2026 raised gu
 Show the math even if rough.
 
 **Inputs (my estimates / market-research figures):**
-- Hyperscaler AI accelerator unit deployment 2025: ~1.2m units (intelmarketresearch / 360iresearch).
-- Each AI accelerator package needs ~4-6 ABF substrates → call it ~5m ABF substrates pulled by AI alone.
-- ABF substrate ASP (AI-grade): ~$80 in 2025 (intelmarketresearch).
-- Glass-cloth content per ABF substrate: ~$3-5 (specialty T-glass cloth at ~5-10x E-glass prices, based on TrendForce / sell-side estimates that low-Dk cloth ASP is several multiples of E-glass).
+- Hyperscaler AI accelerator unit deployment 2025: 约1.2m units (intelmarketresearch / 360iresearch).
+- Each AI accelerator package needs 约4-6 ABF substrates → call it 约5m ABF substrates pulled by AI alone.
+- ABF substrate ASP (AI-grade): 约$80 in 2025 (intelmarketresearch).
+- Glass-cloth content per ABF substrate: 约$3-5 (specialty T-glass cloth at 约5-10x E-glass prices, based on TrendForce / sell-side estimates that low-Dk cloth ASP is several multiples of E-glass).
 - AI accelerator unit growth: 30-50% CAGR consensus through 2027.
 
 **Step 1: Total AI-pulled T-glass / specialty cloth market size (current).**
@@ -276,24 +276,24 @@ Show the math even if rough.
 
 Rebuild the market more inclusively: ABF + BT substrates + AI server motherboards + 800G/1.6T switch PCBs + Apple silicon substrates.
 
-Sell-side estimates (TrendForce, Daiwa via Scribd) for the **specialty low-Dk glass cloth market**: ~$1.5-2bn/yr in 2025, growing to $3-4bn by 2027.
+Sell-side estimates (TrendForce, Daiwa via Scribd) for the **specialty low-Dk glass cloth market**: 约$1.5-2bn/yr in 2025, growing to $3-4bn by 2027.
 
 **Step 2: Nittobo share.**
-At 90% T-glass and 70-80% NE-glass, Nittobo is ~80%+ of the value pool today. Capacity-constrained; supply growth limited by furnace ramp.
+At 90% T-glass and 70-80% NE-glass, Nittobo is 约80%+ of the value pool today. Capacity-constrained; supply growth limited by furnace ramp.
 
-→ Nittobo Special Glass revenue 2025 implied: ~$1.2-1.6bn = ¥180-240bn at 150 yen/$.
-→ But reported Nittobo group revenue is only ¥109bn FY25, of which my estimate is ~¥30bn is Special Glass.
+→ Nittobo Special Glass revenue 2025 implied: 约$1.2-1.6bn = ¥180-240bn at 150 yen/$.
+→ But reported Nittobo group revenue is only ¥109bn FY25, of which my estimate is 约¥30bn is Special Glass.
 
 The discrepancy means **either (a) the $1.5-2bn market sizing is overstated** (more likely — that figure is probably the *substrate-and-PCB* market value of cloth, including downstream margin), **or (b) Nittobo is selling yarn that is then woven by others, with the value captured downstream**, **or (c) most low-Dk cloth is NOT yet AI-grade** (much is still mid-tier 5G / data-center where ASP is lower).
 
 The honest answer: bottom-up math of glass cloth $$ → Nittobo revenue is hard from public data; I would not trust any sell-side bottom-up build unless they show transparent assumptions. What we *can* anchor on is:
 - Nittobo Special Glass revenue grew an estimated +¥15bn over 2 years (FY23-FY25).
 - Tripling T-glass cloth capacity by FY27 (announced Sept 2025) implies plant-level capacity can support roughly 3× current Special Glass tonnage.
-- If volume triples by FY28 (post-ramp) at flat ASP, Special Glass revenue could go from ~¥30bn (FY25) → ~¥80-90bn (FY28).
-- Add ~50-60% incremental contribution margin → +¥30-35bn of incremental OP from Special Glass alone over the next 3 years.
+- If volume triples by FY28 (post-ramp) at flat ASP, Special Glass revenue could go from 约¥30bn (FY25) → 约¥80-90bn (FY28).
+- Add 约50-60% incremental contribution margin → +¥30-35bn of incremental OP from Special Glass alone over the next 3 years.
 - Group OP could plausibly reach **¥40-50bn by FY28** if (i) demand absorbs the new capacity, (ii) ASPs hold, (iii) Asahi Kasei Q-glass doesn't displace.
 
-**This is my view, not a guidance number.** For comparison, sell-side consensus seems to be at ~¥25-30bn OP by FY27. I think the buy-case is +¥40bn OP by FY28 if execution holds, and the bear case is materially below that if Q-glass takes share or ASP normalizes faster than capacity.
+**This is my view, not a guidance number.** For comparison, sell-side consensus seems to be at 约¥25-30bn OP by FY27. I think the buy-case is +¥40bn OP by FY28 if execution holds, and the bear case is materially below that if Q-glass takes share or ASP normalizes faster than capacity.
 
 ### 5.4 Three numbers that matter most
 
@@ -315,13 +315,13 @@ The honest answer: bottom-up math of glass cloth $$ → Nittobo revenue is hard 
 ### 6.2 ROIC trajectory
 
 Improving fast:
-- FY2023 ROIC ~5% (estimate; depressed)
-- FY2025 ROIC ~10-12% (estimate)
+- FY2023 ROIC 约5% (estimate; depressed)
+- FY2025 ROIC 约10-12% (estimate)
 - FY2027/FY2028 ROIC could be 15%+ if the capex returns 30%+ on incremental capital (which is plausible given Special Glass margins).
 
 ### 6.3 Buybacks / dividends
 
-- Dividend yield ~2.5% in 2024 per simplywall.st; payout ratio ~30%.
+- Dividend yield 约2.5% in 2024 per simplywall.st; payout ratio 约30%.
 - ¥114/share planned annual dividend per most-recent guidance.
 - I did not find evidence of large share buybacks. Capital is being deployed back into the business.
 
@@ -335,33 +335,33 @@ No clear public data surfaced in my searches on Nittobo's specific cross-shareho
 
 ### 7.1 Current valuation (as of late April / early May 2026)
 
-- Stock price: ~¥28,160 (1 May 2026) to ~¥28,540 (30 April 2026); ATH ¥30,950 on 14 April 2026 (Source: simplywall.st, marketscreener, multiple price feeds).
-- Market cap: ~¥1.03 trillion.
-- Trailing P/E: ~36x as of Jan 2026 → call it lower now after the NI guidance raise (¥38bn NI on ¥1.03tn cap = ~27x trailing on the boosted FY26 NI, but adjusting for the one-off, "underlying" P/E is more like 50-60x).
-- Forward P/E (FY27): if FY27 NI normalizes to ~¥18-22bn (no asset-sale gain, OP ~¥25-28bn × 70% net), P/E is **~45-55x FY27E**.
-- EV/Sales: ~9x trailing (per stockanalysis.com / SimplyWall).
-- EV/EBITDA: hard to compute precisely without D&A line; if EBITDA ~¥27-30bn FY27, EV/EBITDA is **~33-37x FY27E** (assumes minimal net debt, very small adjustment for net cash).
+- Stock price: 约¥28,160 (1 May 2026) to 约¥28,540 (30 April 2026); ATH ¥30,950 on 14 April 2026 (Source: simplywall.st, marketscreener, multiple price feeds).
+- Market cap: 约¥1.03 trillion.
+- Trailing P/E: 约36x as of Jan 2026 → call it lower now after the NI guidance raise (¥38bn NI on ¥1.03tn cap = 约27x trailing on the boosted FY26 NI, but adjusting for the one-off, "underlying" P/E is more like 50-60x).
+- Forward P/E (FY27): if FY27 NI normalizes to 约¥18-22bn (no asset-sale gain, OP 约¥25-28bn × 70% net), P/E is **约45-55x FY27E**.
+- EV/Sales: 约9x trailing (per stockanalysis.com / SimplyWall).
+- EV/EBITDA: hard to compute precisely without D&A line; if EBITDA 约¥27-30bn FY27, EV/EBITDA is **约33-37x FY27E** (assumes minimal net debt, very small adjustment for net cash).
 - FCF yield: very low (sub-2%) given the elevated capex.
 
 ### 7.2 vs. own history
 
-- Pre-AI narrative (2020-2022): the stock traded ¥3,000-5,000 with P/E in the 10-15x range. The current ~¥28,000 represents a roughly 6-9x rerating in 3 years. Earnings have grown a lot, but multiple expansion has been a meaningful share of the move.
+- Pre-AI narrative (2020-2022): the stock traded ¥3,000-5,000 with P/E in the 10-15x range. The current 约¥28,000 represents a roughly 6-9x rerating in 3 years. Earnings have grown a lot, but multiple expansion has been a meaningful share of the move.
 - One-year return: +635% (per simplywall.st).
 
 ### 7.3 vs. peers
 
 | Company | Forward P/E | EV/EBITDA | Note |
 |---|---:|---:|---|
-| **Nittobo (3110)** | ~45-55x | ~33-37x | Ahead-of-peers premium |
-| Shin-Etsu Chemical (4063) | ~22-24x | ~12x | Specialty chemical / silicon mega-cap |
+| **Nittobo (3110)** | 约45-55x | 约33-37x | Ahead-of-peers premium |
+| Shin-Etsu Chemical (4063) | 约22-24x | 约12x | Specialty chemical / silicon mega-cap |
 | Sumco | n/a | n/a | Wafer cyclical |
 | Resonac (4004) | n/a | n/a | Restructuring story; CCL exposure |
-| Mitsubishi Gas Chemical (4182) | ~12-15x est. | n/a | Direct customer; BT laminate leader |
-| **Ibiden (4062)** | ~20-25x | ~10-12x | ABF substrate leader |
+| Mitsubishi Gas Chemical (4182) | 约12-15x est. | n/a | Direct customer; BT laminate leader |
+| **Ibiden (4062)** | 约20-25x | 约10-12x | ABF substrate leader |
 | **Shinko Electric (6967)** | being delisted (TBD post-JIC tender) | — | High-end ABF |
-| **Unimicron (3037 TT)** | ~25-30x est. | — | Largest ABF substrate maker; Morgan Stanley OW |
-| **Nan Ya PCB (8046 TT)** | ~25-30x est. | — | ABF substrate; MS OW |
-| **Kinsus (3189 TT)** | ~20-25x est. | — | Smaller ABF substrate |
+| **Unimicron (3037 TT)** | 约25-30x est. | — | Largest ABF substrate maker; Morgan Stanley OW |
+| **Nan Ya PCB (8046 TT)** | 约25-30x est. | — | ABF substrate; MS OW |
+| **Kinsus (3189 TT)** | 约20-25x est. | — | Smaller ABF substrate |
 
 Sources: stockanalysis.com (Shin-Etsu), Daiwa report referenced via Scribd (Taiwan ABF), Investing.com (Morgan Stanley upgrades), various secondary.
 
@@ -375,23 +375,23 @@ The premium is *defensible* on durable-moat grounds for the next 2-3 years but *
 
 ### One-paragraph thesis
 
-Nitto Boseki has, almost by accident of patient R&D, ended up at the chokepoint of the AI-server materials supply chain: a near-monopoly in low-CTE T-glass yarn / cloth (~90% share) and a dominant position in low-Dk NE-glass yarn (~70-80%), with no commercial-scale alternative to T-glass available before 2027. Special Glass has driven roughly all of the group's operating-profit doubling from FY2023 to FY2025, and the capacity tripling at Fukushima (with subsidy support and a Nan Ya weaving partnership) sets up another step-function in FY2027-2028. The numbers — group OP from ¥8bn to ¥20bn in three years, capex ¥80bn fully funded internally, ROIC inflecting toward the high teens — are real and primary-source-supported. The catch is that the multiple has already moved violently (stock +635% over 12 months, ~¥1tn market cap, ~45-55x forward P/E, ~33-37x EV/EBITDA), so the long thesis depends on (a) the FY2027-2028 ramp landing as planned, (b) ASPs holding, and (c) Asahi Kasei's Q-glass plus Taiwan Glass capacity not displacing the leading-edge by 2028. This is a high-quality but high-expectations name; it is no longer a "discover the moat" trade — the moat is well-known. The remaining edge is in tracking the volume / ASP / mix-shift quarterly and pressure-testing the Q-glass substitution risk.
+Nitto Boseki has, almost by accident of patient R&D, ended up at the chokepoint of the AI-server materials supply chain: a near-monopoly in low-CTE T-glass yarn / cloth (约90% share) and a dominant position in low-Dk NE-glass yarn (约70-80%), with no commercial-scale alternative to T-glass available before 2027. Special Glass has driven roughly all of the group's operating-profit doubling from FY2023 to FY2025, and the capacity tripling at Fukushima (with subsidy support and a Nan Ya weaving partnership) sets up another step-function in FY2027-2028. The numbers — group OP from ¥8bn to ¥20bn in three years, capex ¥80bn fully funded internally, ROIC inflecting toward the high teens — are real and primary-source-supported. The catch is that the multiple has already moved violently (stock +635% over 12 months, 约¥1tn market cap, 约45-55x forward P/E, 约33-37x EV/EBITDA), so the long thesis depends on (a) the FY2027-2028 ramp landing as planned, (b) ASPs holding, and (c) Asahi Kasei's Q-glass plus Taiwan Glass capacity not displacing the leading-edge by 2028. This is a high-quality but high-expectations name; it is no longer a "discover the moat" trade — the moat is well-known. The remaining edge is in tracking the volume / ASP / mix-shift quarterly and pressure-testing the Q-glass substitution risk.
 
 ### Three things that would make the thesis right
 
 1. **Fukushima / capacity ramp lands on time and yields well.** The new T-glass cloth line starts production Q4 FY2026 as planned, ramps to >70% utilization in FY2027, and Nan Ya's 20% weaving share comes online without a hitch. Special Glass volumes triple by FY28; revenue compounds at 30%+ for 3 years.
-2. **ASP holds because demand is structurally above supply.** Hyperscaler AI capex stays ~$300bn+/year through 2028; AI accelerator units grow 30-50% CAGR; per-unit specialty-cloth content keeps rising as more layers in each substrate go to high-speed; and Nittobo's own NEZ-glass for M9 launches successfully in 2028 to defend the leading edge.
+2. **ASP holds because demand is structurally above supply.** Hyperscaler AI capex stays 约$300bn+/year through 2028; AI accelerator units grow 30-50% CAGR; per-unit specialty-cloth content keeps rising as more layers in each substrate go to high-speed; and Nittobo's own NEZ-glass for M9 launches successfully in 2028 to defend the leading edge.
 3. **No commercial-scale displacement of T-glass before 2028.** Asahi Kasei's Q-glass remains a high-end-only / hard-to-process niche; Taiwan Glass and Baotek scale low-Dk capacity but at the mid-tier, not displacing Nittobo at the leading edge; the substrate architecture stays glass-cloth-CCL-based (as opposed to glass-core or organic-only).
 
-If 1+2+3 hold, group OP can reach ¥40-50bn by FY28, and even at a derated 25-30x EV/EBITDA on ~¥45bn OP / ~¥60bn EBITDA, the equity valuation supports current levels and modest upside from here.
+If 1+2+3 hold, group OP can reach ¥40-50bn by FY28, and even at a derated 25-30x EV/EBITDA on 约¥45bn OP / 约¥60bn EBITDA, the equity valuation supports current levels and modest upside from here.
 
 ### Three things that would make it wrong (handoff to the critical-thinker)
 
 1. **Q-glass / quartz-fabric substitution is faster than expected.** Asahi Kasei begins commercial supply in 2026, qualifies at 1-2 hyperscalers in 2027, and by FY2028 is taking 20%+ of the leading-edge AI substrate cloth volume. Even if Nittobo holds the legacy installed base, the *incremental* growth (which is what's priced in) goes to a competitor. Multiple compresses sharply.
-2. **The capacity ramp dilutes ASP.** Tripling Nittobo capacity + Taiwan Glass and Baotek and Asahi Kasei adding capacity = supply growing 4-5× from 2025 to 2028 vs demand growing 2-3×. Specialty cloth ASPs normalize toward 2-3x E-glass instead of 5-10x. Volume triples but revenue only doubles, OP margin compresses 500 bps, OP ends up at ¥25-30bn instead of ¥40bn+. Stock fair value ~30-40% lower.
+2. **The capacity ramp dilutes ASP.** Tripling Nittobo capacity + Taiwan Glass and Baotek and Asahi Kasei adding capacity = supply growing 4-5× from 2025 to 2028 vs demand growing 2-3×. Specialty cloth ASPs normalize toward 2-3x E-glass instead of 5-10x. Volume triples but revenue only doubles, OP margin compresses 500 bps, OP ends up at ¥25-30bn instead of ¥40bn+. Stock fair value 约30-40% lower.
 3. **The architecture shifts and reduces glass-cloth content per accelerator.** Glass-core substrates (TSMC / Intel / Samsung roadmap), thin-film build-up without traditional cloth-reinforced laminate, or organic dielectrics all reduce woven glass cloth use per AI accelerator. This is a multi-year risk but a real one given the velocity of advanced packaging architecture change.
 
-Plus a non-thesis-but-watch risk: **valuation already reflects 3-4 years of perfect execution, and the stock is up 6-9x in 3 years on a ~¥1tn cap with limited float**. Crowded long, vulnerable to any miss.
+Plus a non-thesis-but-watch risk: **valuation already reflects 3-4 years of perfect execution, and the stock is up 6-9x in 3 years on a 约¥1tn cap with limited float**. Crowded long, vulnerable to any miss.
 
 ---
 
