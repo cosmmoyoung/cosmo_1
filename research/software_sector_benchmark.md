@@ -14,7 +14,7 @@
 
 > **2. NRR(净收入留存)是照妖镜。** 老客户今年比去年多付(NRR>110% 且在升)= AI 在帮它扩钱包;NRR 跌穿 100%(如 Asana 95%、ZoomInfo 90%)= 座席/数据在被侵蚀,藏不住。**但要小心:NRR 会被"涨价掩盖座席流失"美化,且财报滞后颠覆 12–24 个月——所以也要看 GRR(毛留存)和增速方向。**
 
-> **3. 区分"财报颠覆"和"头条颠覆"。** 真正流血的(Chegg -48%、ZoomInfo NRR 90%、C3.ai -36%)是"数据/内容垄断被去中介"或"纯座席被压缩";而头条最响的"Sierra 杀客服、Cursor 杀开发工具"——在多数上市在位者的财报里**还没兑现**(Five9 AI 收入 +68%、NICE AI ARR +66%、Twilio NRR 回到 114% 都在反驳)。**投资押财报,不押头条。**
+> **3. 区分"财报颠覆"和"头条颠覆"。** 真正流血的(Chegg -48%、ZoomInfo NRR 90%、C3.ai 约 -46%)是"数据/内容垄断被去中介"或"纯座席被压缩";而头条最响的"Sierra 杀客服、Cursor 杀开发工具"——在多数上市在位者的财报里**还没兑现**(Five9 AI 收入 +68%、NICE AI ARR +66%、Twilio NRR 回到 114% 都在反驳)。**投资押财报,不押头条。**
 
 **评级图例(winner→loser 五层):**
 - 🟢 **核心赢家**:AI 赋能、增速加速、护城河 durable、有资源捕获 AI。
@@ -27,15 +27,20 @@
 
 ## 第一部分:一页纸结论 —— winner/loser 分层
 
+> **重要:这是"质量×卡位"的分层,不是"按此价买入"的分层——两件事分开。** 所以单设一格区分"质地顶级但价格不过关"的名字(避免把 Palantir-97× 和 Google-29× 当成同一个 call)。每个 🟢 也都带了它最致命的那个 caveat,不给"无脑安全"的错觉。
+
 | 层级 | 公司(按板块) |
 |---|---|
-| 🟢 **核心赢家** | Microsoft、Alphabet/Google、Amazon(AWS)、Snowflake、Datadog、CrowdStrike、ServiceNow、Atlassian、Figma、Shopify、Veeva、Palantir(质地顶级但最贵);**私有:Databricks** |
-| 🔵 **稳健受益** | Palo Alto、Fortinet、JFrog、HubSpot、Intuit、SAP、Klaviyo、Toast、Samsara、Twilio、MongoDB、Cloudflare、Oracle(带资产负债表 caveat) |
-| 🟡 **中性/硬币** | Salesforce、Workday、Adobe、Monday、SentinelOne、Zscaler、Okta、GitHub/Copilot、Elastic、Five9、NICE、DocuSign |
-| 🟠 **承压/防守** | GitLab、Asana、Zoom、RingCentral、Dropbox、Sprout Social、UiPath、Gartner |
+| 🟢 **核心赢家** | Microsoft(带 capex/折旧压 margin caveat)、Alphabet/Google(带 open-weights + 搜索去中介 caveat)、Amazon(AWS)、Datadog(带云厂自带监控整合 caveat)、CrowdStrike、ServiceNow(带"净新增 vs 替代"未拆分 caveat)、Atlassian、Figma、Shopify、Veeva;**私有:Databricks** |
+| 🟢\* **质地顶级、但价格不过关(quality-yes / price-no)** | **Palantir**(质地是 🟢、估值是 🔴:约 97× 前瞻、距高点 -34%,risk-adjusted 实为 🟡;见 §2.7 + `software_ai_era_deepdive.md` PEG 陷阱) |
+| 🔵 **稳健受益** | **Snowflake**(带数据重力被 Iceberg/Databricks 侵蚀的 caveat,故未进 🟢)、Palo Alto、Fortinet、JFrog、HubSpot、Intuit、SAP、Klaviyo、Toast、Samsara、Twilio、MongoDB、Cloudflare、Oracle(带资产负债表/RPO 质量 caveat) |
+| 🟡 **中性/硬币** | Salesforce、Workday、Adobe(便宜的逆向期权,见 §3)、Monday、SentinelOne、Zscaler、Okta、GitHub/Copilot、Elastic、Five9、NICE、DocuSign |
+| 🟠 **承压/防守** | GitLab、Asana、Zoom、RingCentral、Dropbox、Sprout Social、UiPath、Gartner(早期去中介、核心研究仍 +5%,比另两个 🔴 轻) |
 | 🔴 **被颠覆/输家** | Chegg、ZoomInfo、C3.ai |
 
 > **一句话总览:价值正从"人类界面/按座席收费"流向"模型 + 数据 + 系统-of-record + 治理基底 + 按消耗/交易计价"。** 拥有后者的(超大规模云、数据层、安全、横向 SoR、垂直专有数据、take-rate 商务)是赢家;只卖"人类界面 + 通用数据 + 纯座席"的是输家。
+>
+> **但要诚实:"平台/数据/安全最安全"本身就是卖方共识。** 真正能赚钱的是变体观点(见 §3 末):做多被错杀的 Adobe、对"独立层被云厂整合"保持警惕(Datadog/Snowflake)、以及不把 Palantir 的高倍数当便宜。**这张表的价值不在"附和共识",而在标出哪里共识可能错。**
 
 ---
 
@@ -53,21 +58,28 @@
 | **Oracle** | 老 DB/ERP 转 OCI 云,AI-GPU 房东 | +22%(OCI infra +84%) | non-GAAP EPS +21%,**但 FCF 被 capex/债压** | license+消耗 | 🔵 AI 赋能,**但 RPO $553B 质量存疑(低毛利 GPU 租赁、预付撑)+ 客户集中** |
 
 - **天花板:** 全企业 IT + AI 基础设施,最大、还在扩。**估值:** MSFT 约 22× 前瞻、GOOGL 约 29× trailing(最不贵)、AMZN 约 28× 前瞻、ORCL 约 25× 前瞻。
-- **点评:** 这一层是"AI 时代最稀缺的模型+云+分发",**微软/谷歌/亚马逊三家是全软件最确定的赢家**(都在加速 + margin 在升)。Oracle 用激进 capex 抢 AI 房东生意,增速最猛但**是杠杆/低毛利的打法,质量最需警惕**——同样的 RPO,放在三巨头身上是利润,放在 Oracle 身上是负债。
+- **点评:** 这一层是"AI 时代最稀缺的模型+云+分发",**微软/谷歌/亚马逊三家是全软件最确定的赢家**(都在加速 + margin 在升)。但"最确定"不等于"无风险",每家带一个 caveat,别 mega-cap 抱团:
+  - **Microsoft:** AI 年化约 $370 亿对约 $2700 亿收入,需求是否真增厚 margin、还是在用 Copilot 打包"送"出去保座席,尚待观察;**更关键的是约 $800 亿/年 capex 带来的折旧大坡 FY27–28 会压 GAAP 经营利润率**——"margin 在升"是当下、不是已锁定的未来。
+  - **Alphabet/Google:** 两个真实尾部风险——**① open-weights 模型(Llama/DeepSeek/Qwen)若逼平前沿,模型层被商品化,削弱它最值钱的那一层;② 搜索被 AI 答案去中介**(它自己也是 Chegg/Gartner 死因的潜在对象,只是它有云+模型+芯片+数据闭环对冲)。所以 Google 是"🟢 带 caveat"。
+  - **Oracle:** 用激进 capex + 举债抢 AI 房东生意,增速最猛但**是杠杆/低毛利的打法,质量最需警惕**。
+  - **一条要守的纪律(避免双标):同样的"低毛利 GPU 产能 + 预付 + 客户集中"逻辑,不能只用来质疑 Oracle、却给三巨头免检。** 三巨头也在签低毛利 AI 产能大单(本表 §2.2 赞许引用的 Snowflake-on-AWS $60 亿大单就是一例)。区别是三巨头有高毛利基本盘 + 资产负债表去吸收,Oracle 是赌上公司——**所以 ORCL 的 🔵 + 三巨头的 🟢 都应带同一个"RPO 质量 + 集中度"星号,只是程度不同。**
 
 ### 2.2 数据 / 基础设施(AI 的燃料与铲子)
 
 | 公司 | 业务本质 | 增速 | margin | 模式 | NRR | AI判定·评级 |
 |---|---|---|---|---|---|---|
-| **Snowflake** | 云数据仓库/分析+Cortex AI | 产品 +34%(26→30→34,加速) | non-GAAP op 12%,升;FCF 23% | 消耗 | 126% | 🟢 AI 赋能:每次 AI 查询都烧 credit |
+| **Snowflake** | 云数据仓库/分析+Cortex AI | 产品 +34%(26→30→34,加速) | non-GAAP op 12%,升;FCF 23% | 消耗 | 126%(注) | 🔵 AI 赋能:每次 AI 查询都烧 credit;**但 Iceberg/Databricks 侵蚀护城河,故列 🔵 不列 🟢** |
 | **Databricks**(私) | 湖仓数据+AI 平台(Snowflake 头号对手) | 跑率 >$54 亿 +65%,加速 | 私有未披露 | 消耗 | >140% | 🟢 最强 AI-数据纯玩:AI ARR $14 亿(占 26%) |
-| **Datadog** | 云可观测性(监控)+ AI agent 监控 | +32%,微加速 | non-GAAP op 22%;FCF 29% | 消耗 | 约115% | 🟢 中立铲子:AI 越多越要监控,谁赢都吃 |
+| **Datadog** | 云可观测性(监控)+ AI agent 监控 | +32%,微加速 | non-GAAP op 22%;FCF 29% | 消耗 | 低120% | 🟢 中立铲子(带 caveat):AI 越多越要监控;但云厂自带监控+高盛看空 |
 | **MongoDB** | NoSQL 文档数据库(Atlas 云) | +27%(Atlas +29%);**FY27 指引 16–18% 减速** | non-GAAP op 22.9%,升 | 消耗+订阅 | 121% | 🔵 AI 赋能但受争议(向量库竞争);减速是隐忧 |
 | **Cloudflare** | 边缘网络/CDN+安全+开发者平台 | +34% | non-GAAP op 11.4%(低);**裁员 20%** | hybrid 订阅+消耗 | 118% | 🔵 AI 赋能(边缘推理),但"边增长边重组",最贵(约28× EV/S) |
 | **Elastic** | 搜索/可观测/安全(向量搜索) | +18%(FY 指引约 17%) | non-GAAP op 中高位,升 | hybrid | 约110% | 🟡 AI 赋能(RAG/向量),但增速平、不加速;Q4 今日才出 |
 
 - **天花板:** AI 数据/分析/监控,大且扩。**已并购:Confluent(实时流数据)2026/3 被 IBM 以约 $110 亿收购,并入 IBM Software,不再独立。**
-- **点评:** **Snowflake / Databricks / Datadog 是这一层最干净的三张牌**——Snowflake 加速 + margin 升,Databricks 是 AI-数据最强纯玩(但要等 2H26 IPO),Datadog 是"不赌谁赢都受益"的中立铲子。**但有一个结构裂缝:开放湖仓格式 Iceberg 正在瓦解数据重力护城河**(企业可以"Databricks 做 ELT/ML + Snowflake 做 SQL 服务"跑在共享的 Iceberg-on-S3 上),所以"锁定"在变弱、治理层(Unity Catalog)成新战场。MongoDB/Cloudflare/Elastic 是次一档(各有减速/低 margin/不加速的瑕疵)。
+- **点评:** **Databricks / Datadog 是这一层最干净的两张牌**,Snowflake 紧随但带护城河 caveat。Databricks 是 AI-数据最强纯玩(但要等 2H26 IPO),Datadog 是中立铲子。**两个必须说清的裂缝:**
+  - **(注)消耗模式的 NRR 会骗人:** Snowflake 的 126%、Datadog 的低 120% 在客户"上量"时会机械性虚高、在客户"优化用量"时会骤降(本表 §4 引的 Twilio 优化先例就是)。**所以别把消耗 NRR 当干净的扩张证据——要配 GRR(毛留存)和"消耗绑没绑刚性负载"一起看。**
+  - **结构裂缝:开放湖仓格式 Iceberg 正在瓦解数据重力护城河**(企业可以"Databricks 做 ELT/ML + Snowflake 做 SQL 服务"跑在共享的 Iceberg-on-S3 上),"锁定"在变弱、治理层(Unity Catalog)成新战场。**这正是 Snowflake 只给 🔵 不给 🟢、且与我们 deepdive 把它降到荣誉席一致的原因。** MongoDB/Cloudflare/Elastic 是次一档(各有减速/低 margin/不加速的瑕疵)。
+  - **还有一个被低估的对手:超大规模云自己。** Datadog 对手是 CloudWatch/Azure Monitor/GCP Ops、Snowflake/Databricks 的存算都跑在云厂上——**"卖铲人"和"卖地人"是同一批,独立层被云厂垂直整合(参照 Google 买 Wiz、Palo Alto 买 CyberArk)是这三家(Datadog/Snowflake/CrowdStrike)共同的中期风险。高盛对 Datadog 的看空就是这条。**
 
 ### 2.3 安全(最 AI-durable 的板块)
 
@@ -90,9 +102,9 @@
 | **GitHub/Copilot**(微软) | 代码托管+Copilot AI 助手 | 付费订阅约 +75%(ARR 估近 $10 亿) | 并入微软 | **seat→消耗(6/1 转 usage)** | n/a | 🔵/🟡 AI 赋能但被 Cursor/Claude Code 抢心智;靠分发护城河 |
 | **JFrog** | 制品/二进制管理+软件供应链 | +26%(云 +50%,加速) | non-GAAP 盈利,升 | hybrid 消耗偏 | 120% | 🔵 AI 赋能:AI 越多越多制品/模型要存+管;座席暴露小 |
 | **GitLab** | 一体化 DevSecOps 平台 | +23%(**FY27 指引 +15–17% 急减速**) | non-GAAP op 20.5%,升 | seat→usage(Duo 晚) | 118% | 🟠 被颠覆/co-opting:AI 进场晚、裁员 7%、股价腰斩 |
-| **AI 原生(私)** | Cursor / Cognition / Replit / Vercel | Cursor ARR $20 亿(→年底 $60 亿) | 私有 | 消耗 | — | 🟢 颠覆者:在吃整个品类(见 §5) |
+| **AI 原生(私)** | Cursor / Cognition / Replit / Vercel | Cursor ARR 约 $30 亿(4 月口径,史上最快) | 私有 | 消耗 | — | 🟢 颠覆者:在吃整个品类(见 §5) |
 
-- **天花板:** 开发者工具,正被 AI 重定义。**点评:** 这是**两极分化最剧烈**的板块。**AI 原生颠覆者在吞噬品类**(Cursor 0→$20 亿 ARR 是史上最快、SpaceX 出 $600 亿期权收购;Cognition/Devin $4.92 亿;据 Pragmatic Engineer 约千人调研,**Claude Code 8 个月从 0 干到第一、超过 Copilot 和 Cursor**)。座席制在位者 **GitLab 被颠覆/在 defend**(进场晚、急减速、裁员、股价腰斩)。**JFrog(制品/供应链消耗)和转消耗的 GitHub Copilot 是 co-opt 得更好的**——价值单位从"座席"转向"任务/token"。
+- **天花板:** 开发者工具,正被 AI 重定义。**点评:** 这是**两极分化最剧烈**的板块。**AI 原生颠覆者在吞噬品类**(Cursor 0→约 $30 亿 ARR 是史上最快、SpaceX 出 $600 亿期权收购该公司;Cognition/Devin $4.92 亿;据 Pragmatic Engineer 约千人调研,**Claude Code 8 个月从 0 干到第一、超过 Copilot 和 Cursor**)。座席制在位者 **GitLab 被颠覆/在 defend**(进场晚、急减速、裁员、股价腰斩)。**JFrog(制品/供应链消耗)和转消耗的 GitHub Copilot 是 co-opt 得更好的**——价值单位从"座席"转向"任务/token"。
 
 ### 2.5 横向应用 SaaS(NRR 照妖镜最灵的板块)
 
@@ -111,7 +123,10 @@
 | **Asana** | 工作管理/项目协作 | **+9%,减速(最慢)** | 首次 non-GAAP op 转正 | **seat 座席** | **95%(<100!)** | 🟠 被威胁(头号嫌疑):NRR<100 = 老客座席在缩 |
 
 - **天花板:** 横向企业应用,巨大但"座席天花板"受质疑。**已并购:Smartsheet 2025/1 被 Blackstone/Vista 以约 $84 亿私有化退市。**
-- **点评(NRR 是关键裁决):** **真扩张(AI 当加价、座席还在涨,NRR≥103 且升):ServiceNow、Atlassian、Figma、HubSpot**——AI 是加法不是替代,是这一层最干净的赢家。**座席侵蚀(已显形或被掩盖):Asana(NRR 95、+9%,最差)、Salesforce(自砍座席、有机约 8%、淡化 NRR)、Workday(按人头=结构性风险)。** Salesforce 是**最重要的"硬币"**:它握着 CRM 这个最强 SoR + Agentforce ARR >$8 亿(+169%),但也是最赤裸的座席暴露——成败全看"座席→AWU 消耗"转得够不够快。Adobe 是被恐惧打到约 10× 的争议名(Firefly 在变现,但市场怕 genAI 商品化创作)。
+- **点评(NRR 是关键裁决,但 NRR 也会骗人):** **真扩张(AI 当加价、座席还在涨,NRR≥103 且升):ServiceNow、Atlassian、Figma、HubSpot**——AI 是加法不是替代,是这一层最干净的赢家。**座席侵蚀(已显形或被掩盖):Asana(NRR 95、+9%,最差)、Salesforce(自砍座席、有机约 8%、淡化 NRR)、Workday(按人头=结构性风险)。**
+  - **两个对自己 NRR 论点的诚实纠偏(否则就是双标):** ① **Figma 的 139% 是全表最该打折的 NRR**——它刚 IPO,NDR 受 cohort 选择 + credit 打包影响最大,别当"AI 扩张"的铁证,要等几个完整续费周期。② **ServiceNow 的 🟢 押在"Now Assist $15 亿 ACV 是净新增不是替代"——但这是管理层口径,没有"净新增 vs 替代座席"的拆分**(我们 deepdive 自己标过这是关键未观测变量)。所以 NOW 进 🟢 带这个星号。
+  - **一个必须正面回答的反方(否则整层 SoR 逻辑悬空):"agent 一定要经由在位者的 SoR 吗?"** 多头论点是"agent 要读写 CRM/ERP/工作流,所以绕不开 ServiceNow/Salesforce/SAP/Veeva"。**但反方很硬:agent 完全可以自带状态/记忆层、绕过在位 SoR,只把它当一个商品化数据库读一次。** Nadella 那句"SaaS 退化成数据库+治理"是双刃的——**如果应用退化成商品数据库,价值就跑到"治理/编排层",而那一层越来越住着 agent 框架(LangGraph/MCP 之类),不一定是 ServiceNow。** 这是 NOW/CRM/SAP 这一簇最大的、本表此前没充分压力测试的尾部风险。
+  - Salesforce 是**最重要的"硬币"**:握最强 CRM SoR + Agentforce ARR >$8 亿(+169%),但也是最赤裸的座席暴露——成败全看"座席→AWU 消耗"转得够不够快。**Adobe 是被恐惧打到约 10× 的争议名**(Firefly 在变现,但市场怕 genAI 商品化创作)——见 §3 的变体观点,这是全表最该逆向研究的便宜期权。
 
 ### 2.6 垂直 SaaS / 商务(专有数据 + take-rate,普遍最抗打)
 
@@ -130,10 +145,10 @@
 
 | 公司 | 业务本质 | 增速 | margin | 模式 | AI判定·评级 |
 |---|---|---|---|---|---|
-| **Palantir** | AI/数据操作平台(政府+商业) | **+85%,加速;美商业 +133%** | 净利率 53% GAAP;FCF $9.25 亿 | outcome/消耗 | 🟢 AI 原生赢家,Rule of 40 约145;**但前瞻约 97×、距高点 -34%,贵到极致** |
-| **C3.ai** | 企业 AI 应用软件 | **FY26 -36%,崩盘** | 巨亏;裁员 26% | 订阅 | 🔴 顶着 AI 名字却输掉 AI 应用市场 |
+| **Palantir** | AI/数据操作平台(政府+商业) | **+85%,加速;美商业 +133%** | 净利率 53% GAAP;FCF $9.25 亿 | outcome/消耗 | 🟢\* 质地顶级(Rule of 40 约145)/ 🔴 估值(约 97× 前瞻、距高点 -34%)= risk-adjusted 实为 🟡 |
+| **C3.ai** | 企业 AI 应用软件 | **最新季约 -46% / FY26 指引约 -45%,崩盘** | 巨亏;撤指引;裁员 26% | 订阅 | 🔴 顶着 AI 名字却输掉 AI 应用市场 |
 
-- **点评:** 极端分化。**Palantir 是质地最顶级的 AI 原生赢家**(增速、Rule of 40、现金流全是天花板级),但估值是全场最贵、最不容错(详见 `software_ai_era_deepdive.md` §6 的 Palantir 专章 + PEG 陷阱说明)。**C3.ai 是反面教材**——AI-named loser,收入反而 -36%。
+- **点评:** 极端分化。**Palantir 是质地最顶级的 AI 原生赢家**(增速、Rule of 40、现金流全是天花板级),但估值是全场最贵、最不容错(详见 `software_ai_era_deepdive.md` §6 的 Palantir 专章 + PEG 陷阱说明)。**C3.ai 是反面教材**——AI-named loser,最新季收入反而约 -46%(FY26 指引约 -45%)。
 
 ### 2.8 通讯 / 协作("被 AI 杀"的头条最多,但财报多在企稳/改善)
 
@@ -154,7 +169,7 @@
 |---|---|---|---|---|---|
 | **Chegg** | 在线作业/学习订阅 | **-48%,subs -31%** | 靠裁员(45%)挤出微利 | n/a | 🔴 被 AI 抹掉:免费 LLM+谷歌 AI 概览毁掉产品+入口;距峰值约 -99% |
 | **ZoomInfo** | B2B 销售情报/数据 | +1%(**指引下调到约 -4%**) | 裁员约 20% | **90%(连 3 季)** | 🔴 真流血:数据垄断租金归零,座席/数据双侵蚀 |
-| **C3.ai** | 企业 AI 应用 | **-36%** | 巨亏、撤指引、裁 26% | n/a | 🔴 顶 AI 名却被 LLM 浪潮淘汰 |
+| **C3.ai** | 企业 AI 应用 | **约 -46%(FY 指引约 -45%)** | 巨亏、撤指引、裁 26% | n/a | 🔴 顶 AI 名却被 LLM 浪潮淘汰 |
 | **UiPath** | RPA/agentic 自动化 | +14%(ARR +11%,减速) | non-GAAP op 改善 | **120→107** | 🟠 被威胁+转型:agent 既蚕食又是它的赌注 |
 | **Gartner** | 辛迪加 IT 研究+咨询 | +2%(FX 中性 -1%) | 靠回购撑 EPS | n/a | 🟠 早期被去中介:合同价 CV +1% 是先兆,核心研究仍 +5% |
 | **Dropbox** | 文件存储+Dash | +0.8%(约持平) | non-GAAP op 40%;FCF +69% | n/a | 🟠 融冰:存储商品化,Dash 未验证;靠回购 |
@@ -167,22 +182,25 @@
 ## 第三部分:鲜明判断 —— 最该买的、最该躲的、被错杀的
 
 **🟢 最该长期布局的核心赢家(质地×天花板×卡位,不看估值):**
-1. **平台三巨头:Microsoft / Google / Amazon** —— 拥有 AI 时代最稀缺的"模型+云+分发",都在加速 + margin 升,最确定。Google 还是其中估值最不贵的。
-2. **数据层:Snowflake / Datadog(+ 私有 Databricks)** —— AI 的燃料与中立铲子,纯消耗计价。
+1. **平台三巨头:Microsoft / Google / Amazon** —— 拥有 AI 时代最稀缺的"模型+云+分发",都在加速 + margin 升,最确定(各带一个 caveat,见 §2.1)。Google 还是其中估值最不贵的。
+2. **数据/铲子:Datadog(+ 私有 Databricks);Snowflake 次之** —— AI 的燃料与中立铲子;但 Snowflake 因 Iceberg/Databricks 侵蚀降为 🔵,数据层最强的牌可能是还没上市的 Databricks(2H26 IPO 必盯)。
 3. **安全:CrowdStrike(+ Palo Alto)** —— 最 AI-durable 板块的消耗/平台整合者。
-4. **横向 SoR:ServiceNow / Atlassian** —— AI 当净增 ACV 卖,NRR 在升的"加价者"。
+4. **横向 SoR:ServiceNow / Atlassian** —— AI 当净增 ACV 卖,NRR 在升的"加价者"(NOW 带"净新增 vs 替代"未拆分星号)。
 5. **垂直/商务:Veeva / Shopify** —— 专有数据 + take-rate,AI 拿不走。
-6. **设计:Figma** —— 全场增速最快(+46%)、NRR 最高(139%),AI 扩大而非侵蚀。
-7. **AI 落地:Palantir** —— 质地顶级,但**唯一要在估值上特别小心的核心赢家**(约 97× 前瞻,等回调)。
+6. **设计:Figma** —— 全场增速最快(+46%)、NRR 最高(139%,但刚 IPO、该打折看)。
+7. **AI 落地:Palantir(🟢\*)** —— 质地顶级,但**质地 🟢、估值 🔴**:约 97× 前瞻、risk-adjusted 实为 🟡,要么等回调、要么承认在为最高 offense 付最贵的票价。
 
-**🔴 最该躲的(价值陷阱:便宜是因为终局在缩):** Chegg、ZoomInfo、C3.ai(真流血)、UiPath、Gartner、Dropbox、Sprout Social(慢性病)。**它们的低估值不是机会,是终局定价。**
+**🔴 最该躲的(价值陷阱:便宜是因为终局在缩):** Chegg、ZoomInfo、C3.ai(真流血)、UiPath、Dropbox、Sprout Social(慢性病)。**它们的低估值不是机会,是终局定价。**(Gartner 单列:核心研究仍 +5%、是"早期预警"非"正在崩塌",比另几个轻,别一棍子打死。)
 
-**🟡 被市场过度看空、值得逆向研究的争议名:**
-- **Adobe(约 10× 前瞻)** —— 市场把它当"被 genAI 杀的创意软件",但 Firefly ARR >$2.5 亿 +75%QoQ、DM ARR $192 亿仍 +11.5%。**是赌"AI 幸存者 vs AI 受害者"的最便宜期权。**
-- **Salesforce(约 28× 前瞻)** —— 最重要的"硬币":握最强 CRM SoR + Agentforce +169%,但有机增速掉到约 8%。**赌的是"座席→AWU 消耗"能不能转过来——转过来是巨大重估,转不过来是慢性座席侵蚀。**
-- **Fortinet(约 30×)** —— 安全里最被忽视的稳健现金牛(创纪录 margin + 最便宜)。
+**🟡 变体观点 / 非共识 call —— 这才是能赚钱的地方(共识已知"平台最安全",不值钱):**
+- **【做多】Adobe(约 10–12× 前瞻)—— 全表风险收益最好的逆向标的。** 市场把它当"被 genAI 杀的创意软件",但 Firefly ARR >$2.5 亿 +75%QoQ、DM ARR $192 亿仍 +11.5%——**这是赌"AI 幸存者"被错杀成"AI 受害者"的最便宜期权。如果只下一个非共识注,是它。**
+- **【警惕/对冲】"独立层被超大规模云垂直整合"——利空 Datadog / Snowflake(甚至边际利空 CrowdStrike)。** 云厂自带监控(CloudWatch/Azure Monitor)、自建数据/安全(已买 Wiz/CyberArk),"卖铲人"和"卖地人"是同一批。高盛对 Datadog 的看空就是这条——所以 Datadog 是"🟢 带强空头",不是"无脑铲子"。
+- **【别追】Palantir 的高倍数** —— 97× 已 price in 多年完美执行;质地不是问题,价格是。
+- **【硬币】Salesforce(约 28×)** —— 握最强 CRM SoR + Agentforce +169%,但有机增速掉到约 8%。赌"座席→AWU 消耗"转得过来=巨大重估,转不过来=慢性座席侵蚀。**也是"agent 会不会绕过 SoR"这个尾部风险最直接的暴露名。**
+- **【被忽视的稳健】Fortinet(约 30×)** —— 安全里最被忽视的现金牛(创纪录 margin + 最便宜)。
+- **【模型层的真正归属】** 价值最终可能流向模型层本身——而最强的模型层(**Anthropic / OpenAI**)是私有、买不到;公开市场唯一干净的模型层敞口就是 Google(已在 🟢)。这是"价值上移到模型层"论点的逻辑终点,也是为什么 Google 这一票特别。
 
-> **跟前几份 memo 的呼应:** 上一份软件 memo 选的 Top 5+1(Microsoft、Google、ServiceNow、CrowdStrike、Datadog + 回补的 Palantir)在这张更大的对标里**全部落在 🟢 核心赢家层**,逻辑自洽。这张表额外补出的高 conviction 名是 **Atlassian、Figma、Veeva、Shopify**(都进 🟢),以及私有的 **Databricks**(2H26 IPO 必盯)。
+> **跟前几份 memo 的呼应与一处自我纠正:** 上一份软件 memo 的 Top 5+1(Microsoft、Google、ServiceNow、CrowdStrike、Datadog + 回补的 Palantir)在这张更大的对标里全部落在 🟢(Palantir 为 🟢\*),逻辑自洽。**一处刻意纠正:本表初稿曾把 Snowflake 也放进 🟢,但这与 deepdive 把 Snowflake 降到荣誉席(因 Iceberg/Databricks 侵蚀)自相矛盾——已改为 🔵,前后一致。** 这张表额外补出的高 conviction 名是 **Atlassian、Figma、Veeva、Shopify**(都进 🟢),以及私有的 **Databricks**(2H26 IPO 必盯)。
 
 ---
 
@@ -203,7 +221,7 @@
 
 **高增长私有(估值锚 + 颠覆力):**
 - **Databricks** —— 跑率 >$54 亿 +65%、AI ARR $14 亿、NRR >140%、$1340 亿估值(2025/12)、**S-1 目标 2H26**(必盯,会重设数据层估值锚)。
-- **Cursor / Anysphere** —— ARR $20 亿(史上最快 0→$20 亿)、年底预计 $60 亿;**SpaceX 出 $600 亿期权收购**(2026/4,未成交)。
+- **Cursor / Anysphere** —— ARR 约 $30 亿(4 月口径,史上最快 0→$30 亿);**SpaceX 出 $600 亿(估值)期权收购**(2026/4,抢在一轮 $20 亿融资前,未成交;注:$600 亿是收购估值、不是 ARR 目标)。
 - **Cognition(Devin)** —— $4.92 亿 ARR 跑率、$260 亿估值(2026/5,53× ARR);收购了 Windsurf。
 - **Replit** —— 约 $1.5 亿跑率冲 $10 亿、$90 亿估值;**Vercel** —— 约 $2 亿 ARR +82%、$93 亿估值。
 - **AI 客服颠覆者:** Sierra($158 亿估值、ARR >$1.5 亿)、Decagon($45 亿、约 $0.35 亿 ARR)、Intercom Fin(ARR >$1 亿,$0.99/解决)——**增长快但相对在位者多十亿级基数仍小**,所以 Five9/NICE 财报还没被打穿。
@@ -261,4 +279,7 @@
 
 ---
 
-> **质量审查记录(QC):** 本表经 4 路并行深度研究(约 50 家公司)→ 综合分层 → [待:critical-thinker 红队 challenge → research-reviewer 事实核查 → 迭代]。数字为各公司最新已报告季、5 月口径,需终端复核;私有/AI 收入多为二手。
+> **质量审查记录(QC):** 本表经 4 路并行深度研究(约 50 家公司)→ 综合分层 → critical-thinker 红队 challenge → research-reviewer 事实核查 → 迭代修订。
+> **红队改了什么(已落地):** ①**Snowflake 从 🟢 降到 🔵**(消除与 deepdive 把它降荣誉席的自相矛盾,因 Iceberg/Databricks 侵蚀);②**Palantir 拆成"质地🟢/估值🔴"(🟢\*)**,不再与 Google-29× 混为一档;③**Google/Microsoft 的 🟢 加上 caveat**(open-weights+搜索去中介 / capex 折旧压 margin);④**Oracle 的 RPO 质疑对称地加到三巨头**(不双标);⑤**NRR 不再被当铁证**——Figma 139%(刚 IPO 该打折)、Snowflake/Datadog 消耗 NRR(上量虚高/优化骤降)都加了 GRR caveat;⑥**Datadog 加"云厂垂直整合+高盛看空"caveat**(不再"无脑铲子");⑦**正面压力测试"agent 是否必须经由在位 SoR"**(反方:agent 自带记忆层绕过),给 NOW/CRM 加星号;⑧**把变体观点(做多 Adobe、警惕独立层被整合、别追 Palantir 倍数)提进 §3 鲜明判断**,不再退回 mega-cap 共识。
+> **事实核查改了什么(已落地):** C3.ai 增速从 -36% 更正为约 -46%(最新季)/约 -45%(FY 指引);Cursor ARR 从 $20 亿更新为约 $30 亿(4 月口径)、并澄清 $600 亿是 SpaceX 收购估值非 ARR 目标;Datadog NRR 从约 115% 更正为低 120%。**其余约 30 项高引用数字(三巨头增速、四起并购、Palantir/Figma/CrowdStrike 等)经核对全部 tie out,无捏造。**
+> 数字为各公司最新已报告季、5 月口径,需终端复核;私有/AI 收入多为二手未审计。
