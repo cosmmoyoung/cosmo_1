@@ -43,3 +43,20 @@
 → 同样的暴涨暴跌。FY25 $8.5bn vs consensus FY27 $112bn = 13× in 2yr,不现实。
 
 ## 待 agent 返回:存储供需(verify 报告的实际季度营收)、电力结构性+目标价+最佳名、open scan 低估值卡脖子。
+
+---
+## 验证后更新(2026-05-29,FMP)
+### Yageo 不便宜(open-scan agent 的 "19x" 是过时价)
+- Yageo 2327.TW NT$738(52wk low 111.75,涨 6.6×),cap NT$1,519bn。FY26 EPS NT$17.04→**43x**;FY27 NT$22.33→**33x**。
+- → MLCC 已全面 re-rate;Murata 今日 +12.7%。"MLCC 是最便宜的可信卡脖子"被推翻。
+### 电网/输电 = 最佳 "durable shortage + pricing power + 合理估值" 候选
+- **Hitachi 6501.T**:¥5,166,FY28 ~22x,目标 ¥7,000(+35%)。风险收益核心。
+- **Siemens Energy ENR.DE**:€164.1,cap €140bn。FY27 EPS €5.92→**28x**;FY28 €7.61→**22x**;FY29 €9.23→18x。电网 backlog €49bn、book-to-bill 2.28(最纯电网定价权)。合理。
+- **GE Vernova GEV**:$996,FY27 41x/FY28 29x。质地最高、最贵 → 等回调 <$800-850。
+- Schneider SU.PA €270(近高);Quanta/Eaton 已 refresh。
+### 三大支柱(为何 grid 是 the call)
+1. 5-10 年物理性短缺(GOES 单一美国厂 CLF Butler 2028 才扩产;变压器 lead time 2.5-4 年)
+2. 定价权已兑现(变压器 +77-95%、GOES +100%),不是 hoped-for
+3. **~80% 需求是非 AI(电气化/reshoring/电网更新)→ de-risk "AI 泡沫" 反驳** ← 最关键差异化
+4. 估值基于可信+backlog 背书的预期(22-28x),非存储的"假象便宜"或 40-160x 卡脖子
+- 待:critical-thinker 红队 + research-reviewer 事实核查。
