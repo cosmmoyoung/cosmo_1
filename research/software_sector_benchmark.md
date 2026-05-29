@@ -1,3 +1,5 @@
+> 🔄 **估值刷新 2026/5/29(见 `valuation_refresh_2026-05-29.md`):✅ 主线被股价暴力兑现(强确认)。** FMP 复核揭示一个 memo 写作时还看不到的决定性变化:**"价值从座席/人类界面流向算力/数据/基础设施"已在股价层面兑现**——应用 SaaS 集体从 52 周高点回撤 30-50%(Adobe **-43%**、Salesforce **-36%**、ServiceNow **-48%**、Veeva **-47%**、Oracle **-41%**、Palantir **-31%**、Shopify -37%),而 AI 基础设施/安全/硬件(NVDA、博通、CrowdStrike、Datadog、Fortinet、Palo Alto 及全部半导体)守在 52 周高点附近。**两点修正:**(1)⚠️ **Adobe 逆向长至今未奏效**——又跌 43%、现 8-12×,"被错杀"方向或对但"便宜≠催化",这是 memo 最该记一笔的判断;(2)优质 SaaS 被错杀创造了 §3 没料到的入场窗口:ServiceNow 18×、Veeva 15×、Salesforce 12×、Microsoft 19× FY28(均较高点大幅压缩)。Palantir de-rate 后 FY27 仍 70×,"质地🟢/价格🔴"HOLDS。
+
 # 全软件板块 AI 时代对标 benchmark —— 谁是 winner,谁是 loser(2026 年 5 月)
 
 ### 一张表看清:每家软件公司的业务本质、长期竞争力、财务指标、最新动态与 AI 判定

@@ -1,3 +1,5 @@
+> 🔄 **Valuation refresh 2026-05-29 (see `valuation_refresh_2026-05-29.md`):** every per-name "valuation anchor" in §5.2 has been re-grounded on live FMP prices + consensus. Headline: the whole complex re-rated by multiples since this framework was drafted, but mostly **earnings-driven, not multiple-driven** — SK Hynix/Micron still 6-9× fwd despite 10×+ moves; the relative "cheap vs expensive" ordering held almost everywhere. Two framework names need REVISE: **AVGO is no longer obviously expensive** (FY27 ~24× vs the §5.2 "37×" — earnings caught up; MRVL ~37× vs "51×"), while **most chokepoint names got more expensive, not cheaper** (no pullback arrived for the "wait" names: COHR/LITE 46-47×, FORM 43×, AXT 161×). NVDA itself sits at only ~15× FY29 on a $5.19T cap, anchoring the chain at a non-bubble multiple.
+
 # AI Supply Chain — Master Valuation Framework
 ### "How much is priced in, and where is consensus wrong?"
 *Author: senior buy-side analyst*

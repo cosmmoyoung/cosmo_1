@@ -1,3 +1,5 @@
+> 🔄 **估值刷新 2026/5/29(见 `valuation_refresh_2026-05-29.md`):⚠️ 部分 REVISE。** FMP 复核:FormFactor FY26 **53× / FY27 43×**、EV/Sales **10.5×**(与本 memo 完全一致),"对的卡脖子、满的价格"✅ HOLDS。**但 Technoprobe 需明确下修**:市值从 ~€11bn 翻倍到 **€21.3bn**,FY26 **74× / FY27 55× / EV-EBITDA ~57×**——本 memo 当时"高质量、偏满但没到离谱、性价比略胜 FORM"的结论**反转**:TPRO 现在已"贵到离谱",EV/EBITDA 是当时引用的 24× 的两倍多,不再比 FormFactor 性价比好。
+
 # 探针卡(Probe Card)深度投资备忘录
 ### FormFactor(美股代码 FORM)与 Technoprobe(米兰上市,代码 TPRO.MI)
 *作者:资深买方分析师*

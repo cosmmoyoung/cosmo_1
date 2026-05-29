@@ -1,3 +1,5 @@
+> 🔄 **估值刷新 2026/5/29(见 `valuation_refresh_2026-05-29.md`):✅ HOLDS。** FMP 复核前瞻 PE:Dover **18×(FY27)**(隐藏 UQD、未 price for perfection,验证)、Amphenol **27×(FY27)**(memo 30-38× 低端)、ASMPT **29×(FY26)**(最不拥挤的键合复利,验证)、Advantest **38×** / KLA **32×**(架构无关收费站、已 price in 繁荣、等 air-pocket,验证)、Hoya **27×**、Credo **32×(FY28)**(高 beta 卫星)。**唯一上修:Ajinomoto ABF 从 memo 的 ~29× NTM / 12.6× EV-EBITDA 升到 FY27 ~35× / ~18× EV-EBITDA**——食品稀释带来的"便宜"被压缩了一些,仍是这群里相对便宜的,但不如 memo 写时便宜。
+
 # 下一个卡脖子在哪?—— 学了 Serenity 与 Leopold 的框架后,沿供应链再挖一轮硬件卡点
 
 ### 散热、基板膜、测试、连接器:四个新卡点的全景扫描 + 长期价值落点

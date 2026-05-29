@@ -1,3 +1,5 @@
+> 🔄 **Valuation refresh 2026-05-29 (see `valuation_refresh_2026-05-29.md`): ⚠️ REVISE (downward).** This memo (early May, stock ¥28,160, ATH ¥30,950) judged Nittobo "priced for perfection, ~45-55× FY27." FMP live: stock now **¥22,670 (-20% from this memo, -27% from ATH ¥32,900), market cap ¥825bn, FY27 P/E ~39×** (consensus FY27 NI ¥20.1bn; FY26 trailing includes asset-sale gain). So the "high-expectations/crowded" read was directionally right — the name de-rated — but the memo held it neutral rather than flagging the drawdown. At ~39× FY27 it is cheaper than this memo but still not cheap; the Q-glass / Asahi-Kasei substitution risk is unchanged.
+
 # Nitto Boseki Co., Ltd. (3110.T) — Fundamental Research Memo
 *Author: senior buy-side analyst*
 *As of 5 May 2026 (Tokyo Stock Exchange Prime; FY ends 31 March; "FY2026" = year to 31 March 2026 in Nittobo's labelling)*
