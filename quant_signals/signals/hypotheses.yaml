@@ -1,0 +1,72 @@
+# Hypothesis bank (Gate 0). Each idea MUST have an economic story and a named
+# counterparty before it is backtested. Schema is the living research backlog.
+- id: idio_momentum
+  family: price_volume
+  economic_story: >
+    Investors under-react to firm-specific information; residual (idiosyncratic)
+    momentum is cleaner than raw momentum and less prone to factor crashes.
+  counterparty: slow-updating institutions anchoring to stale prices
+  raw_inputs: [daily_returns, factor_model_residuals]
+  expected_horizon_days: 21
+  expected_decay: medium
+  capacity_guess_usd: 5e9
+  prior_ic: 0.03
+
+- id: pead_sue
+  family: fundamental
+  economic_story: >
+    Post-earnings-announcement drift: prices under-react to the persistence of
+    earnings surprises; drift accrues over weeks after the release.
+  counterparty: investors who treat earnings as a one-time event, not a signal of the next quarter
+  raw_inputs: [eps_actual, eps_estimate, estimate_dispersion, filing_date]
+  expected_horizon_days: 21
+  expected_decay: medium
+  capacity_guess_usd: 3e9
+  prior_ic: 0.028
+
+- id: st_reversal
+  family: price_volume
+  economic_story: >
+    Short-horizon liquidity provision: names that fell on liquidity demand
+    revert as supply returns.
+  counterparty: liquidity demanders (forced/urgent traders) paying for immediacy
+  raw_inputs: [daily_returns]
+  expected_horizon_days: 5
+  expected_decay: fast
+  capacity_guess_usd: 1e9
+  prior_ic: 0.024
+
+- id: amihud_illiq
+  family: microstructure
+  economic_story: >
+    Illiquidity risk premium: less-liquid names compensate holders for impact risk.
+  counterparty: investors needing immediacy / unable to hold illiquidity
+  raw_inputs: [daily_returns, dollar_volume]
+  expected_horizon_days: 10
+  expected_decay: slow
+  capacity_guess_usd: 0.5e9
+  prior_ic: 0.018
+
+- id: options_skew
+  family: alt_data
+  economic_story: >
+    Informed option flow (risk-reversal skew, put/call) leads spot as informed
+    traders prefer leverage/optionality.
+  counterparty: uninformed spot traders slow to price tail information
+  raw_inputs: [implied_vol_surface, open_interest]
+  expected_horizon_days: 10
+  expected_decay: fast
+  capacity_guess_usd: 1e9
+  prior_ic: 0.019
+
+- id: news_sentiment
+  family: alt_data
+  economic_story: >
+    Sentiment diffuses unevenly; tone deltas from news/transcripts predict
+    short-horizon drift before slow institutions react.
+  counterparty: institutions that update only on scheduled review cycles
+  raw_inputs: [news_tone, transcript_tone, entity_map]
+  expected_horizon_days: 5
+  expected_decay: fast
+  capacity_guess_usd: 0.5e9
+  prior_ic: 0.011   # NOTE: prior is weak; expected to fail standalone, useful only combined
