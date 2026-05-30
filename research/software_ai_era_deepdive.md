@@ -9,6 +9,69 @@
 
 ---
 
+## 📖 五分钟读懂(给完全没接触过软件行业的读者)
+
+**这份报告在解决什么问题?** AI 浪潮中,投资界都在押硬件(英伟达/台积电),但软件估值被打到低位。**软件这一波的赢家和输家是谁?现在低估值是布局机会还是价值陷阱?**
+
+**核心 insight(三句话讲清楚):**
+1. **AI 不会一刀切杀软件——而是杀"按人头收费、卖通用数据"的;救"按用量收费、拥有专有数据基底"的。**
+2. **判别公式:** 收入随"机器工作量/交易额/数据量"增长 = AI 受益;收入随"人头座席"增长 = AI 被威胁(因为 AI 的目的就是减少人头)。
+3. **三位大佬的观点其实不冲突,讲的是软件栈的不同层:**
+   - Nadella(微软 CEO):业务逻辑会上移到 AI 层,SaaS 退化成"数据库+治理";
+   - Casado(a16z):按座席定价会死;
+   - Levie(Box):agent 需要数据和上下文,软件要"无头化"(headless,可被 agent 调用)。
+
+**本报告的 Top 5+1(不看估值,只看质量×卡位):**
+1. **Microsoft(MSFT):** 唯一全栈平台(模型+云+应用+开发+安全+身份);
+2. **Alphabet/Google(GOOGL):** 唯一可拥有的"模型层+云+TPU 芯片+分发"全栈;
+3. **ServiceNow(NOW):** 企业 agent 的横向工作流 SoR(护城河是数据/权限/审计,不是界面);
+4. **CrowdStrike(CRWD):** 押"最 AI-durable 的品类:安全"(AI 扩大攻击面);
+5. **Datadog(DDOG):** 不管谁赢都受益的"中立铲子",纯消耗计价;
+6. **Palantir(PLTR):** 最纯的"AI 落地 offense";质地顶级但价格透支(约 97× 前瞻)。
+
+**被颠覆/输家(财报已经在流血):**
+- **Chegg(CHGG):** -48%、距峰值 -99%,被 ChatGPT + 谷歌 AI 概览抹掉;
+- **ZoomInfo(GTM):** NRR 降到 90%、FY26 指引 -4%,数据垄断被去中介;
+- **C3.ai(AI):** 收入 -46%,顶 AI 名却被 LLM 浪潮淘汰;
+- **UiPath(PATH):** RPA 被 agent 取代,NRR 从 120% 降到 107%;
+- **Asana / Sprout / Dropbox / Gartner:** 各种程度的座席侵蚀/融冰。
+
+**文中频繁出现的公司速查:**
+- **Microsoft / MSFT:** 全栈赢家;
+- **Alphabet / GOOGL:** 模型层+云+TPU+搜索;
+- **ServiceNow / NOW:** 企业工作流(IT/HR);
+- **CrowdStrike / CRWD:** 云端点安全;
+- **Datadog / DDOG:** 云可观测性/监控;
+- **Palantir / PLTR:** AI 数据/本体;
+- **Snowflake / SNOW:** 云数据仓库(被 Databricks 在 AI 上追赶);
+- **Databricks(私):** Snowflake 头号对手,2H26 IPO;
+- **Salesforce / CRM:** CRM 龙头,转 Agentforce;
+- **Adobe / ADBE:** 创意软件(PS/Firefly);
+- **Atlassian / TEAM:** Jira/Confluence;
+- **HubSpot / HUBS:** 中小企业 CRM;
+- **Figma / FIG:** 设计协作,刚 IPO;
+- **Veeva / VEEV:** 药企专用 CRM;
+- **Shopify / SHOP:** 电商建站,take-rate;
+- **Cursor / Cognition / Sierra(私):** AI 原生颠覆者(代码/客服)。
+
+**关键名词:**
+- **agentic AI / agent:** 能自主完成多步任务的 AI;
+- **NRR(净收入留存):** 老客户今年比去年多付的比例,见 `READ_FIRST.md`;
+- **GRR(毛留存):** 剥掉扩张,识别座席流失更准;
+- **ARR(年化经常性收入):** 订阅类公司核心指标;
+- **座席/消耗/结果定价:** 按人头 / 按用量(token) / 按成果收费;
+- **SoR(系统-of-record):** 企业核心数据系统;
+- **headless 软件:** 没有人类 UI、被 agent 调用的软件;
+- **token 通缩:** AI 模型 API 单价持续下降(对消耗计价的公司是利空);
+- **PEG:** PE 除以增长率,简单"估值便宜与否"指标,但本报告解释了它在 Palantir 上是陷阱。
+
+**你应该带走的 3 个 takeaway:**
+1. **AI 软件不是"全行业涨"——是结构重塑,赢家通吃。** Top 6 + 输家 8 强烈分化。
+2. **NRR 是最灵敏的信号:** Top 6 都在 110%+,输家都低于 100%。
+3. **"低估值的软件"分两种:** AI 赋能赢家的回调价(可布局) vs 被颠覆者的终局价(价值陷阱,别买)。
+
+---
+
 ## 第〇部分:三句话先讲清楚(以及一个最关键的纠偏)
 
 > **1. 最锋利的判别规则:收入随"机器工作量/交易额/数据量"增长的软件 = AI 受益;收入随"人类座席数"增长的 = AI 被威胁。** 因为 AI 的明确目的就是减少人头——对前者是顺风,对后者是逆风。

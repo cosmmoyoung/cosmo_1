@@ -4,6 +4,58 @@
 
 ---
 
+## 📖 五分钟读懂(中文导读,给完全没接触过的读者)
+
+**Nittobo(日东纺,3110.T,东京证券交易所)是干嘛的?(三句话)**
+1. 一家日本传统纺织/玻纤公司(创立于 1923 年),原本做建材玻纤、健康食品等;
+2. **它有一个隐藏的"宝贝业务":特种玻纤布(T-glass、NE-glass)** —— 是 AI 高速 PCB(印刷电路板)的核心原料,**全球近垄断**;
+3. **AI 服务器(英伟达 GB200 等)的高速 PCB 都要用它的低介电常数(低 Dk)玻纤布**,所以收入端是 AI 强相关。
+
+**为什么是个"Nittobo 模板"卡脖子?**
+- **小 TAM**(全球低 Dk 玻纤布市场约几亿美元);
+- **近垄断份额**(Nittobo 是绝对龙头);
+- **卡住整机**(没它,AI 服务器的高速 PCB 做不出);
+- **有真实定价权**(2024-25 在大幅涨价);
+- 这正是"Nittobo 模板",后续 `bom_walk_chokepoints.md` 据此扫描其他类似的隐藏卡脖子。
+
+**股价表现:**
+- 12 个月涨了约 6 倍(2025/5 到 2026/5);
+- 报告时(2026/5/5)股价 ¥28,160、市值 ¥1.03 万亿、trailing PE 73.7×;
+- **市场已经把它从"小型纺织股"重估为"AI 卡脖子股"**——这是机会也是风险。
+
+**配套报告:** `nittobo_bear_case.md`(独立空头反驳,需要一起看才能平衡看待)。
+
+**核心问题:** 这种 6 倍涨幅之后,后面还有多少跑道?贵不贵?用 bull/bear 两个 case 互相 stress test 是合理的研究姿势。
+
+**文中出现的公司:**
+- **Nittobo(3110.T):** 日东纺,本文主角;
+- **Nan Ya(南亚塑料):** 台湾合作伙伴(联合扩产);
+- **AGC(5201.T):** 日本玻璃巨头,潜在竞争者;
+- **Owens Corning / Saint-Gobain:** 欧美玻纤大厂(做不了低 Dk);
+- **Ibiden / Unimicron:** 基板厂(Nittobo 的客户)。
+
+**关键技术名词:**
+- **玻纤布:** Glass fabric,PCB 内层的"增强材料";
+- **T-glass / NE-glass:** 特种玻纤的两种类型,低介电常数;
+- **低 Dk(low Dielectric constant):** 低介电常数,高速信号传输不损耗;
+- **CCL(Copper-Clad Laminate):** 覆铜板,PCB 原料;
+- **HDI / Anylayer:** 高密度互联印刷电路板;
+- **MTP(Mid-Term Plan):** 中期经营计划。
+
+**关键金融名词:**
+- **yuho / kessan tanshin:** 日本年度有价证券报告书 / 季度短信(财报);
+- **trailing PE:** 用过去 12 个月已实现盈利算的市盈率;
+- **LTM(Last Twelve Months):** 过去 12 个月;
+- **OP(Operating Profit):** 营业利润;
+- **多头研究 vs 空头研究:** 看好 vs 看空,需要互相对冲偏见。
+
+**你应该带走的 3 个 takeaway:**
+1. **Nittobo 是真卡脖子(低 Dk 玻纤布近垄断)**,但 6 倍涨幅之后,73× 估值已经反映很多预期。
+2. **应当与 `nittobo_bear_case.md` 一起读**,看 bull 和 bear 各方观点。
+3. **本报告也是"Nittobo 模板"的来源**——后续 `bom_walk_chokepoints.md` 据此找其他类似的隐藏卡脖子(找到了探针卡、BESI、Resonac 等)。
+
+---
+
 ## A note on data quality before we start
 
 I tried to pull primary-source PDFs (the FY2024 yuho, the FY2024 kessan tanshin, the May-2024 medium-term plan deck, the integrated reports 2023/2024, and the Q1/Q2/Q3 FY2026 tanshin) directly from Nittobo's IR site. The sandbox blocks direct retrieval of the Nittobo IR servers, MarketScreener, the magicalir / TDnet PDF mirrors, and the substack / Smartkarma deep dives. Where I cite Nittobo IR, I am citing the document title and the publicly-known data points that have been quoted from it in reputable secondary press (Nikkei Asia, Tom's Hardware, Digitimes, TrendForce, TipRanks aggregating the company's own announcements, Webull aggregating the same).
