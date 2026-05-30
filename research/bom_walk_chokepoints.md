@@ -4,6 +4,37 @@
 
 ---
 
+## 📖 五分钟读懂(中文导读,给完全没接触过的读者)
+
+**这份是干嘛的?** 用"Bill of Materials(物料清单)"思路,**把英伟达 NVL72 机柜里所有零件拆开**,一行一行看,找"小零件 + 高市占率 + 卡住整机 + 有定价权"的隐藏卡脖子。
+
+**"Nittobo 模板"指什么?** Nittobo(日东纺,3110.T)是日本一家做"低介电常数玻纤布"的小公司,是 AI 服务器 PCB 的卡脖子环节:** 小 TAM(总市场只几亿美元)、近垄断份额、缺了整台服务器装不出来、有真实定价权 ——本文就是去找其他类似 Nittobo 的"隐藏微型垄断"。
+
+**本报告找到的核心结论:**
+- 20 个候选卡点经筛选后,胜出的是 **探针卡(FormFactor、Technoprobe)、混合键合(BESI)、Resonac(模塑料)** 等;
+- 反复验证一个主题:**"可投资性缺口" —— 最硬的卡脖子常常买不到/买得贵**。
+
+**英文的原因:** 早期工作底稿。非技术读者建议先读 `READ_FIRST.md`,然后按推荐顺序读 `synthesis_top3_2030.md` 和 `ten_year_chokepoint_conviction.md` 获得最终结论;**本文的价值是看"思路怎么生成的"**,不是结论本身。
+
+**文中出现的公司:**
+- **Nittobo(3110.T):** 日东纺,低 Dk 玻纤布,基板原料,详见 `nittobo_base_case.md`;
+- **FormFactor(FORM) / Technoprobe(TPRO.MI):** 探针卡(测试);
+- **BESI(BESI.AS):** 混合键合(下一代封装);
+- **Resonac(4004.T):** 日本昭和电工,模塑料/CCL/CMP slurry;
+- **Hoya(7741.T):** EUV mask blank;
+- **AXT(AXTI):** InP 衬底;
+- **Lumentum / Coherent:** 激光器;
+- **Ajinomoto(2802.T):** ABF 膜。
+
+**关键名词:**
+- **BOM:** Bill of Materials,物料清单;
+- **NVL72:** 英伟达把 72 颗 GB200 GPU 连成一个内存域的机柜方案;
+- **CCL:** Copper-Clad Laminate,覆铜板,PCB 原料;
+- **低 Dk(Dielectric constant):** 低介电常数玻纤布,高速 PCB 必用;
+- **chokepoint screen:** 卡脖子环节筛选。
+
+---
+
 ## 0. What we were looking for, and the one finding that matters
 
 We walked the AI-rack BOM across two layers — (A) materials & advanced-packaging, (B) discrete components & back-end equipment — looking for repeats of the **Nittobo template**: a *tiny* absolute TAM, supplied by a *monopoly/oligopoly*, that *gates* the whole server, with demonstrable *pricing power*. We added a fifth, decisive screen the framework underweights: **investability as a clean pure-play.**

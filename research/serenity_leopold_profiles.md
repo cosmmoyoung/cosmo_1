@@ -4,6 +4,58 @@
 *作者:资深买方分析师*
 *日期:2026 年 5 月 28 日。本文综合两路独立深度研究 + 与本项目既有 deepdive(`inp_laser_deepdive.md` / `optical_industry_deepdive.md` / `power_infrastructure_deepdive.md` / `ai_supply_chain_framework.md`)交叉印证。数字为 5 月口径、需终端复核;两人的自报回报均做了去水分处理。沿用大白话标准、不用波浪号。*
 
+---
+
+## 📖 五分钟读懂(给完全没接触过 AI 投资圈的读者)
+
+**这份报告在解决什么问题?** 市面上有两位最知名的"AI 投资猎手",他们的思路被广泛模仿——**这两人到底在押什么?他们的方法和持仓值不值得抄?**
+
+**两位猎手简介:**
+- **Serenity(@aleabitoreddit):** 匿名散户分析师,X(推特)约 30 万粉丝,中文圈常称"她"(因头像是动漫女),实际性别未确认。他/她的核心理论叫"**卡脖子理论**"——逆向拆 AI 供应链,找不可替代的小零件。代表喊单:AXTI(磷化铟衬底)涨了约 80 倍、Sivers(瑞典激光公司)涨了约 19 倍。
+- **Leopold Aschenbrenner:** 前 OpenAI 超级对齐研究员,约 24 岁,德国人;2024 年被开除后写了爆款万字文《Situational Awareness》(《境势感知》),预言 AGI(通用人工智能)2027 年到来。然后创办对冲基金 **Situational Awareness LP**,一年从约 $2 亿做到约 $55 亿美股敞口。
+
+**两人是一对镜像,殊途同归:**
+- **Serenity = 微观**(挖小零件、找不可替代环节)→ 代表股 AXTI、Sivers、AAOI(光模块);
+- **Leopold = 宏观**(押物理瓶颈,**电力 + 算力产能**)→ 代表股 Bloom Energy(燃料电池)、Vistra/Constellation(独立发电商)、CoreWeave(GPU 云);并用 put 期权做空英伟达/博通/SMH(已被 price in 的芯片股)。
+
+**核心结论:**
+- **两人押的方向(物理瓶颈 + 卡脖子)和我们整个 project 的判断一致**——这是高 conviction 的交叉印证。
+- **但他们押的具体票大多已经跑完最容易的一段:** Serenity 喊的 AXTI 已约 90× 销售额、Sivers 主要是叙事估值;Leopold 的 Bloom Energy 已涨 176%、Vistra/Constellation 已挤拥。
+- **战绩去水分:** Serenity 自报 3840% 回报、喊 SIVE 190 次——主要是交易所新闻站(Bitget/KuCoin)放大的营销口径,**无券商对账单**;Leopold 是机构、13F 可查、约 +47% 上半年(媒体口径,非审计)。
+
+**可执行清单(本报告核心):**
+- **借框架不抄作业:** 借 Serenity 的"卡脖子镜头"+ Leopold 的"物理瓶颈锚",但**配上估值纪律**(他俩都缺,这正是我们的增量价值)。
+- **Leopold 可抄的部分:** 留出来的"电力/数据中心硬件"多头(liquid 易跟随),但选还没跑完的(矿企转 HPC、CoreWeave、Applied Digital,而非已涨 176% 的 Bloom)。
+- **Serenity 的微盘不要追:** AXTI/Sivers/AAOI 已是后段。
+- **我们独有的 edge:** Leopold 被 13F 困在美股,我们可以买日股 Hitachi(电网卡脖子,更便宜的入场)。
+
+**文中频繁出现的公司速查:**
+- **AXTI(AXT):** 美股,磷化铟(InP)衬底,Serenity 第一名;
+- **SIVE.ST(Sivers):** 瑞典小盘,CW 激光(光通讯用),Serenity 代表股;
+- **AAOI(Applied Optoelectronics):** 美股,光模块厂;
+- **Bloom Energy(BE):** 燃料电池(数据中心现场供电),Leopold 第一大仓;
+- **CoreWeave(CRWV):** GPU 云(neocloud);
+- **Vistra(VST) / Constellation(CEG):** 独立发电商(IPP);
+- **Vertiv(VRT) / Modine(MOD):** 数据中心电源/散热硬件;
+- **CleanSpark / Riot / IREN(矿企):** 比特币矿企转 AI/HPC,Leopold 重仓;
+- **Hitachi(6501.T):** 我们建议的差异化选择(电网设备)。
+
+**关键名词:**
+- **AGI:** 通用人工智能(Artificial General Intelligence),通常指能匹敌或超过人类的 AI;
+- **13F:** 美国机构每季度向 SEC 申报的美股持仓(滞后 45 天,看不见做空和期权大小);
+- **put 期权:** 看跌期权,赌标的下跌;
+- **neocloud:** 专做 GPU 出租的新型云(如 CoreWeave);
+- **反身性 reflexivity:** 大 V 的言论本身能推动他持仓的价格,形成自我实现;
+- **幸存者偏差:** 只展示赢家、悄悄忽略输家,造成战绩虚高的错觉;
+- **InP / EML:** 磷化铟 / 电吸收调制激光,光通讯卡脖子环节。
+
+**你应该带走的 3 个 takeaway:**
+1. **两人对方向(物理瓶颈/卡脖子)的判断都对,但战绩有水分、且他们的具体票多数已涨完。**
+2. **借他们的思路+配我们的估值纪律,比单独抄作业更稳。**
+3. **Serenity 的微盘票当"情绪温度计"(看市场在追什么),不当建仓标的;Leopold 的 liquid 电力多头可参考但选还没跑完的。**
+
+---
+
 > **你问的两件事:① 总结这两人的投资思路/thesis;② 有没有可执行的东西。** 下面先给一句话结论,再分别拆,最后给一张"可执行清单"。
 
 ---
