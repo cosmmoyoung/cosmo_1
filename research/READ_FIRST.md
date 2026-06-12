@@ -40,11 +40,27 @@
 | 6 | `software_sector_benchmark.md` | 约 50 家软件公司全板块 benchmark(谁赢谁输) | ⭐⭐ |
 | 7 | `next_chokepoint_hunt.md` | 沿 Serenity/Leopold 思路找下一个卡脖子(散热/基板膜/连接器/测试) | ⭐⭐ |
 
+### 🏆 80% 身家之战(2026 年 6 月 11 日,最终收口,4 篇一组)
+| 文件 | 看什么 | 难度 |
+|---|---|---|
+| ⭐⭐ **`the_80_percent_bet.md`** | **最终答案**:暴富怎么压——两阶段打法(现在防守结构上场 + 2027-28 血里机械加仓上杠杆) | ⭐ 入门 |
+| `token_demand_secular_test.md` | "token 需求停不下来"独立验证:需求被平反(+4-7 倍/年),裂缝在金融层 | ⭐⭐ |
+| `next_elasticity_hunt_2026.md` | 全栈扫"还没涨的":只剩玻璃基板一个半;SMR 已崩 70-84% 当活标本 | ⭐⭐ |
+| `eighty_percent_redteam.md` | 红队攻击:"既要又要"病、Kelly 数学、干火药共识陷阱、方案甲/乙 | ⭐⭐ |
+
+### 🔴 存储专题(2026 年 6 月更新,4 篇一组,看 ⭐ 那篇即可懂全部)
+| 文件 | 看什么 | 难度 |
+|---|---|---|
+| ⭐ **`storage_master_synthesis.md`** | **存储总结论(大白话)**:涨没涨完、缺不缺 5 年、买什么、PE/创业机会、该怎么做 —— 一页看清 | ⭐ 入门 |
+| `storage_2026_durability_update.md` | "缺 5 年"论点压力测试(6 月最新数据;HBM4 三家认证、合约价、中国放量) | ⭐⭐ |
+| `storage_investable_universe.md` | 全部能买的票(含中国 佰维/江波龙/兆易/澜起 + 模组/控制器/封测/台日利基 + 离岸可及性) | ⭐⭐ |
+| `storage_pe_startup_angles.md` | PE/并购/Pre-IPO/创业机会(二手设备、工业内存、CXL/PIM、退役内存复用) | ⭐⭐ |
+
 ### 🟡 然后按兴趣挑深度报告
 | 文件 | 主题 | 一句话 |
 |---|---|---|
 | `optical_industry_deepdive.md` | 光通讯 | 价值收敛到 InP 激光,Coherent/Lumentum/新易盛/中际旭创 |
-| `memory_industry_deepdive.md` | 存储 | HBM 量价齐升,SK 海力士、美光、三星 |
+| `memory_industry_deepdive.md` | 存储(旗舰背景) | HBM 量价齐升,SK 海力士、美光、三星;周期诅咒 —— **存储专题请先看上方 ⭐** |
 | `inp_laser_deepdive.md` | 磷化铟激光芯片 | 光链最硬卡点,Coherent/Lumentum/AXT/源杰 |
 | `glass_substrate_deepdive.md` | 玻璃基板 | 下一代封装基底,SKC/Absolics |
 | `power_infrastructure_deepdive.md` | 电力设备 | GE Vernova/Vertiv/Hitachi/Eaton |
