@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Convert the Chinese logistics report Markdown -> styled HTML -> PDF (via LibreOffice)."""
+"""Convert Chinese research-report Markdown -> styled HTML -> PDF (WeasyPrint, CJK font).
+
+Usage:
+    python3 build_report_pdf.py [file1.md file2.md ...]
+If no args are given, it builds the two logistics reports in this repo.
+"""
 import markdown, pathlib, sys
 
-src = pathlib.Path("全球物流行业商业模式与估值研究报告.md")
-text = src.read_text(encoding="utf-8")
+DEFAULTS = [
+    "全球物流行业商业模式与估值研究报告.md",
+    "轻资产vs重资产3PL_与Logisteed重估分析.md",
+]
 
-html_body = markdown.markdown(
-    text,
-    extensions=["tables", "fenced_code", "sane_lists", "toc", "attr_list"],
-    output_format="html5",
-)
-
-# CSS kept conservative for LibreOffice's HTML import (font-family, sizes,
-# table borders, colors all render reliably).
-css = """
+CSS = """
 @page { size: A4; margin: 1.5cm 1.5cm 1.8cm 1.5cm;
         @bottom-center { content: "第 " counter(page) " 页 / 共 " counter(pages) " 页";
                           font-size: 8pt; color: #999; } }
@@ -40,8 +39,7 @@ pre code { background: none; padding: 0; }
 blockquote { border-left: 4px solid #f0a202; background: #fff8e8;
              margin: 10px 0; padding: 8px 14px; color: #5a4a1a; }
 table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 9pt; }
-th, td { border: 1px solid #b9c2cc; padding: 5px 7px; text-align: left;
-         vertical-align: top; }
+th, td { border: 1px solid #b9c2cc; padding: 5px 7px; text-align: left; vertical-align: top; }
 th { background: #0b3d66; color: #ffffff; font-weight: bold; }
 tr:nth-child(even) td { background: #f5f8fb; }
 hr { border: none; border-top: 1px solid #cdd5dd; margin: 18px 0; }
@@ -49,15 +47,21 @@ ul, ol { margin: 6px 0 6px 22px; }
 li { margin: 3px 0; }
 """
 
-doc = f"""<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">
-<title>全球物流行业商业模式与估值研究报告</title>
-<style>{css}</style></head><body>{html_body}</body></html>"""
+def build(md_path: str):
+    src = pathlib.Path(md_path)
+    body = markdown.markdown(
+        src.read_text(encoding="utf-8"),
+        extensions=["tables", "fenced_code", "sane_lists", "toc", "attr_list"],
+        output_format="html5",
+    )
+    doc = (f'<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">'
+           f"<title>{src.stem}</title><style>{CSS}</style></head><body>{body}</body></html>")
+    from weasyprint import HTML
+    pdf = str(src.with_suffix(".pdf"))
+    HTML(string=doc).write_pdf(pdf)
+    print("PDF written:", pdf)
 
-out = pathlib.Path("全球物流行业商业模式与估值研究报告.html")
-out.write_text(doc, encoding="utf-8")
-print("HTML written:", out, len(doc), "bytes")
-
-from weasyprint import HTML
-pdf_path = "全球物流行业商业模式与估值研究报告.pdf"
-HTML(string=doc).write_pdf(pdf_path)
-print("PDF written:", pdf_path)
+if __name__ == "__main__":
+    targets = sys.argv[1:] or DEFAULTS
+    for t in targets:
+        build(t)
