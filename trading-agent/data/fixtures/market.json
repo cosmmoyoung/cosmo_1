@@ -1,0 +1,17 @@
+[
+  {"symbol": "NVDA", "name": "NVIDIA Corporation", "price": 194.83, "change_pct": -1.39, "volume": 129909675, "year_high": 236.54, "year_low": 157.34, "avg50": 209.80, "avg200": 191.03},
+  {"symbol": "AMD", "name": "Advanced Micro Devices, Inc.", "price": 517.82, "change_pct": -4.26, "volume": 27272794, "year_high": 584.73, "year_low": 133.50, "avg50": 460.38, "avg200": 278.19},
+  {"symbol": "AVGO", "name": "Broadcom Inc.", "price": 360.45, "change_pct": -2.41, "volume": 26423042, "year_high": 495.00, "year_low": 269.58, "avg50": 409.43, "avg200": 361.45},
+  {"symbol": "TSM", "name": "Taiwan Semiconductor Manufacturing", "price": 434.16, "change_pct": -2.27, "volume": 18189463, "year_high": 479.00, "year_low": 223.70, "avg50": 419.50, "avg200": 344.02},
+  {"symbol": "MU", "name": "Micron Technology, Inc.", "price": 975.56, "change_pct": -5.49, "volume": 60943570, "year_high": 1255.00, "year_low": 103.38, "avg50": 852.09, "avg200": 444.34},
+  {"symbol": "VRT", "name": "Vertiv Holdings Co", "price": 300.53, "change_pct": -3.50, "volume": 5868595, "year_high": 379.94, "year_low": 110.06, "avg50": 324.60, "avg200": 232.48},
+  {"symbol": "ANET", "name": "Arista Networks, Inc.", "price": 159.99, "change_pct": -3.98, "volume": 8588032, "year_high": 179.80, "year_low": 100.33, "avg50": 159.80, "avg200": 143.12},
+  {"symbol": "SMCI", "name": "Super Micro Computer, Inc.", "price": 27.22, "change_pct": -1.56, "volume": 42319018, "year_high": 62.36, "year_low": 19.48, "avg50": 33.46, "avg200": 35.02},
+  {"symbol": "MSFT", "name": "Microsoft Corporation", "price": 390.49, "change_pct": 1.62, "volume": 40690198, "year_high": 555.45, "year_low": 349.20, "avg50": 407.60, "avg200": 445.44},
+  {"symbol": "GOOGL", "name": "Alphabet Inc.", "price": 359.91, "change_pct": -0.36, "volume": 25430462, "year_high": 408.61, "year_low": 172.77, "avg50": 370.97, "avg200": 316.15},
+  {"symbol": "META", "name": "Meta Platforms, Inc.", "price": 582.90, "change_pct": -4.90, "volume": 20851640, "year_high": 796.25, "year_low": 520.26, "avg50": 605.23, "avg200": 646.51},
+  {"symbol": "AMZN", "name": "Amazon.com, Inc.", "price": 242.67, "change_pct": 0.40, "volume": 44741143, "year_high": 278.56, "year_low": 196.00, "avg50": 255.42, "avg200": 232.98},
+  {"symbol": "ORCL", "name": "Oracle Corporation", "price": 140.27, "change_pct": -1.56, "volume": 37244480, "year_high": 345.72, "year_low": 134.57, "avg50": 187.19, "avg200": 200.69},
+  {"symbol": "PLTR", "name": "Palantir Technologies Inc.", "price": 129.30, "change_pct": 2.84, "volume": 60316506, "year_high": 207.52, "year_low": 106.37, "avg50": 134.58, "avg200": 157.91},
+  {"symbol": "TSLA", "name": "Tesla, Inc.", "price": 393.45, "change_pct": -7.49, "volume": 72014753, "year_high": 498.83, "year_low": 288.77, "avg50": 406.42, "avg200": 418.61}
+]

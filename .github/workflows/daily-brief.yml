@@ -1,0 +1,50 @@
+# 每个交易日收盘后自动跑一次市场监测,生成日报并提交回仓库。
+# 这就是"部署"——不需要租服务器,GitHub 免费帮你跑。
+#
+# 启用前需要在仓库 Settings → Secrets and variables → Actions 里配置:
+#   ANTHROPIC_API_KEY   (推荐,LLM 分析)
+#   FMP_API_KEY         (可选,行情数据;不配则用 Yahoo 免费接口)
+#   X_BEARER_TOKEN      (可选,X 大佬追踪,$200/月)
+#   TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID (可选,推送到手机)
+
+name: daily-market-brief
+
+on:
+  schedule:
+    # UTC 21:30 = 美东夏令时 17:30(收盘后 1.5 小时),周一到周五
+    - cron: "30 21 * * 1-5"
+  workflow_dispatch: {}   # 允许手动点按钮触发,方便测试
+
+permissions:
+  contents: write
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r trading-agent/requirements.txt
+
+      - name: Run market monitor
+        working-directory: trading-agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python main.py
+
+      - name: Commit report back to repo
+        run: |
+          git config user.name "market-monitor-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add trading-agent/reports/
+          git diff --cached --quiet || git commit -m "Daily brief $(date -u +%F)"
+          git push

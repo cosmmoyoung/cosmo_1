@@ -1,0 +1,69 @@
+# =============================================================
+# 市场监测 Agent 配置文件
+# 这是整个系统里最能体现"你的投资思路"的地方。
+# 代码是引擎,这个文件是你的大脑——改这里不需要懂编程。
+# =============================================================
+
+# ---- 你的投资主题(会原文喂给 LLM,写得越具体信号越好)----
+thesis: |
+  核心思路:AI 前沿进展的瓶颈在哪里,钱就流向哪里。
+  当前关注的瓶颈层:
+  1. 算力供给:先进制程产能(TSM)、GPU/ASIC(NVDA/AMD/AVGO)
+  2. 内存带宽:HBM 供需(MU)
+  3. 电力与散热:数据中心配套(VRT)
+  4. 网络互连:集群规模扩张(ANET)
+  5. 模型层与应用层:谁在把算力变成收入(MSFT/GOOGL/META/PLTR)
+  信号来源:科技大佬与 VC 在公开渠道的观点变化,往往领先于
+  卖方研报 1-4 周。重点捕捉"观点转向"和"共识分歧"。
+
+# ---- 监测的股票池(按瓶颈层分组)----
+watchlist:
+  - {symbol: NVDA,  theme: 算力-GPU}
+  - {symbol: AMD,   theme: 算力-GPU}
+  - {symbol: AVGO,  theme: 算力-ASIC/网络}
+  - {symbol: TSM,   theme: 算力-代工}
+  - {symbol: MU,    theme: 内存-HBM}
+  - {symbol: VRT,   theme: 电力散热}
+  - {symbol: ANET,  theme: 网络互连}
+  - {symbol: SMCI,  theme: 服务器}
+  - {symbol: MSFT,  theme: 模型/云}
+  - {symbol: GOOGL, theme: 模型/云}
+  - {symbol: META,  theme: 模型/应用}
+  - {symbol: AMZN,  theme: 云}
+  - {symbol: ORCL,  theme: 云}
+  - {symbol: PLTR,  theme: AI应用}
+  - {symbol: TSLA,  theme: AI应用/机器人}
+
+# ---- 追踪的人(X/Twitter 用户名,需要 X_BEARER_TOKEN 才会真实抓取)----
+tracked_people:
+  - {handle: sama,            name: Sam Altman,      why: OpenAI CEO,对算力需求的表态直接影响整条供应链}
+  - {handle: satyanadella,    name: Satya Nadella,   why: 微软 CEO,资本开支风向标}
+  - {handle: elonmusk,        name: Elon Musk,       why: xAI/特斯拉,算力采购大户}
+  - {handle: JensenHuang,     name: Jensen Huang,    why: NVIDIA CEO(注意他很少发推,以新闻为主)}
+  - {handle: DarioAmodei,     name: Dario Amodei,    why: Anthropic CEO,模型能力路线图}
+  - {handle: pmarca,          name: Marc Andreessen, why: a16z,VC 视角的叙事转向}
+  - {handle: chamath,         name: Chamath P.,      why: 争议大但传播力强,情绪指标}
+  - {handle: karpathy,        name: Andrej Karpathy, why: 技术判断极准,领先指标}
+
+# ---- 免费新闻源(RSS,不花钱,MVP 阶段替代 X API)----
+rss_feeds:
+  - {url: "https://techcrunch.com/category/artificial-intelligence/feed/", name: TechCrunch AI}
+  - {url: "https://hnrss.org/frontpage?points=200",                        name: HackerNews 高分帖}
+  - {url: "https://www.theverge.com/rss/index.xml",                        name: The Verge}
+
+# ---- 信号规则(规则引擎的阈值,LLM 分析是在这之上叠加的)----
+rules:
+  big_move_pct: 3.0        # 单日涨跌超过 3% 视为"异动"
+  near_52w_high_pct: 5.0   # 距 52 周新高 5% 以内值得注意
+  off_52w_high_pct: 25.0   # 从 52 周高点回撤超 25% 触发"深度回调"检查
+  volume_spike_ratio: 2.0  # 成交量超过均量 2 倍(需要历史数据源支持)
+
+# ---- LLM 设置 ----
+llm:
+  model: claude-sonnet-5   # 日报用 sonnet 性价比最高;想要更深分析可换 claude-opus-4-8
+  max_tokens: 4000
+
+# ---- 推送渠道(填了才启用;都不填就只输出 markdown 文件)----
+notify:
+  telegram: true    # 需要环境变量 TELEGRAM_BOT_TOKEN 和 TELEGRAM_CHAT_ID
+  email: false      # 需要 SMTP_* 系列环境变量,见 .env.example
