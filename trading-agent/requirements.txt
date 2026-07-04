@@ -1,0 +1,7 @@
+# 核心依赖(刻意保持精简)
+requests>=2.31        # HTTP 请求:行情、X API、Telegram 推送
+PyYAML>=6.0           # 读取 config.yaml
+feedparser>=6.0       # 解析 RSS 新闻源
+
+# 可选:LLM 分析(没有它系统会退化为规则引擎,照样能跑)
+anthropic>=0.40

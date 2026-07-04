@@ -1,0 +1,5 @@
+[
+  {"handle": "_demo_", "name": "【示例数据】Sam Altman", "why": "OpenAI CEO,对算力需求的表态直接影响整条供应链", "text": "(此为演示用的虚构示例,非真实推文)compute demand continues to outpace every forecast we make internally. the constraint for 2027 is not chips, it's power and memory bandwidth.", "created_at": "2026-07-03T18:20:00Z", "url": "https://x.com/_demo_"},
+  {"handle": "_demo_", "name": "【示例数据】Andrej Karpathy", "why": "技术判断极准,领先指标", "text": "(此为演示用的虚构示例,非真实推文)agentic workloads shift the bottleneck from training FLOPs to inference memory. interesting second-order effects for the HBM supply chain.", "created_at": "2026-07-03T15:00:00Z", "url": "https://x.com/_demo_"},
+  {"handle": "_demo_", "name": "【示例数据】Marc Andreessen", "why": "a16z,VC 视角的叙事转向", "text": "(此为演示用的虚构示例,非真实推文)every portfolio company now budgets more for inference than for headcount. this was not true 12 months ago.", "created_at": "2026-07-02T22:10:00Z", "url": "https://x.com/_demo_"}
+]

@@ -1,0 +1,12 @@
+{"date": "2026-07-04", "symbol": "AMD", "theme": "算力-GPU", "kind": "单日异动", "detail": "单日下跌 4.3%", "price": 517.82, "change_pct": -4.26}
+{"date": "2026-07-04", "symbol": "AVGO", "theme": "算力-ASIC/网络", "kind": "深度回调", "detail": "较 52 周高点回撤 27%", "price": 360.45, "change_pct": -2.41}
+{"date": "2026-07-04", "symbol": "MU", "theme": "内存-HBM", "kind": "单日异动", "detail": "单日下跌 5.5%", "price": 975.56, "change_pct": -5.49}
+{"date": "2026-07-04", "symbol": "VRT", "theme": "电力散热", "kind": "单日异动", "detail": "单日下跌 3.5%", "price": 300.53, "change_pct": -3.5}
+{"date": "2026-07-04", "symbol": "ANET", "theme": "网络互连", "kind": "单日异动", "detail": "单日下跌 4.0%", "price": 159.99, "change_pct": -3.98}
+{"date": "2026-07-04", "symbol": "SMCI", "theme": "服务器", "kind": "深度回调", "detail": "较 52 周高点回撤 56%", "price": 27.22, "change_pct": -1.56}
+{"date": "2026-07-04", "symbol": "MSFT", "theme": "模型/云", "kind": "深度回调", "detail": "较 52 周高点回撤 30%", "price": 390.49, "change_pct": 1.62}
+{"date": "2026-07-04", "symbol": "META", "theme": "模型/应用", "kind": "单日异动", "detail": "单日下跌 4.9%", "price": 582.9, "change_pct": -4.9}
+{"date": "2026-07-04", "symbol": "META", "theme": "模型/应用", "kind": "深度回调", "detail": "较 52 周高点回撤 27%", "price": 582.9, "change_pct": -4.9}
+{"date": "2026-07-04", "symbol": "ORCL", "theme": "云", "kind": "深度回调", "detail": "较 52 周高点回撤 59%", "price": 140.27, "change_pct": -1.56}
+{"date": "2026-07-04", "symbol": "PLTR", "theme": "AI应用", "kind": "深度回调", "detail": "较 52 周高点回撤 38%", "price": 129.3, "change_pct": 2.84}
+{"date": "2026-07-04", "symbol": "TSLA", "theme": "AI应用/机器人", "kind": "单日异动", "detail": "单日下跌 7.5%", "price": 393.45, "change_pct": -7.49}
