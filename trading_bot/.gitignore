@@ -1,0 +1,14 @@
+# Secrets and personal settings
+.env
+config.yaml
+
+# Runtime data: database, research memos, STOP file
+data/
+
+# Research reports and expert-call notes are licensed / confidential: never commit them
+inbox/
+
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv/
