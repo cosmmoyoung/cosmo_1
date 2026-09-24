@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Literal
+from typing import ClassVar, Literal
 
 import yaml
 from pydantic import BaseModel, ConfigDict, Field
@@ -24,24 +24,77 @@ class _Cfg(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
-class LLMTask(_Cfg):
-    """Which model handles one stage of the pipeline."""
+ProviderName = Literal["claude", "openai", "grok", "claude_cli", "codex_cli", "fake"]
 
-    provider: Literal["claude", "grok", "fake"] = "claude"
+# USD per 1mn tokens (input, output), used to log what each call cost or would have cost on the
+# API. Anthropic: claude.com/pricing and the API docs; OpenAI GPT-6: OpenAI pricing page (2026-09);
+# Grok: press reports (2026-09). Update here when prices change.
+DEFAULT_PRICES: dict[str, list[float]] = {
+    "claude-fable-5-1": [10.0, 50.0],
+    "claude-opus-5-5": [4.0, 20.0],
+    "claude-opus-5": [5.0, 25.0],
+    "claude-sonnet-5": [2.0, 10.0],
+    "claude-haiku-4-5": [1.0, 5.0],
+    "gpt-6-astra": [10.0, 50.0],
+    "gpt-6-sol": [2.0, 10.0],
+    "gpt-6-luna": [0.1, 0.5],
+    "grok-4.7": [2.0, 6.0],
+}
+
+
+class LLMTask(_Cfg):
+    """Which provider and model handle one stage of the pipeline."""
+
+    provider: ProviderName = "claude"
     model: str = "claude-opus-5"
     effort: Effort | None = None
     max_tokens: int = 16000
+    # Used only when this task's subscription window or API quota is used up.
+    fallback: LLMTask | None = None
+
+
+class CLIConfig(_Cfg):
+    """How the subscription providers call the official command-line tools."""
+
+    claude_path: str = "claude"
+    codex_path: str = "codex"
+    timeout_minutes: int = 30
+    # Remove API keys from the CLI's environment so it bills your subscription, not the API.
+    use_subscription_login: bool = True
+    # After a "usage limit reached" error, deep dives wait this long before trying again.
+    pause_minutes_on_limit: int = 60
+    # Models used by `tradebot compare` for each route.
+    claude_model: str = "opus"
+    codex_model: str = "gpt-6-astra"
 
 
 class LLMConfig(_Cfg):
-    triage: LLMTask = Field(default_factory=lambda: LLMTask(effort="low"))
-    industry: LLMTask = Field(default_factory=lambda: LLMTask(effort="medium"))
-    screen: LLMTask = Field(default_factory=lambda: LLMTask(effort="medium"))
-    research: LLMTask = Field(default_factory=lambda: LLMTask(effort="high", max_tokens=64000))
-    thesis: LLMTask = Field(default_factory=lambda: LLMTask(effort="medium"))
+    # Default = the hybrid plan: always-on, time-sensitive stages on a cheap API model; the heavy,
+    # batchable deep dive on a subscription CLI.
+    triage: LLMTask = Field(default_factory=lambda: LLMTask(provider="openai", model="gpt-6-luna", effort="low"))
+    industry: LLMTask = Field(default_factory=lambda: LLMTask(provider="openai", model="gpt-6-sol", effort="medium"))
+    screen: LLMTask = Field(default_factory=lambda: LLMTask(provider="openai", model="gpt-6-sol", effort="medium"))
+    research: LLMTask = Field(default_factory=lambda: LLMTask(provider="claude_cli", model="opus", effort="high"))
+    synthesis: LLMTask = Field(default_factory=lambda: LLMTask(provider="claude_cli", model="opus", effort="high"))
+    thesis: LLMTask = Field(default_factory=lambda: LLMTask(provider="openai", model="gpt-6-sol", effort="medium"))
     scout: LLMTask = Field(default_factory=lambda: LLMTask(provider="grok", model="grok-4.7"))
     web_search_max_uses: int = 12
     language: str = "Simplified Chinese"
+    cli: CLIConfig = Field(default_factory=CLIConfig)
+    prices: dict[str, list[float]] = Field(default_factory=lambda: dict(DEFAULT_PRICES))
+
+    STAGES: ClassVar[tuple[str, ...]] = ("triage", "industry", "screen", "research", "synthesis", "thesis", "scout")
+
+    def providers_in_use(self, include_scout: bool) -> set[str]:
+        names: set[str] = set()
+        for stage in self.STAGES:
+            if stage == "scout" and not include_scout:
+                continue
+            task: LLMTask | None = getattr(self, stage)
+            while task is not None:
+                names.add(task.provider)
+                task = task.fallback
+        return names
 
 
 class UniverseConfig(_Cfg):
@@ -57,6 +110,8 @@ class ScheduleConfig(_Cfg):
     news_poll_minutes: int = 15
     daily_scan_hour_utc: int = 12
     max_deep_dives_per_day: int = 3
+    # A deep dive can take tens of minutes; doing one per cycle keeps news triage running in between.
+    deep_dives_per_cycle: int = 1
     top_industries: int = 5
     candidates_per_industry: int = 2
     approval_ttl_hours: int = 24

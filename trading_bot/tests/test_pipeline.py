@@ -180,3 +180,83 @@ def test_cli_demo_and_status_commands(tmp_path, capsys):
     assert main(["-c", str(config), "resume"]) == 0
     assert main(["-c", str(config), "theses"]) == 0
     assert "还没有 thesis" in capsys.readouterr().out
+
+
+def test_quota_pauses_research_and_requeues(tmp_path):
+    from tradebot.llm import LLMQuotaExceeded
+
+    bot, provider = make_bot(tmp_path)
+
+    def used_up(system, prompt):
+        raise LLMQuotaExceeded("claude usage limit reached")
+
+    provider._text = used_up
+    bot.poll_news()
+    assert bot.work_research_queue() == 0
+    assert bot.store.next_idea()["ticker"] == TICKER  # back in the queue, not marked failed
+    assert bot.research_paused()
+    assert any("订阅额度用完" in m for m in bot.notifier.sent)
+    calls_before = len(provider.calls)
+    assert bot.work_research_queue() == 0 and len(provider.calls) == calls_before  # waits for the reset
+
+
+def test_one_deep_dive_per_cycle(tmp_path):
+    from tradebot.models import Quote
+
+    bot, _ = make_bot(tmp_path)
+    bot.fmp.quote = lambda symbol: Quote(ticker=symbol, price=50.0, market_cap=8e9)  # both are researchable
+    bot.store.enqueue_idea(TICKER, "a", "manual", 90)
+    bot.store.enqueue_idea("OTHR", "b", "manual", 80)
+    assert bot.work_research_queue() == 1
+    assert bot.store.next_idea()["ticker"] == "OTHR"  # waits for the next cycle
+    assert bot.work_research_queue() == 1
+
+
+def test_usage_is_logged(tmp_path):
+    from tradebot.llm import Usage
+
+    settings = demo_settings(tmp_path)
+    provider = demo_provider()
+    provider._usage = Usage(input_tokens=2000, cached_input_tokens=0, output_tokens=500)
+    bot = build_bot(settings, providers={"fake": provider}, fmp=DemoFMP(), news_sources=[ScriptedNews(demo_news())])
+    bot.poll_news()
+    bot.work_research_queue()
+    rows = bot.store.usage_summary(1)
+    assert rows and sum(r["calls"] for r in rows) == len(provider.calls)
+
+
+def test_compare_does_not_touch_live_thesis(tmp_path):
+    from tradebot.config import LLMTask
+
+    bot, _ = make_bot(tmp_path)
+    routes = {"alpha": LLMTask(provider="fake", model="m1"), "beta": LLMTask(provider="fake", model="m2")}
+    results = bot.compare(TICKER, routes)
+    assert set(results) == {"alpha", "beta"}
+    assert bot.store.get_thesis(TICKER) is None and not bot.store.orders()
+    for label, result in results.items():
+        assert result.error is None
+        assert all(f"_{label}_" in path for path in result.thesis.memo_paths)
+
+
+def test_compare_keeps_going_when_one_route_fails(tmp_path):
+    from tradebot.config import LLMTask
+
+    bot, _ = make_bot(tmp_path)
+    routes = {"missing": LLMTask(provider="codex_cli", model="gpt-6-astra"), "ok": LLMTask(provider="fake", model="m")}
+    results = bot.compare(TICKER, routes)
+    assert results["missing"].thesis is None and "codex_cli" in results["missing"].error
+    assert results["ok"].thesis is not None
+
+
+def test_cli_usage_command(tmp_path, capsys):
+    from tradebot.cli import main
+    from tradebot.store import Store
+
+    config = tmp_path / "config.yaml"
+    config.write_text("data_dir: data\n", encoding="utf-8")
+    store = Store(tmp_path / "data" / "tradebot.db")
+    store.record_usage("research", "claude_cli", "opus", "subscription", 100_000, 0, 20_000, 1.0)
+    store.record_usage("triage", "openai", "gpt-6-luna", "api", 50_000, 0, 10_000, 0.01)
+    assert main(["-c", str(config), "usage"]) == 0
+    out = capsys.readouterr().out
+    assert "API 实际花费（估算）：$0.01" in out and "$1.00" in out

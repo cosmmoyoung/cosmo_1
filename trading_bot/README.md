@@ -4,6 +4,8 @@
 
 **最重要的一条设计：AI 负责想，代码负责管钱。** AI 只能写研究、给出 conviction（信心分）；买多少、能不能买、什么时候必须卖，全部由写死的代码规则决定，AI 改不了。默认还要你亲手批准每一单，默认用模拟盘。
 
+**默认是省钱的混合方案：** 最贵、但不赶时间的深度研究，走你已经付了月费的订阅（Claude Code 或 Codex 命令行）；全天候、要及时的小任务（新闻分诊、thesis 更新），走便宜的 GPT-6 API。和全部走 API 相比，每月 AI 花费大约从 $635 降到"订阅月费加 $20 到 $35"（估算，见第 8 节）。
+
 先跑一遍演示（不需要任何 API key，不花钱）：
 
 ```bash
@@ -99,6 +101,8 @@ tradebot demo
 
 三份 memo 都存在 `data/research/<股票代码>/` 下，随时可以翻看机器人是怎么想的。
 
+默认情况下，这三个分析师通过你的 Claude Code 订阅运行（`claude -p`，只开网页搜索，不能改文件、不能执行命令）。想换成 ChatGPT 订阅里的 GPT-6，改配置里的两行即可（第 8 节）。拿不准用哪个，就跑 `tradebot compare TSM`：两边各研究一次同一只股票，结论和 memo 并排放着，不会影响正式的 thesis，也不会下单。
+
 ---
 
 ## 4. thesis 是活的：新闻怎么变成加仓、减仓、清仓
@@ -131,7 +135,7 @@ conviction 到目标仓位的换算（默认参数）：
 
 两种方式，可以同时用：
 
-**方式一：Grok 当"X 侦察兵"。** 在 `config.yaml` 里设 `sources.grok_scout: true`，在 `.env` 填 `XAI_API_KEY`。机器人每一轮会让 Grok 用 xAI 的 `x_search` 和 `web_search` 工具，扫描你的 watchlist、持仓和投资主线在 X 上的新动态，只收带链接的内容。还可以用 `grok_x_handles` 指定只看哪些账号（最多 10 个）。分工是：Grok 负责"快"（X 上的实时信息），Claude 负责"深"（研究和判断）。
+**方式一：Grok 当"X 侦察兵"。** 在 `config.yaml` 里设 `sources.grok_scout: true`，在 `.env` 填 `XAI_API_KEY`。机器人每一轮会让 Grok 用 xAI 的 `x_search` 和 `web_search` 工具，扫描你的 watchlist、持仓和投资主线在 X 上的新动态，只收带链接的内容。还可以用 `grok_x_handles` 指定只看哪些账号（最多 10 个）。分工是：Grok 负责"快"（X 上的实时信息），深度研究的模型负责"深"（研究和判断）。
 
 **方式二：你现有的 Grok bot 往收件箱丢信号。** 不用改你的 bot 太多，只要它把发现写成一个 JSON 文件放进 `inbox/signals/`：
 
@@ -193,10 +197,20 @@ compliance_cleared: true
 cd trading_bot
 pip install -e ".[ibkr,pdf]"
 tradebot init              # 生成 config.yaml、.env、data/、inbox/
-# 在 .env 填 ANTHROPIC_API_KEY 和 FMP_API_KEY
+# 在 .env 填 FMP_API_KEY 和 OPENAI_API_KEY
+
+# 深度研究走订阅，二选一（默认是 Claude）：
+#   Claude：curl -fsSL https://claude.ai/install.sh | bash   （Mac 也可以 brew install --cask claude-code）
+#           然后运行一次 claude，按浏览器提示登录你的 Pro / Max 账号
+#   Codex： npm install -g @openai/codex，然后 codex login，选择用 ChatGPT 登录
+
+tradebot doctor            # 检查 key、命令行工具和登录状态，全部 ✅ 再往下
+tradebot compare TSM       # 可选：Claude 和 GPT-6 各研究一次，对比后决定用哪个
 tradebot cycle             # 跑一轮看看
 tradebot run               # 持续运行，每 15 分钟一轮
 ```
+
+登录 Claude Code 时，终端里不要设 `ANTHROPIC_API_KEY`，否则它会改用 API key，而不是你的订阅。`tradebot doctor` 会检查实际用的是哪一种。
 
 **第 2 步：** 打开 TWS 或 IB Gateway，登录模拟账户，在 API 设置里允许连接；然后在 `config.yaml` 设 `execution.broker: ibkr`（端口默认 7497 是 TWS 模拟盘，IB Gateway 模拟盘用 4002）。先用 `tradebot portfolio` 核对一下持仓和 TWS 上显示的是否一致。
 
@@ -215,26 +229,50 @@ tradebot run               # 持续运行，每 15 分钟一轮
 | `tradebot show TSM` | 某只股票的 thesis 清单和每一次更新的原因 |
 | `tradebot research TSM` | 立刻对一只股票做深度研究 |
 | `tradebot portfolio` | 账户和持仓 |
+| `tradebot doctor` | 检查 key、命令行工具、订阅登录和券商设置；加 `--live` 再给每个模型发一个极小的测试请求 |
+| `tradebot usage` | 最近 7 天的 AI 用量：API 实际花了多少，订阅替你省了多少（都按 API 标价折算） |
+| `tradebot compare TSM` | 用 Claude 和 GPT-6 各研究一次同一只股票，对比结论（不影响正式 thesis，不下单） |
 | `tradebot stop` / `resume` | 紧急停止 / 恢复 |
 
 想在手机上收到"待审批"提醒：在 `.env` 填 `TRADEBOT_WEBHOOK_URL`（Slack 或 Discord 的 webhook 地址）。待审批订单 24 小时没处理会自动作废，避免按过时价格成交。
 
 ---
 
-## 8. 要花多少钱（估算）
+## 8. 混合方案：订阅做深度研究，API 做全天候的小任务
 
-**单价（有出处）：** Claude Opus 5 每百万 token 输入 $5、输出 $25；Sonnet 5 为 $2 / $10；Haiku 4.5 为 $1 / $5（Anthropic 官方模型价格表，2026-06-24 版本）。Grok 4.7 为 $2 / $6（媒体报道，2026 年 9 月，未经核实），搜索工具另外按次计费，以 xAI 官网为准。
+**为什么这样分。** 按全部走 Claude Opus 5 API 估算，深度研究大约占 AI 花费的八成，但它不赶时间，晚几个小时做完没关系；新闻分诊和 thesis 更新花费很小，却必须全天候、及时。所以前者放进已经付了月费的订阅，后者用便宜的按量 API。
 
-**每天花费（估算，按默认配置全部用 Opus 5）：**
+**默认配置：**
 
-| 环节 | 假设 | 每天花费（估算） |
-|---|---|---|
-| 新闻分诊 | 市值过滤后每天 600 到 1,200 条，每批 25 条 | $2.5 到 $5 |
-| 深度研究 | 每天 3 次，每次 4 到 6 次长调用（含网页搜索） | $13 到 $21 |
-| 行业、公司筛选和 thesis 更新 | 每天十几次短调用 | $1 到 $2 |
-| **合计** | | **$17 到 $28 / 天，约 $500 到 $850 / 月** |
+| 环节 | 通道 | 模型 | 怎么付费 |
+|---|---|---|---|
+| 新闻分诊 | OpenAI API | GPT-6 Luna | 按 token |
+| 行业、公司筛选（每天一次） | OpenAI API | GPT-6 Sol | 按 token |
+| thesis 更新（新闻触发） | OpenAI API | GPT-6 Sol | 按 token |
+| 深度研究（研究员、反方、质检、PM 定论） | Claude Code 命令行 | Opus | 你的 Claude 订阅 |
 
-省钱的两个开关：把 `llm.triage` 换成 `claude-haiku-4-5`，把 `max_deep_dives_per_day` 调成 1，合计大约降到每天 $6 到 $9（估算）。以上都是粗估，第一周跑模拟盘时以 Anthropic 控制台的实际账单为准再调。
+想让深度研究用 GPT-6，把 `config.yaml` 里 `research` 和 `synthesis` 两行改成 `{provider: codex_cli, model: gpt-6-astra, effort: high}`，费用就走你的 ChatGPT 订阅。
+
+**单价（每 1mn token，输入 / 输出）：** GPT-6 Astra $10 / $50，GPT-6 Sol $2 / $10，GPT-6 Luna $0.10 / $0.50（OpenAI 官方价格页，2026 年 9 月，经搜索摘要读取）；Claude Opus 5 $5 / $25，Opus 5.5 $4 / $20，Sonnet 5 $2 / $10，Haiku 4.5 $1 / $5（Anthropic 官方价格页，2026-09-24 读取）；Grok 4.7 $2 / $6（媒体报道，2026 年 9 月，未经核实）。订阅：Claude Pro $20 / 月，Max $100 或 $200 / 月；ChatGPT Plus $20 / 月，Pro $100 或 $200 / 月（Claude Pro 和 Max 起价来自官方页，其余来自媒体报道）。
+
+**每月花费（估算）：**
+
+| 方案 | 每月 |
+|---|---|
+| 全部走 Claude Opus 5 API（旧默认） | 约 $635 |
+| 混合方案：API 部分（Luna 分诊加 Sol 筛选和更新） | 约 $20 到 $35 |
+| 混合方案：订阅部分 | 你已经在付的月费（$100 到 $200 档） |
+
+估算的前提：每天 3 次深度研究，每次 4 到 6 次长调用；每天 600 到 1,200 条新闻进入分诊。第一周跑下来，用 `tradebot usage` 看真实数字：它把每一次 AI 调用都记下来，API 部分按实际计费折算，订阅部分按"如果走 API 要花多少"折算，方便你判断订阅到底省了多少。
+
+**规则（请一定看）：**
+
+- **Claude 订阅只能通过官方的 `claude` 命令行使用。** 机器人正是这么做的：它调用你电脑上原版的 `claude`，用你自己登录的账号，从不读取或转用登录凭证。把订阅凭证放进别的程序里（包括 Anthropic 自己的 Agent SDK），是 Anthropic 在 2026-02-19 的文档里明确禁止的。
+- **官方说 Pro 和 Max 的额度是按"普通的个人使用"设计的，并保留不提前通知就限制的权利**（Claude Code 合规文档，2026-09-24 读取）。所以默认每天最多 3 次深度研究，量级接近一个人手动做研究；不要把它调得很高。
+- **机器人调用命令行时会去掉 API key**（`ANTHROPIC_API_KEY`、`OPENAI_API_KEY`），确保费用走订阅，而不是悄悄按 token 扣费。
+- **OpenAI 这边宽松很多：** `codex exec` 本身就支持脚本调用，而且据媒体报道，OpenAI 公开支持在第三方工具里用 ChatGPT 订阅（2026 年）。
+
+**额度用完怎么办：** 命令行返回"额度用完"时，机器人把这只股票放回研究队列，深度研究暂停 60 分钟再试，并发通知给你；新闻分诊和 thesis 更新走 API，不受影响。如果宁可花钱也不想等，可以在配置里给深度研究加一个 API 备用通道（`config.example.yaml` 里有写好的例子），额度用完时自动切过去。
 
 另外需要：FMP 付费套餐（新闻、筛选器、TTM 指标这些接口不在免费档），IBKR 账户。
 
@@ -246,6 +284,9 @@ tradebot run               # 持续运行，每 15 分钟一轮
 - **IBKR 部分还没在真实账户上跑过。** 代码按 ib_async 的接口写，也有测试，但一定先在模拟账户上核对。
 - **FMP 接口：** 新闻、行业表现、行业市盈率、筛选器、报价、TTM 指标的字段名已经用 FMP 实测确认过（2026-09-24）；REST 路径按 FMP stable 文档写，第一次用你的 key 跑时留意有没有报错。
 - **Grok：** 按 xAI Responses API 写（`x_search`、`web_search` 工具），模型名 `grok-4.7` 来自媒体报道，没能用真 key 测试。模型名写在配置里，随时可以改。
+- **订阅通道还没有在真实订阅上跑过。** 开发用的这台机器本身就是一个 Claude Code 会话，不能再嵌套调用 `claude`，所以只用模拟的命令行做了测试。命令行参数按 Claude Code 2.1.282 和 Codex CLI 0.156.1 的帮助文档逐项核对过，`tradebot doctor` 已经在真实的 `claude` 上跑通。第一次请先跑 `tradebot doctor --live`。
+- **订阅额度不公开。** 两家都不公布每 5 小时和每周具体能用多少 token，"每天 3 次深度研究够不够用、会不会碰到上限"要实际跑一周才知道。
+- **Windows：** 订阅通道在 Mac 和 Linux 上写成，Windows 建议在 WSL 里运行。
 - **没有回测。** thesis 驱动的策略很难严格回测，所以建议先用模拟盘跑一段时间，看它的判断和你自己的判断差在哪里。
 - **Claude 的安全降级：** Opus 5 的请求默认开启了 `fallbacks: "default"`，如果某次请求被安全分类器误判拒绝，会自动换 Anthropic 推荐的备用模型重试，而不是让整个研究步骤失败。
 
@@ -259,13 +300,16 @@ trading_bot/
   tradebot/
     cli.py                命令行
     orchestrator.py       主循环：新闻 → 研究 → 订单；OrderDesk 管风控和审批
-    llm/                  Claude、Grok 和测试用的假模型
+    llm/                  各家模型通道：Claude API、OpenAI API、Grok、
+                          claude / codex 命令行（订阅），以及测试用的假模型
+    doctor.py             tradebot doctor 的各项检查
     sources/              FMP、Grok 侦察兵、收件箱
     research/             分诊、行业、公司筛选、深度研究、thesis 更新
     risk/                 仓位计算（sizing）和风控硬规则（engine）
     execution/            模拟盘和 IBKR
     demo.py               tradebot demo 用的虚构数据
-  tests/                  49 个测试，覆盖风控规则、仓位、thesis 更新、合规过滤和完整流程
+  tests/                  77 个测试，覆盖风控规则、仓位、thesis 更新、合规过滤、各模型通道、
+                          额度用完的处理、用量记账和完整流程
 ```
 
 跑测试：`pip install -e ".[dev]" && pytest`
@@ -275,6 +319,14 @@ trading_bot/
 ## 资料来源
 
 - Anthropic，Claude 模型与价格表（2026-06-24 版本）：https://platform.claude.com/docs/en/about-claude/pricing
+- Anthropic，Claude 订阅与 API 价格页（2026-09-24 读取）：https://claude.com/pricing
+- Anthropic，Claude Code 合规文档（订阅凭证的使用规则，2026-09-24 读取）：https://code.claude.com/docs/en/legal-and-compliance
+- Anthropic，Claude Code 命令行非交互模式文档（2026-09-24 读取）：https://code.claude.com/docs/en/headless
+- OpenAI，API 价格页（2026 年 9 月，经搜索摘要读取）：https://developers.openai.com/api/docs/pricing
+- OpenAI，Introducing GPT-6 Sol and Luna（2026-09-22）：https://openai.com/index/introducing-gpt-6-sol-and-luna/
+- OpenAI 帮助中心，Using Codex with your ChatGPT plan：https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan
+- Morph，Codex Pricing 2026（媒体报道）：https://www.morphllm.com/codex-pricing
+- Manifest，ChatGPT Plus tokens in third-party harnesses（媒体报道）：https://manifest.build/blog/chatgpt-plus-tokens-third-party-harnesses/
 - xAI，Web Search 与 X Search 工具文档（2026 年 9 月检索）：https://docs.x.ai/developers/tools/x-search
 - Second Talent，Every Grok AI Model Explained and Compared（2026 年 9 月，媒体报道）：https://www.secondtalent.com/resources/every-grok-ai-model-explained-compared/
 - Releasebot，xAI Release Notes（2026 年 9 月，媒体报道）：https://releasebot.io/updates/xai

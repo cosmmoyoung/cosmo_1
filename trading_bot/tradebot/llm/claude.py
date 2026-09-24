@@ -16,7 +16,7 @@ from typing import Any
 import anthropic
 
 from tradebot.config import LLMTask
-from tradebot.llm import LLMError, LLMRefusal, T
+from tradebot.llm import LLMError, LLMRefusal, T, Usage
 
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 FALLBACK_MODELS = {"claude-opus-5", "claude-opus-5-5", "claude-fable-5-1"}
@@ -37,10 +37,25 @@ def _raise_for_stop(response: Any) -> None:
         raise LLMError(f"{response.model} stopped with {reason}; raise max_tokens for this stage in config.yaml")
 
 
+def _usage(response: Any) -> Usage:
+    u = response.usage
+    cache_read = getattr(u, "cache_read_input_tokens", None) or 0
+    cache_write = getattr(u, "cache_creation_input_tokens", None) or 0
+    return Usage(
+        input_tokens=(u.input_tokens or 0) + cache_read + cache_write,
+        cached_input_tokens=cache_read,
+        output_tokens=u.output_tokens or 0,
+    )
+
+
 class ClaudeProvider:
     def __init__(self, client: anthropic.Anthropic | None = None):
         # Credentials resolve from ANTHROPIC_API_KEY or an `ant auth login` profile.
         self.client = client or anthropic.Anthropic(max_retries=4)
+        self.last_usage: Usage | None = None
+
+    def _count(self, response: Any) -> None:
+        self.last_usage = (self.last_usage or Usage()) + _usage(response)
 
     def _request(self, task: LLMTask, system: str) -> dict[str, Any]:
         request: dict[str, Any] = {
@@ -70,6 +85,7 @@ class ClaudeProvider:
             output_format=schema,
             **self._request(task, system),
         )
+        self._count(response)
         _raise_for_stop(response)
         if response.parsed_output is None:
             raise LLMError(f"{task.model} returned no parseable {schema.__name__}")
@@ -89,6 +105,7 @@ class ClaudeProvider:
                 messages.append({"role": "assistant", "content": assistant_blocks})
             with self.client.beta.messages.stream(messages=messages, **request) as stream:
                 response = stream.get_final_message()
+            self._count(response)
             _raise_for_stop(response)
             texts.extend(block.text for block in response.content if block.type == "text")
             if response.stop_reason != "pause_turn":

@@ -16,7 +16,8 @@ universe:
 schedule:
   news_poll_minutes: 15             # 每隔多少分钟拉一次新闻
   daily_scan_hour_utc: 12           # 每天几点（UTC）做行业扫描和公司筛选。12 点 = 香港晚上 8 点 = 美东开盘前
-  max_deep_dives_per_day: 3         # 每天最多做几次深度研究（最花钱的一步）
+  max_deep_dives_per_day: 3         # 每天最多做几次深度研究（最花钱的一步；走订阅时也别太多，见 README）
+  deep_dives_per_cycle: 1           # 每一轮最多做一次深度研究，保证新闻分诊不被长时间卡住
   top_industries: 5
   candidates_per_industry: 2
   approval_ttl_hours: 24            # 待审批订单超过这个时间自动作废，避免按过时价格成交
@@ -66,13 +67,47 @@ sources:
   inbox_dir: inbox                  # 研报、专家纪要、其他机器人的信号放这里
 
 llm:
-  # 每个环节用哪个模型。默认全部用 Claude Opus 5，用 effort 控制深浅和花费；
-  # 想省钱可以把 triage 换成 claude-sonnet-5 或 claude-haiku-4-5。
-  triage:   {provider: claude, model: claude-opus-5, effort: low}
-  industry: {provider: claude, model: claude-opus-5, effort: medium}
-  screen:   {provider: claude, model: claude-opus-5, effort: medium}
-  research: {provider: claude, model: claude-opus-5, effort: high, max_tokens: 64000}
-  thesis:   {provider: claude, model: claude-opus-5, effort: medium}
-  scout:    {provider: grok, model: grok-4.7}
-  web_search_max_uses: 12           # 每份 memo 最多搜索几次网页
+  # 混合方案（默认）：
+  #   全天候、要及时的小任务（新闻分诊、thesis 更新、每日筛选）走便宜的 API 模型，按 token 付费；
+  #   最贵、但不赶时间的深度研究走订阅（Claude Code 或 Codex 命令行），包月付费。
+  # provider 可选：openai / claude（API，按量付费）、claude_cli / codex_cli（订阅）、grok
+  triage:    {provider: openai, model: gpt-6-luna, effort: low}
+  industry:  {provider: openai, model: gpt-6-sol, effort: medium}
+  screen:    {provider: openai, model: gpt-6-sol, effort: medium}
+  thesis:    {provider: openai, model: gpt-6-sol, effort: medium}     # 新闻触发的 thesis 更新
+  research:  {provider: claude_cli, model: opus, effort: high}       # 深度研究：研究员、反方、质检
+  synthesis: {provider: claude_cli, model: opus, effort: high}       # 深度研究最后一步：PM 定论
+  scout:     {provider: grok, model: grok-4.7}
+
+  # 想用 ChatGPT 订阅（Codex）跑 GPT-6 做深度研究，把上面两行换成：
+  #   research:  {provider: codex_cli, model: gpt-6-astra, effort: high}
+  #   synthesis: {provider: codex_cli, model: gpt-6-astra, effort: high}
+  #
+  # 订阅额度用完时，默认暂停深度研究、等额度重置（不花钱）。
+  # 如果宁可花钱也不等，给这一环节加一个 API 备用通道，例如：
+  #   research: {provider: claude_cli, model: opus, effort: high,
+  #              fallback: {provider: openai, model: gpt-6-astra, effort: high, max_tokens: 64000}}
+
+  web_search_max_uses: 12           # 走 API 时，每份 memo 最多搜索几次网页
   language: Simplified Chinese      # memo 和说明文字的语言
+
+  cli:
+    claude_path: claude             # claude 命令的位置（不在 PATH 里就写完整路径）
+    codex_path: codex
+    timeout_minutes: 30             # 单次调用最长等多久
+    use_subscription_login: true    # 调用命令行时去掉 API key，确保走订阅、不按 token 扣费
+    pause_minutes_on_limit: 60      # 额度用完后，深度研究暂停多久再试
+    claude_model: opus              # tradebot compare 用的模型
+    codex_model: gpt-6-astra
+
+  # 每 1mn token 的价格（美元，输入 / 输出），只用来记账和折算。价格变了就改这里。
+  prices:
+    claude-fable-5-1: [10, 50]
+    claude-opus-5-5: [4, 20]
+    claude-opus-5: [5, 25]
+    claude-sonnet-5: [2, 10]
+    claude-haiku-4-5: [1, 5]
+    gpt-6-astra: [10, 50]
+    gpt-6-sol: [2, 10]
+    gpt-6-luna: [0.1, 0.5]
+    grok-4.7: [2, 6]

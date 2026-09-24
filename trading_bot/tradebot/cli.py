@@ -128,6 +128,62 @@ def cmd_portfolio(settings: Settings, args) -> int:
     return 0
 
 
+def cmd_doctor(settings: Settings, args) -> int:
+    from tradebot.doctor import FAIL, live_checks, run_checks
+    checks = run_checks(settings)
+    if args.live:
+        from tradebot.llm import LLMRouter
+        from tradebot.orchestrator import make_provider
+        router = LLMRouter(settings.llm, factory=lambda name: make_provider(settings, name))
+        checks += live_checks(settings, router)
+    for check in checks:
+        print(check.line())
+    failed = sum(c.status == FAIL for c in checks)
+    print("\n全部通过，可以运行 tradebot cycle" if not failed else f"\n有 {failed} 项需要处理")
+    return 1 if failed else 0
+
+
+def cmd_usage(settings: Settings, args) -> int:
+    from tradebot.store import Store
+    rows = Store(settings.db_path).usage_summary(args.days)
+    if not rows:
+        print("还没有 AI 调用记录")
+        return 0
+    print(f"最近 {args.days} 天的 AI 用量（金额按 API 标价折算，估算）\n")
+    print(f"{'计费':<12} {'通道':<11} {'模型':<18} {'次数':>6} {'输入 token':>12} {'输出 token':>12} {'API 价折算':>10}")
+    totals = {"api": 0.0, "subscription": 0.0}
+    for r in rows:
+        label = {"api": "API 按量", "subscription": "订阅包月"}.get(r["billing"], r["billing"])
+        cost = r["api_cost_usd"] or 0.0
+        totals[r["billing"]] = totals.get(r["billing"], 0.0) + cost
+        print(f"{label:<12} {r['provider']:<11} {r['model']:<18} {r['calls']:>6} "
+              f"{r['input_tokens'] or 0:>12,} {r['output_tokens'] or 0:>12,} {'$' + format(cost, ',.2f'):>10}")
+    print(f"\nAPI 实际花费（估算）：${totals['api']:,.2f}")
+    print(f"订阅通道的用量如果走 API，要花（估算）：${totals['subscription']:,.2f}，这部分实际由月费支付")
+    return 0
+
+
+def cmd_compare(settings: Settings, args) -> int:
+    from tradebot.orchestrator import compare_routes
+    bot = _bot(settings)
+    routes = compare_routes(settings, args.via)
+    print(f"用 {', '.join(routes)} 分别研究 {args.ticker.upper()}（结果不会覆盖正式 thesis，也不会下单）...\n")
+    failed = 0
+    for label, result in bot.compare(args.ticker.upper(), routes).items():
+        thesis = result.thesis
+        if thesis is None:
+            failed += 1
+            print(f"== {label}：失败，{result.error}\n")
+            continue
+        print(f"== {label}：conviction {thesis.conviction}，审核 {thesis.reviewer_verdict}，方向 {thesis.direction}，"
+              f"公允价值 {thesis.fair_value}，最高买入价 {thesis.max_entry_price}，按 API 价折算 ${result.api_cost_usd:,.2f}")
+        print(f"   {thesis.summary[:200]}")
+        print(f"   退出条件：{'；'.join(thesis.kill_criteria)}")
+        if thesis.memo_paths:
+            print(f"   memo：{Path(thesis.memo_paths[0]).parent}（文件名带 {label}）\n")
+    return 1 if failed == len(routes) else 0
+
+
 def cmd_stop(settings: Settings, args) -> int:
     settings.data_path.mkdir(parents=True, exist_ok=True)
     settings.stop_file.write_text("stop\n", encoding="utf-8")
@@ -168,6 +224,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("order_id")
     p.set_defaults(func=cmd_reject)
     sub.add_parser("portfolio", help="查看账户和持仓").set_defaults(func=cmd_portfolio)
+    p = sub.add_parser("doctor", help="检查 API key、命令行工具、订阅登录和券商设置")
+    p.add_argument("--live", action="store_true", help="再给每个模型发一个极小的测试请求")
+    p.set_defaults(func=cmd_doctor)
+    p = sub.add_parser("usage", help="AI 用量和花费（API 实付 vs 订阅覆盖）")
+    p.add_argument("--days", type=int, default=7)
+    p.set_defaults(func=cmd_usage)
+    p = sub.add_parser("compare", help="用不同模型对同一只股票各做一次深度研究，对比结论")
+    p.add_argument("ticker")
+    p.add_argument("--via", nargs="+", default=["claude", "codex"],
+                   help="对比路线：claude（Claude Code 订阅）、codex（Codex 订阅）、claude_api、openai_api")
+    p.set_defaults(func=cmd_compare)
     sub.add_parser("stop", help="紧急停止：机器人不再下任何单").set_defaults(func=cmd_stop)
     sub.add_parser("resume", help="解除紧急停止").set_defaults(func=cmd_resume)
     return parser

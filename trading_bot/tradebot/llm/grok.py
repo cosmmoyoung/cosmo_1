@@ -9,32 +9,19 @@ from __future__ import annotations
 
 import json
 import os
-import re
 from typing import Any
 
 import requests
 from pydantic import ValidationError
 
 from tradebot.config import LLMTask
-from tradebot.llm import LLMError, T
+from tradebot.llm import LLMError, T, Usage
+from tradebot.llm.responses_api import extract_json, parse_output, post_responses, responses_usage
+
+__all__ = ["GrokProvider", "extract_json"]
 
 XAI_RESPONSES_URL = "https://api.x.ai/v1/responses"
 MAX_X_HANDLES = 10
-
-
-def extract_json(text: str) -> Any:
-    """Parse the first JSON object or array in a model reply (tolerates code fences and prose)."""
-    cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", text.strip())
-    try:
-        return json.loads(cleaned)
-    except json.JSONDecodeError:
-        pass
-    starts = [i for i in (cleaned.find("{"), cleaned.find("[")) if i != -1]
-    if not starts:
-        raise ValueError("no JSON found in reply")
-    start = min(starts)
-    end = cleaned.rfind("}" if cleaned[start] == "{" else "]")
-    return json.loads(cleaned[start:end + 1])
 
 
 class GrokProvider:
@@ -46,6 +33,7 @@ class GrokProvider:
         self.x_handles = list(x_handles or [])[:MAX_X_HANDLES]
         self.session = session or requests.Session()
         self.timeout = timeout
+        self.last_usage: Usage | None = None
 
     def ask(self, model: str, system: str, prompt: str, *, search: bool = False,
             search_since: str | None = None) -> tuple[str, list[str]]:
@@ -60,27 +48,10 @@ class GrokProvider:
             if search_since:
                 x_search["from_date"] = search_since[:10]
             body["tools"] = [x_search, {"type": "web_search"}]
-        resp = self.session.post(
-            XAI_RESPONSES_URL, json=body, timeout=self.timeout,
-            headers={"Authorization": f"Bearer {self.api_key}"},
-        )
-        if resp.status_code != 200:
-            raise LLMError(f"xAI HTTP {resp.status_code}: {resp.text[:300]}")
-        data = resp.json()
-        texts: list[str] = []
-        urls: list[str] = []
-        for cite in data.get("citations") or []:
-            url = cite.get("url") if isinstance(cite, dict) else cite
-            if isinstance(url, str):
-                urls.append(url)
-        for item in data.get("output", []):
-            if item.get("type") != "message":
-                continue
-            for part in item.get("content", []):
-                if part.get("type") == "output_text":
-                    texts.append(part.get("text", ""))
-                    urls.extend(a["url"] for a in part.get("annotations", []) if a.get("url"))
-        return "\n".join(texts).strip(), list(dict.fromkeys(urls))
+        data = post_responses(self.session, XAI_RESPONSES_URL, self.api_key, body, self.timeout, "xAI")
+        usage = responses_usage(data)
+        self.last_usage = usage if self.last_usage is None else self.last_usage + usage
+        return parse_output(data)
 
     def structured(self, task: LLMTask, system: str, prompt: str, schema: type[T], *,
                    search: bool = False, search_since: str | None = None, max_search_uses: int = 12) -> T:

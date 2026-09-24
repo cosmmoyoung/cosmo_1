@@ -4,7 +4,7 @@ One cycle:
   1. poll news (inbox, FMP, Grok) -> triage -> route to open theses or the idea queue
   2. open theses touched by news are re-assessed; conviction changes resize or exit
   3. once a day: industry scan -> company screen -> idea queue; re-check prices
-  4. work the idea queue (deep dives, capped per day); good theses become orders
+  4. work the idea queue (one deep dive per cycle, capped per day); good theses become orders
 Every order goes through OrderDesk: risk engine -> approval -> broker.
 """
 
@@ -14,12 +14,13 @@ import logging
 import os
 import time
 from collections import defaultdict
+from dataclasses import dataclass
 from datetime import timedelta
 from typing import Callable
 
-from tradebot.config import Settings
+from tradebot.config import LLMTask, Settings
 from tradebot.execution import Broker
-from tradebot.llm import LLMRouter, Provider
+from tradebot.llm import LLMQuotaExceeded, LLMRouter, Provider, Usage, billing
 from tradebot.models import NewsItem, OrderProposal, Quote, Thesis, iso, parse_iso, utcnow
 from tradebot.notify import Notifier
 from tradebot.research.deep_dive import DeepDive
@@ -48,6 +49,13 @@ def safe_quote(fmp) -> Callable[[str], Quote | None]:
             log.warning("quote %s failed: %s", ticker, exc)
             return None
     return quote
+
+
+@dataclass
+class CompareResult:
+    thesis: Thesis | None = None
+    api_cost_usd: float = 0.0
+    error: str | None = None
 
 
 class OrderDesk:
@@ -311,6 +319,14 @@ class TradingBot:
         self.store.set_idea_status(ticker, "researching")
         try:
             thesis = self.deep_dive.run(ticker, reason)
+        except LLMQuotaExceeded as exc:
+            # The subscription window is used up: put the idea back and pause deep dives for a while.
+            self.store.set_idea_status(ticker, "queued")
+            until = self.clock() + timedelta(minutes=self.settings.llm.cli.pause_minutes_on_limit)
+            self.store.set_meta("research_paused_until", iso(until))
+            self.notifier.send("订阅额度用完，深度研究暂停",
+                               f"{exc}\n{ticker} 已放回队列，{until:%Y-%m-%d %H:%M} UTC 后自动重试")
+            raise
         except Exception:
             self.store.set_idea_status(ticker, "failed")
             raise
@@ -323,10 +339,16 @@ class TradingBot:
         self.rebalance(thesis)
         return thesis
 
+    def research_paused(self) -> bool:
+        until = parse_iso(self.store.get_meta("research_paused_until"))
+        return until is not None and self.clock() < until
+
     def work_research_queue(self) -> int:
         done = 0
         universe = self.settings.universe
-        while self.store.count("deep_dives", self._today()) < self.settings.schedule.max_deep_dives_per_day:
+        sched = self.settings.schedule
+        while done < sched.deep_dives_per_cycle and not self.research_paused() \
+                and self.store.count("deep_dives", self._today()) < sched.max_deep_dives_per_day:
             idea = self.store.next_idea()
             if idea is None:
                 break
@@ -346,6 +368,30 @@ class TradingBot:
                 self.store.log("research_error", f"{ticker}: {exc}")
                 break
         return done
+
+    def compare(self, ticker: str, routes: dict[str, LLMTask], reason: str = "对比不同模型的研究结论"
+                ) -> dict[str, CompareResult]:
+        """Run the same deep dive through each route. Nothing is saved as the live thesis and
+        nothing is traded. One route failing (not installed, out of quota) does not stop the others."""
+        results: dict[str, CompareResult] = {}
+        base_sink = self.router.usage_sink
+        for label, task in routes.items():
+            result = CompareResult()
+
+            def sink(stage: str, t: LLMTask, usage: Usage, cost: float, label: str = label,
+                     result: CompareResult = result) -> None:
+                result.api_cost_usd += cost
+                if base_sink:
+                    base_sink(f"compare:{label}:{stage}", t, usage, cost)
+
+            router = self.router.with_stages(usage_sink=sink, research=task, synthesis=task)
+            try:
+                result.thesis = self.deep_dive.run(ticker, reason, router=router, persist=False, tag=label)
+            except Exception as exc:
+                log.warning("compare route %s failed: %s", label, exc)
+                result.error = f"{type(exc).__name__}: {exc}"
+            results[label] = result
+        return results
 
     # ------------------------------------------------------------------ orders
     def rebalance(self, thesis: Thesis) -> OrderProposal | None:
@@ -391,19 +437,39 @@ class TradingBot:
             time.sleep(max(5.0, interval - (time.monotonic() - started)))
 
 
-def make_providers(settings: Settings) -> dict[str, Provider]:
-    tasks = ["triage", "industry", "screen", "research", "thesis"]
-    if settings.sources.grok_scout:
-        tasks.append("scout")
-    wanted = {getattr(settings.llm, t).provider for t in tasks}
-    providers: dict[str, Provider] = {}
-    if "claude" in wanted:
+def make_provider(settings: Settings, name: str) -> Provider:
+    """Create a provider the first time a stage needs it (so unused ones need no API key)."""
+    if name == "claude":
         from tradebot.llm.claude import ClaudeProvider
-        providers["claude"] = ClaudeProvider()
-    if "grok" in wanted:
+        return ClaudeProvider()
+    if name == "openai":
+        from tradebot.llm.openai_api import OpenAIProvider
+        return OpenAIProvider()
+    if name == "grok":
         from tradebot.llm.grok import GrokProvider
-        providers["grok"] = GrokProvider(x_handles=settings.sources.grok_x_handles)
-    return providers
+        return GrokProvider(x_handles=settings.sources.grok_x_handles)
+    if name == "claude_cli":
+        from tradebot.llm.cli import ClaudeCLIProvider
+        return ClaudeCLIProvider(settings.llm.cli)
+    if name == "codex_cli":
+        from tradebot.llm.cli import CodexCLIProvider
+        return CodexCLIProvider(settings.llm.cli)
+    raise ValueError(f"unknown provider {name}")
+
+
+def compare_routes(settings: Settings, names: list[str]) -> dict[str, LLMTask]:
+    """Named research routes for `tradebot compare`."""
+    cli = settings.llm.cli
+    catalog = {
+        "claude": LLMTask(provider="claude_cli", model=cli.claude_model, effort="high"),
+        "codex": LLMTask(provider="codex_cli", model=cli.codex_model, effort="high"),
+        "claude_api": LLMTask(provider="claude", model="claude-opus-5", effort="high", max_tokens=64000),
+        "openai_api": LLMTask(provider="openai", model="gpt-6-astra", effort="high", max_tokens=64000),
+    }
+    unknown = [n for n in names if n not in catalog]
+    if unknown:
+        raise ValueError(f"未知的对比路线 {unknown}，可选：{', '.join(catalog)}")
+    return {name: catalog[name] for name in names}
 
 
 def make_broker(settings: Settings, store: Store, quote: Callable[[str], Quote | None]) -> Broker:
@@ -423,7 +489,15 @@ def build_bot(settings: Settings, *, providers: dict[str, Provider] | None = Non
     if fmp is None:
         from tradebot.sources.fmp import FMPClient
         fmp = FMPClient()
-    router = LLMRouter(settings.llm, providers if providers is not None else make_providers(settings))
+    def record(stage: str, task: LLMTask, usage: Usage, cost: float) -> None:
+        store.record_usage(stage, task.provider, task.model, billing(task.provider), usage.input_tokens,
+                           usage.cached_input_tokens, usage.output_tokens, cost)
+
+    router = LLMRouter(
+        settings.llm, providers,
+        factory=None if providers is not None else (lambda name: make_provider(settings, name)),
+        usage_sink=record,
+    )
     inbox = InboxSource(settings.path(settings.sources.inbox_dir), store)
     inbox.ensure_dirs()
     if news_sources is None:

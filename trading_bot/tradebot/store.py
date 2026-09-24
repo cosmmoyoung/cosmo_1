@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS orders (id TEXT PRIMARY KEY, ticker TEXT, status TEXT
 CREATE TABLE IF NOT EXISTS paper_positions (ticker TEXT PRIMARY KEY, qty REAL, avg_cost REAL);
 CREATE TABLE IF NOT EXISTS counters (day TEXT, name TEXT, n INTEGER, PRIMARY KEY (day, name));
 CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY AUTOINCREMENT, at TEXT, kind TEXT, message TEXT);
+CREATE TABLE IF NOT EXISTS llm_usage (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, at TEXT, day TEXT, stage TEXT, provider TEXT, model TEXT,
+    billing TEXT, input_tokens INTEGER, cached_input_tokens INTEGER, output_tokens INTEGER, api_cost_usd REAL);
 """
 
 OPEN_ORDER_STATUSES = ("pending_approval", "submitted")
@@ -246,6 +249,26 @@ class Store:
             self._exec("DELETE FROM paper_positions WHERE ticker = ?", (ticker,))
         else:
             self._exec("INSERT OR REPLACE INTO paper_positions VALUES (?, ?, ?)", (ticker, qty, avg_cost))
+
+    # ---------------------------------------------------------------- LLM usage
+    def record_usage(self, stage: str, provider: str, model: str, billing: str, input_tokens: int,
+                     cached_input_tokens: int, output_tokens: int, api_cost_usd: float) -> None:
+        now = utcnow()
+        self._exec(
+            "INSERT INTO llm_usage (at, day, stage, provider, model, billing, input_tokens, "
+            "cached_input_tokens, output_tokens, api_cost_usd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (iso(now), now.date().isoformat(), stage, provider, model, billing,
+             input_tokens, cached_input_tokens, output_tokens, api_cost_usd),
+        )
+
+    def usage_summary(self, days: int = 7) -> list[sqlite3.Row]:
+        since = (utcnow() - timedelta(days=days)).date().isoformat()
+        return self._all(
+            "SELECT billing, provider, model, COUNT(*) AS calls, SUM(input_tokens) AS input_tokens, "
+            "SUM(output_tokens) AS output_tokens, SUM(api_cost_usd) AS api_cost_usd "
+            "FROM llm_usage WHERE day >= ? GROUP BY billing, provider, model ORDER BY api_cost_usd DESC",
+            (since,),
+        )
 
     # ---------------------------------------------------------------- daily counters
     def bump(self, name: str, day: str) -> int:

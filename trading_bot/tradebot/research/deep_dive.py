@@ -106,7 +106,11 @@ class DeepDive:
         return "\n\n".join(parts)
 
     # ------------------------------------------------------------------ run
-    def run(self, ticker: str, reason: str) -> Thesis:
+    def run(self, ticker: str, reason: str, *, router: LLMRouter | None = None, persist: bool = True,
+            tag: str = "") -> Thesis:
+        """Research one ticker. `router`/`persist`/`tag` let `tradebot compare` run the same deep dive
+        through another model without touching the live thesis."""
+        router = router or self.router
         now = utcnow()
         snapshot = self.fmp.company_snapshot(ticker)
         docs = self._documents(ticker)
@@ -116,31 +120,31 @@ class DeepDive:
             "(Source: document <id>). Use web_search and web_fetch for filings, transcripts and anything missing."
         )
 
-        memo = self.router.text("research", self.researcher, (
+        memo = router.text("research", self.researcher, (
             f"Research {ticker} as a possible position. Work through your full framework.\n{cite_rule}\n\n{context}"
         ), search=True)
-        critique = self.router.text("research", self.critic, (
+        critique = router.text("research", self.critic, (
             f"Stress-test the analyst's thesis on {ticker}. Your falsification criteria become the "
             f"fund's exit triggers, so make each one observable in future data.\n\n"
             f"<analyst_memo>\n{memo}\n</analyst_memo>\n\n{context}"
         ), search=True)
-        audit = self._audit(ticker, memo, critique, context)
+        audit = self._audit(router, ticker, memo, critique, context)
         verdict = parse_verdict(audit)
         for _ in range(self.settings.research.max_revision_rounds):
             if verdict != "REVISE_AND_RESUBMIT":
                 break
-            memo = self.router.text("research", self.researcher, (
+            memo = router.text("research", self.researcher, (
                 f"The quality reviewer sent your memo on {ticker} back. Address every RED and YELLOW "
                 f"revision request, re-source or remove unsupported claims, and return the complete "
                 f"revised memo.\n{cite_rule}\n\n<your_memo>\n{memo}\n</your_memo>\n\n"
                 f"<audit>\n{audit}\n</audit>\n\n{context}"
             ), search=True)
-            audit = self._audit(ticker, memo, critique, context)
+            audit = self._audit(router, ticker, memo, critique, context)
             verdict = parse_verdict(audit)
 
         quote = snapshot.get("quote") if isinstance(snapshot.get("quote"), dict) else {}
         doc_ids = [doc.id for doc, _ in docs]
-        draft = self.router.structured("thesis", SYNTHESIS_SYSTEM, (
+        draft = router.structured("synthesis", SYNTHESIS_SYSTEM, (
             f"Ticker: {ticker}. Current price: {quote.get('price', 'unknown')} USD "
             f"(Financial Modeling Prep quote, {snapshot.get('as_of', '')}).\n"
             f"Document ids provided to the analysts: {', '.join(doc_ids) or 'none'}.\n\n"
@@ -158,23 +162,24 @@ class DeepDive:
         draft.evidence_doc_ids = [d for d in draft.evidence_doc_ids if d in doc_ids]
         draft.pillars = [Pillar(claim=p.claim, evidence=p.evidence, status="intact") for p in draft.pillars]
 
-        paths = self._save_memos(ticker, now, {"1_research": memo, "2_critique": critique, "3_audit": audit})
-        thesis = self._to_thesis(draft, now, paths)
-        self.store.upsert_thesis(thesis)
+        memos = {"1_research": memo, "2_critique": critique, "3_audit": audit}
+        thesis = self._to_thesis(draft, now, self._save_memos(ticker, now, memos, tag))
+        if persist:
+            self.store.upsert_thesis(thesis)
         return thesis
 
-    def _audit(self, ticker: str, memo: str, critique: str, context: str) -> str:
-        return self.router.text("research", self.reviewer, (
+    def _audit(self, router: LLMRouter, ticker: str, memo: str, critique: str, context: str) -> str:
+        return router.text("research", self.reviewer, (
             f"Audit the research on {ticker} below: the analyst memo and the contrarian critique. "
             f"Verify numbers against the data pack and documents, and check sources on the web where "
             f"needed.\n\n<analyst_memo>\n{memo}\n</analyst_memo>\n\n<critique>\n{critique}\n</critique>"
             f"\n\n{context}\n\n{VERDICT_LINE}"
         ), search=True)
 
-    def _save_memos(self, ticker: str, now: datetime, memos: dict[str, str]) -> list[str]:
+    def _save_memos(self, ticker: str, now: datetime, memos: dict[str, str], tag: str) -> list[str]:
         folder = self.settings.path(self.settings.research.notes_dir) / ticker
         folder.mkdir(parents=True, exist_ok=True)
-        stamp = now.strftime("%Y-%m-%d_%H%M")
+        stamp = now.strftime("%Y-%m-%d_%H%M") + (f"_{tag}" if tag else "")
         paths = []
         for name, text in memos.items():
             path = folder / f"{stamp}_{name}.md"

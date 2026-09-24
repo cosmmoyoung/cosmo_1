@@ -154,7 +154,7 @@ def demo_settings(workdir: Path) -> Settings:
     settings.base_dir = workdir
     settings.sources.fmp_news = False
     settings.universe.themes = ["AI 光通信"]
-    for stage in ("triage", "industry", "screen", "research", "thesis", "scout"):
+    for stage in settings.llm.STAGES:
         getattr(settings.llm, stage).provider = "fake"
     return settings
 
@@ -194,5 +194,6 @@ def run_demo(workdir: Path | None = None, say: Callable[[str], None] = print) ->
     bot.desk.approve(exit_order.id)
     account = bot.broker.account()
     say(f"   持仓 {account.qty(TICKER):g} 股，账户净值 ${account.nav:,.0f}（手续费已扣）\n")
-    say("演示结束。真实运行时，数据来自 FMP / Grok / 你的研报文件夹，研究由 Claude 完成。")
+    say("演示结束。真实运行时，数据来自 FMP / Grok / 你的研报文件夹；深度研究走你的订阅"
+        "（Claude Code 或 Codex），新闻分诊这类全天候的小任务走便宜的 API 模型。")
     return bot
