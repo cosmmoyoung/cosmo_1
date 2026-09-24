@@ -1,0 +1,78 @@
+# tradebot 配置。复制成 config.yaml 后修改（tradebot init 会自动复制）。
+# API key 不写在这里，写在 .env 里。
+
+data_dir: data                      # 数据库、研究 memo、紧急停止文件都放在这里
+
+universe:
+  # v1 只交易美股和美股 ADR（TSM、ASML、CDNS 这类），价格统一是美元。
+  min_market_cap_usd: 2000000000    # 市值低于 20 亿美元的不研究、不买
+  min_price: 5
+  exclude: []                       # 永远不碰的股票
+  watchlist: [TSM, ASML, CDNS, SNPS]  # 重点盯的股票：新闻会被单独拉取
+  themes:                           # 你的投资主线，行业筛选和新闻分诊都会参考
+    - AI 供应链里的卡脖子环节（先进制程、光刻、EDA、HBM、先进封装、光通信）
+    - AI 数据中心的电力和散热
+
+schedule:
+  news_poll_minutes: 15             # 每隔多少分钟拉一次新闻
+  daily_scan_hour_utc: 12           # 每天几点（UTC）做行业扫描和公司筛选。12 点 = 香港晚上 8 点 = 美东开盘前
+  max_deep_dives_per_day: 3         # 每天最多做几次深度研究（最花钱的一步）
+  top_industries: 5
+  candidates_per_industry: 2
+  approval_ttl_hours: 24            # 待审批订单超过这个时间自动作废，避免按过时价格成交
+
+research:
+  agents_dir: ../.claude/agents     # 复用仓库里 stock-researcher / critical-thinker / research-reviewer 三个分析师
+  notes_dir: data/research          # 每次深度研究的三份 memo 存在这里
+  open_conviction: 70               # conviction 达到 70 才开新仓
+  exit_conviction: 50               # 跌破 50 清仓
+  full_conviction: 95               # 95 对应满仓（max_position_pct）
+  exit_on_broken_pillars: 2         # 两个核心假设被证伪就清仓
+  allowed_verdicts: [PASS, PASS_WITH_MINOR_REVISIONS]   # 审核没通过的研究不允许买入
+  materiality_threshold: 6          # 新闻重要性（0-10）低于 6 的只记录，不行动
+  max_revision_rounds: 1            # 审核打回后，研究员最多改几轮
+  max_docs: 6                       # 深度研究时最多带几份研报/纪要
+  max_doc_chars: 150000             # 单份文件最多带多少字符（超出会截断并记日志）
+
+risk:                               # 硬规则，AI 改不了
+  trading_enabled: true
+  long_only: true                   # 只做多，不做空
+  max_position_pct: 8               # 单票最多占净值 8%
+  max_industry_pct: 30              # 单一行业最多 30%
+  max_gross_leverage: 1.0           # 总仓位最多 1 倍净值 = 不加杠杆（research/leverage_strategy_ibkr_hk.md 的结论：甜区 1.3-1.4 倍，硬顶 1.5 倍）
+  max_positions: 15
+  max_orders_per_day: 10            # 每天最多买入几次
+  max_daily_loss_pct: 3             # 当天亏损达到 3% 就暂停买入
+  max_price_deviation_pct: 3        # 限价偏离现价超过 3% 拒绝（防乌龙指）
+  min_order_value: 1000
+  rebalance_band_pct: 1.5           # 目标仓位和实际仓位差不到 1.5% 就不动，避免来回交易
+  require_compliance_cleared: true  # 未经合规确认的专家纪要不能作为买入依据
+
+execution:
+  broker: paper                     # paper = 模拟盘；ibkr = 盈透（需要 TWS 或 IB Gateway）
+  approval: manual                  # manual = 每一单都要你批准；auto = 风控通过就自动下单
+  auto_approve_exits: false         # true = 清仓/减仓单不用等你批准
+  limit_offset_pct: 0.3             # 限价单：买入价 = 现价 +0.3%，卖出价 = 现价 -0.3%
+  paper_starting_cash: 1000000
+  ibkr_host: 127.0.0.1
+  ibkr_port: 7497                   # 7497 = TWS 模拟盘，4002 = Gateway 模拟盘；7496 / 4001 是实盘
+  ibkr_client_id: 17
+  allow_live: false                 # 实盘需要这里写 true，并且环境变量 TRADEBOT_LIVE=YES
+
+sources:
+  fmp_news: true                    # FMP 的新闻和公告
+  grok_scout: false                 # 用 Grok 扫 X（推特）和网页上的新闻，需要 XAI_API_KEY
+  grok_x_handles: []                # 可选：只看这些 X 账号（最多 10 个）
+  inbox_dir: inbox                  # 研报、专家纪要、其他机器人的信号放这里
+
+llm:
+  # 每个环节用哪个模型。默认全部用 Claude Opus 5，用 effort 控制深浅和花费；
+  # 想省钱可以把 triage 换成 claude-sonnet-5 或 claude-haiku-4-5。
+  triage:   {provider: claude, model: claude-opus-5, effort: low}
+  industry: {provider: claude, model: claude-opus-5, effort: medium}
+  screen:   {provider: claude, model: claude-opus-5, effort: medium}
+  research: {provider: claude, model: claude-opus-5, effort: high, max_tokens: 64000}
+  thesis:   {provider: claude, model: claude-opus-5, effort: medium}
+  scout:    {provider: grok, model: grok-4.7}
+  web_search_max_uses: 12           # 每份 memo 最多搜索几次网页
+  language: Simplified Chinese      # memo 和说明文字的语言
